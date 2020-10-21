@@ -69,7 +69,6 @@
         
                     "private-static-field",
                     "private-static-method",
-                    "private-instance-field",
                     "private-constructor",
                     "private-instance-method"
                 ]

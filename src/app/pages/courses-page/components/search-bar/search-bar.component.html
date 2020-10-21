@@ -1,0 +1,10 @@
+<div class="search-bar">
+    <input 
+        class="search-bar__input"
+        placeholder="Type to search"
+        [(ngModel)]="searchValue"
+    />
+    <button class="button button--primary search-bar__button"
+        (click)="handleSearch()"
+    >search</button>
+</div>
