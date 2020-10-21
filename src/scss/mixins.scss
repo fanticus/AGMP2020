@@ -1,0 +1,17 @@
+@mixin element ($element) {
+    &__#{$element} {
+        @content;
+    };
+}
+
+@mixin modif ($modif) {
+    &--#{$modif} {
+        @content;
+    };
+}
+
+@mixin main-wrapper {
+    width: 100%;
+    max-width: $page-width;
+    padding: 0 20px;
+}

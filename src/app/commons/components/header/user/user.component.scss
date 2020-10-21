@@ -1,0 +1,39 @@
+@import "../../../../../scss/colors.scss";
+@import "../../../../../scss/variables.scss";
+@import '../../../../../scss/mixins.scss';
+
+.user {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    @include element (user-login) {
+        height: 18px;
+        color: $secondary-font-color;
+        font-size: 14px;
+        font-weight: 400;
+        background-image: url('../../../../../assets/icons/person.svg');
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: center left;
+        background-size: 18px;
+        padding: 0 0 0 20px;
+    }
+    @include element (button) {
+        height: 18px;
+        color: $secondary-font-color;
+        font-weight: 400;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: center left;
+        background-size: 18px;
+        border: none;
+        padding: 0 0 0 20px;
+        margin-left: $container-margin;
+
+        @include modif (logout) {
+            background-image: url('../../../../../assets/icons/logout.svg');
+        }
+    }
+}
