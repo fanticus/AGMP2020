@@ -5,7 +5,7 @@ import {
     CoursesPageComponent
 } from './pages/courses-page/components/courses-page.component';
 
-const ROUTES: Routes = [
+export const ROUTES: Routes = [
     { path: '', component: CoursesPageComponent }
 ];
 
