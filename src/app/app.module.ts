@@ -5,7 +5,9 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CommonsModule } from './commons/commons.module';
-import { CoursesPageModule } from './pages/courses-page/courses-page.module';
+import {
+    CoursesPageModule
+} from './pages/courses-page/courses-page.module';
 
 @NgModule({
     declarations: [

@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 
-import { APP_IMPORTS } from '../../app.imports';
 import { APP_DECLARATIONS } from '../../app.declarations';
 
 import { Course } from './Course';
@@ -39,5 +38,8 @@ describe('Course', () => {
     });
     it('description testing', () => {
         expect(component.description).toBeUndefined();
+    });
+    it('topRated testing', () => {
+        expect(component.topRated).toBeUndefined();
     });
 });

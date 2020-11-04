@@ -1,3 +1,4 @@
+// COMPONENTS
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './commons/components/header/header.component';
 import { LogoComponent } from './commons/components/logo/logo.component';
@@ -8,6 +9,11 @@ import { CourseItemComponent } from './pages/courses-page/components/course-item
 import { SearchBarComponent } from './pages/courses-page/components/search-bar/search-bar.component';
 import { FooterComponent } from './commons/components/footer/footer.component';
 import { CopyRightsComponent } from './commons/components/footer/copy-rights/copy-rights.component';
+
+// PIPES
+import { DurationPipe } from './pages/courses-page/pipes/duration/duration.pipe';
+import { OrderByPipe } from './pages/courses-page/pipes/order-by/order-by.pipe';
+import { FilterPipe } from './pages/courses-page/pipes/filter/filter.pipe';
 
 export const APP_DECLARATIONS = [
     AppComponent,
@@ -20,4 +26,7 @@ export const APP_DECLARATIONS = [
     SearchBarComponent,
     FooterComponent,
     CopyRightsComponent,
+    DurationPipe,
+    OrderByPipe,
+    FilterPipe,
 ];

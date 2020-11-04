@@ -36,35 +36,32 @@ describe('AppComponent', () => {
     it('nativeElement has a div .root-wrapper', () => {
         expect(compiled.querySelector('div .root-wrapper')).toBeTruthy();
     });
+    it('nativeElement has a div .root-wrapper__header-wrapper', () => {
+        expect(compiled.querySelector('.root-wrapper__header-wrapper')).toBeTruthy();
+    });
     it('nativeElement has a header .root-wrapper__header', () => {
         expect(compiled.querySelector('.root-wrapper__header')).toBeTruthy();
-    });
-    it('nativeElement has a section .root-wrapper__header-wrapper', () => {
-        expect(compiled.querySelector('.root-wrapper__header-wrapper')).toBeTruthy();
     });
     it('nativeElement has a main .root-wrapper__main', () => {
         expect(compiled.querySelector('.root-wrapper__main')).toBeTruthy();
     });
-    it('nativeElement has a section .root-wrapper__breadcrumps', () => {
-        expect(compiled.querySelector('.root-wrapper__breadcrumps')).toBeTruthy();
-    });
     it('nativeElement has a div .root-wrapper__breadcrumps-wrapper', () => {
         expect(compiled.querySelector('div .root-wrapper__breadcrumps-wrapper')).toBeTruthy();
     });
-    it('nativeElement has a section .root-wrapper__content', () => {
-        expect(compiled.querySelector('.root-wrapper__content')).toBeTruthy();
+    it('nativeElement has a div .root-wrapper__breadcrumps', () => {
+        expect(compiled.querySelector('.root-wrapper__breadcrumps')).toBeTruthy();
     });
     it('nativeElement has a div .root-wrapper__content-wrapper', () => {
         expect(compiled.querySelector('div .root-wrapper__content-wrapper')).toBeTruthy();
     });
-    it('nativeElement has a div .root-wrapper__content-block', () => {
-        expect(compiled.querySelector('div .root-wrapper__content-block')).toBeTruthy();
+    it('nativeElement has a div .root-wrapper__content', () => {
+        expect(compiled.querySelector('.root-wrapper__content')).toBeTruthy();
+    });
+    it('nativeElement has a div .root-wrapper__footer-wrapper', () => {
+        expect(compiled.querySelector('.root-wrapper__footer-wrapper')).toBeTruthy();
     });
     it('nativeElement has a footer .root-wrapper__footer', () => {
         expect(compiled.querySelector('.root-wrapper__footer')).toBeTruthy();
-    });
-    it('nativeElement has a section .root-wrapper__footer-wrapper', () => {
-        expect(compiled.querySelector('.root-wrapper__footer-wrapper')).toBeTruthy();
     });
 
     it('title testing "agmp2020"', () => {

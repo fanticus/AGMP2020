@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
+import { APP_PROVIDERS } from '../../../app.providers';
 import { APP_IMPORTS } from '../../../app.imports';
 import { APP_DECLARATIONS } from '../../../app.declarations';
 
@@ -16,6 +17,7 @@ describe('CoursesPageComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            providers: [ APP_PROVIDERS ],
             imports: [ APP_IMPORTS ],
             declarations: [ APP_DECLARATIONS ],
         }).compileComponents();
@@ -40,11 +42,20 @@ describe('CoursesPageComponent', () => {
     it('nativeElement has a div .courses-page', () => {
         expect(compiled.querySelector('div .courses-page')).toBeTruthy();
     });
+    it('nativeElement has a div .courses-page__action-bar-wrapper', () => {
+        expect(compiled.querySelector('div .courses-page__action-bar-wrapper')).toBeTruthy();
+    });
     it('nativeElement has a div .courses-page__action-bar', () => {
         expect(compiled.querySelector('div .courses-page__action-bar')).toBeTruthy();
     });
     it('nativeElement has a div .courses-page__action-bar--search', () => {
         expect(compiled.querySelector('.courses-page__action-bar--search')).toBeTruthy();
+    });
+    it('nativeElement has a div .courses-page__actions-wrapper', () => {
+        expect(compiled.querySelector('div .courses-page__actions-wrapper')).toBeTruthy();
+    });
+    it('nativeElement has a div .courses-page__actions', () => {
+        expect(compiled.querySelector('div .courses-page__actions')).toBeTruthy();
     });
     it('nativeElement has a link .courses-page__button', () => {
         expect(compiled.querySelector('.courses-page__button')).toBeTruthy();
@@ -62,6 +73,18 @@ describe('CoursesPageComponent', () => {
     it('nativeElement has a div .courses-page__list-item', () => {
         expect(compiled.querySelector('.courses-page__list-item')).toBeTruthy();
     });
+    it('nativeElement has a div .courses-page__load-more-wrapper', () => {
+        expect(compiled.querySelector('div .courses-page__load-more-wrapper')).toBeTruthy();
+    });
+    it('nativeElement has a div .courses-page__load-more-wrapper with event click', () => {
+        spyOn(component, 'handleLoadMore');
+
+        const button: DebugElement = fixture.debugElement
+            .query(By.css('.courses-page__load-more-wrapper'));
+        button.triggerEventHandler('click', null);
+
+        expect(component.handleLoadMore).toHaveBeenCalled();
+    });
     it('nativeElement has a div .courses-page__load-more-block', () => {
         expect(compiled.querySelector('div .courses-page__load-more-block')).toBeTruthy();
     });
@@ -72,15 +95,26 @@ describe('CoursesPageComponent', () => {
         expect(compiled.querySelector('.courses-page__load-more').textContent)
             .toContain('Load more');
     });
-    it('nativeElement has a div .courses-page__load-more-block with event click', () => {
-        spyOn(component, 'handleLoadMore');
-
-        const button: DebugElement = fixture.debugElement
-            .query(By.css('.courses-page__load-more-block'));
-        button.triggerEventHandler('click', null);
-
-        expect(component.handleLoadMore).toHaveBeenCalled();
-    });
+    // it('nativeElement has a div .courses-page__not-data-wrapper', () => {
+    //     expect(compiled.querySelector('div .courses-page__not-data-wrapper')).toBeTruthy();
+    // });
+    // it('nativeElement has a div .courses-page__not-data', () => {
+    //     expect(compiled.querySelector('div .courses-page__not-data')).toBeTruthy();
+    // });
+    // it('nativeElement has a h3 .courses-page__not-data--title', () => {
+    //     expect(compiled.querySelector('div .courses-page__not-data--title')).toBeTruthy();
+    // });
+    // it('nativeElement has a h3 .courses-page__not-data--title with content', () => {
+    //     expect(compiled.querySelector('.courses-page__not-data--title').textContent)
+    //         .toContain('No data');
+    // });
+    // it('nativeElement has a span .courses-page__not-data--description', () => {
+    //     expect(compiled.querySelector('div .courses-page__not-data--description')).toBeTruthy();
+    // });
+    // it('nativeElement has a span .courses-page__not-data--description with content', () => {
+    //     expect(compiled.querySelector('.courses-page__not-data--description').textContent)
+    //         .toContain('Feel free to add new course');
+    // });
 
     it('coursesData testing', () => {
         expect(component.coursesData).toBeDefined();

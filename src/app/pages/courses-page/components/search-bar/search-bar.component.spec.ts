@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { APP_IMPORTS } from '../../../../app.imports';
@@ -74,22 +74,22 @@ describe('SearchBarComponent', () => {
         expect(component.searchValue).toEqual('');
     });
     it('handleSearch() testing', () => {
-        spyOn(window.console, 'log');
+        spyOn((component as any).eventSearch, 'emit');
 
         component.handleSearch();
 
-        expect(window.console.log).toHaveBeenCalled();
-        expect(window.console.log).toHaveBeenCalledWith('');
+        expect((component as any).eventSearch).toBeDefined();
+        expect((component as any).eventSearch instanceof EventEmitter).toBeTruthy();
     });
     it('handleSearch() change searchValue testing', () => {
-        spyOn(window.console, 'log');
+        spyOn((component as any).eventSearch, 'emit');
 
         const value = 'test';
         component.searchValue = value;
 
         component.handleSearch();
 
-        expect(window.console.log).toHaveBeenCalled();
-        expect(window.console.log).toHaveBeenCalledWith(value);
+        expect((component as any).eventSearch).toBeDefined();
+        expect((component as any).eventSearch instanceof EventEmitter).toBeTruthy();
     });
 });

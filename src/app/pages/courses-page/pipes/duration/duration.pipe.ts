@@ -20,9 +20,9 @@ export class DurationPipe implements PipeTransform {
     }
 
     private getHours( hours: number ): string {
-        return hours ? `${ hours }h` : '';
+        return hours ? `${ hours }h ` : '';
     }
-    
+
     private getMinutes( value: number ): string {
         const minutes: string | number = value < 10 ? `0${ value }` : value;
         return `${ minutes }min`;
