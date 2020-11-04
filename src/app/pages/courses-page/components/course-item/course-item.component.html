@@ -1,4 +1,7 @@
 <article class="course-item"
+    [ngClass] = "{
+        'course-item--rate': courseItem.topRated
+    }"
     [appCourseHighlight]="courseItem.creationDate">
     <div class="course-item__header-block">
         <div class="course-item__header">
@@ -6,6 +9,7 @@
                 <h3 class="course-item__title">
                     {{ courseItem.title }}
                 </h3>
+                <div *ngIf="courseItem.topRated" class="course-item__star"></div>
             </div>
             <div class="course-item__info-block">
                 <span class="course-item__info course-item__info--clock">

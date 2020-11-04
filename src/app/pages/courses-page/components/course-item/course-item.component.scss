@@ -17,6 +17,9 @@
     @include modif (upcoming) {
         border: 1px solid $course-upcoming-border-color;
     }
+    @include modif (rate) {
+        background-color: darken($container-bg-color, 1%);
+    }
     @include element (header-block) {
         margin-bottom: 8px;
     }
@@ -32,6 +35,9 @@
         flex-wrap: nowrap;
     }
     @include element (title-block) {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
         margin-right: auto;
     }
     @include element (info-block) {
@@ -54,6 +60,15 @@
         color: $title-font-color;
         font-size: 24px;
         font-weight: 600;
+    }
+    @include element (star) {
+        width: 17px;
+        height: 17px;
+        background: url('../../../../../assets/icons/star.svg');
+        background-repeat: no-repeat;
+        background-size: 17px;
+        background-position: center;
+        margin-left: 15px;
     }
     @include element (info) {
         min-width: max-content;

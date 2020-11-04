@@ -7,4 +7,5 @@ export class Course implements ICourse {
     public creationDate: string;
     public duration: string | number;
     public description: string;
+    public topRated: boolean;
 }
