@@ -9,7 +9,7 @@
                 <div class="course-item__title-wrapper">
                     <div class="course-item__title-block">
                         <h3 class="course-item__title">
-                            {{ courseItem.title }}
+                            {{ courseItem.title | uppercase }}
                         </h3>
                         <div *ngIf="courseItem.topRated" class="course-item__star"></div>
                     </div>
@@ -17,10 +17,10 @@
                 <div class="course-item__info-block-wrapper">
                     <div class="course-item__info-block">
                         <span class="course-item__info course-item__info--clock">
-                            {{ courseItem.duration }}
+                            {{ courseItem.duration | duration }}
                         </span>
                         <span class="course-item__info course-item__info--date">
-                            {{ courseItem.creationDate }}
+                            {{ courseItem.creationDate | date: 'dd MMM yyyy' }}
                         </span>
                     </div>
                 </div>

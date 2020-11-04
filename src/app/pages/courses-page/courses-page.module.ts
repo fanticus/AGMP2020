@@ -10,12 +10,17 @@ import {
     CourseHighlightDirective
 } from './directives/course-highlight/course-highlight.directive';
 
+import {
+    DurationPipe
+} from './pipes/duration/duration.pipe';
+
 @NgModule({
     declarations: [
         CoursesPageComponent,
         SearchBarComponent,
         CourseItemComponent,
         CourseHighlightDirective,
+        DurationPipe,
     ],
     imports: [
         CommonModule,

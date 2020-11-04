@@ -22,11 +22,6 @@
         height: $header-height;
         background-color: $secondary-bg-color;
     }
-    @include element (header) {
-        width: 100%;
-        height: 100%;
-        max-width: $page-width;
-    }
     @include element (main) {
         display: flex;
         flex-direction: column;
@@ -36,6 +31,26 @@
         height: 100%;
         overflow-y: auto;
     }
+    // @include element (footer) {
+    //     display: flex;
+    //     justify-content: center;
+    //     width: 100%;
+    //     height: $footer-height;
+    //     position: sticky;
+    //     bottom: 0;
+    //     background-color: $secondary-bg-color;
+    // }
+    @include element (header) {
+        width: 100%;
+        height: 100%;
+        max-width: $page-width;
+    }
+    // @include element (footer-block) {
+    //     @include main-wrapper;
+    //     width: 100%;
+    //     height: 100%;
+    //     max-width: $page-width;
+    // }
     @include element (footer-wrapper) {
         @include main-wrapper;
         height: $footer-height;
