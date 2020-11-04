@@ -1,7 +1,9 @@
 <div class="courses-page">
     <div class="courses-page__action-bar-wrapper">
         <div class="courses-page__action-bar">
-            <app-search-bar class="courses-page__action-bar--search"></app-search-bar>
+            <app-search-bar class="courses-page__action-bar--search"
+                (eventSearch)="filterCourses($event)"
+            ></app-search-bar>
             <div class="courses-page__actions-wrapper">
                 <div class="courses-page__actions">
                     <a class="button courses-page__button">
@@ -11,12 +13,12 @@
             </div>
         </div>
     </div>
-    <div *ngIf="coursesData.length" class="courses-page__list-wrapper">
+    <div *ngIf="coursesList.length" class="courses-page__list-wrapper">
         <div class="courses-page__list">
             <app-course-item
-                *ngFor="let courseItem of coursesData"
+                *ngFor="let course of coursesList | orderBy: 'creationDate'"
                 class="courses-page__list-item"
-                [courseItem]="courseItem"
+                [courseItem]="course"
                 (deleteCourse)="deleteCourse($event)"
             ></app-course-item>
         </div>
@@ -29,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="!coursesData.length" class="courses-page__not-data-wrapper">
+    <div *ngIf="!coursesList.length" class="courses-page__not-data-wrapper">
         <div class="courses-page__not-data">
             <h3 class="courses-page__not-data--title">
                 No data
