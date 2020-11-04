@@ -1,26 +1,24 @@
 <div class="root-wrapper">
-    <header class="root-wrapper__header">
-        <section class="root-wrapper__header-wrapper">
+    <header class="root-wrapper__header-wrapper">
+        <div class="root-wrapper__header">
             <app-header></app-header>
-        </section>
+        </div>
     </header>
     <main class="root-wrapper__main">
-        <section class="root-wrapper__breadcrumps">
-            <div class="root-wrapper__breadcrumps-wrapper">
+        <div class="root-wrapper__breadcrumps-wrapper">
+            <div class="root-wrapper__breadcrumps">
                 <app-breadcrumps></app-breadcrumps>
             </div>
-        </section>
-        <section class="root-wrapper__content">
-            <div class="root-wrapper__content-wrapper">
-                <div class="root-wrapper__content-block">
-                    <router-outlet></router-outlet>
-                </div>
+        </div>
+        <div class="root-wrapper__content-wrapper">
+            <div class="root-wrapper__content">
+                <router-outlet></router-outlet>
             </div>
-        </section>
+        </div>
     </main>
-    <footer class="root-wrapper__footer">
-        <section class="root-wrapper__footer-wrapper">
+    <footer class="root-wrapper__footer-wrapper">
+        <div class="root-wrapper__footer">
             <app-footer></app-footer>
-        </section>
+        </div>
     </footer>
 </div>

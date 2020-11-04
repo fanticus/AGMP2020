@@ -3,38 +3,46 @@
         'course-item--rate': courseItem.topRated
     }"
     [appCourseHighlight]="courseItem.creationDate">
-    <div class="course-item__header-block">
-        <div class="course-item__header">
-            <div class="course-item__title-block">
-                <h3 class="course-item__title">
-                    {{ courseItem.title }}
-                </h3>
-                <div *ngIf="courseItem.topRated" class="course-item__star"></div>
-            </div>
-            <div class="course-item__info-block">
-                <span class="course-item__info course-item__info--clock">
-                    {{ courseItem.duration }}
-                </span>
-                <span class="course-item__info course-item__info--date">
-                    {{ courseItem.creationDate }}
-                </span>
+    <div class="course-item__block">
+        <div class="course-item__header-wrapper">
+            <div class="course-item__header">
+                <div class="course-item__title-wrapper">
+                    <div class="course-item__title-block">
+                        <h3 class="course-item__title">
+                            {{ courseItem.title }}
+                        </h3>
+                        <div *ngIf="courseItem.topRated" class="course-item__star"></div>
+                    </div>
+                </div>
+                <div class="course-item__info-block-wrapper">
+                    <div class="course-item__info-block">
+                        <span class="course-item__info course-item__info--clock">
+                            {{ courseItem.duration }}
+                        </span>
+                        <span class="course-item__info course-item__info--date">
+                            {{ courseItem.creationDate }}
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="course-item__content-block">
         <div class="course-item__content">
-            <div class="course-item__description-block">
-                <p class="course-item__description">
-                    {{ courseItem.description }}
-                </p>
+            <div class="course-item__description-wrapper">
+                <div class="course-item__description-block">
+                    <p class="course-item__description">
+                        {{ courseItem.description }}
+                    </p>
+                </div>
             </div>
-            <div class="course-item__action-block">
-                <a class="button course-item__button course-item__button--edit">
-                    edit
-                </a>
-                <button class="button course-item__button course-item__button--delete"
-                    (click)="handleDelete()"
-                >delete</button>
+            <div class="course-item__actions-wrapper">
+                <div class="course-item__actions">
+                    <a class="button course-item__button course-item__button--edit">
+                        edit
+                    </a>
+                    <button class="button course-item__button course-item__button--delete"
+                        (click)="handleDelete()"
+                    >delete</button>
+                </div>
             </div>
         </div>
     </div>
