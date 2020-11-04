@@ -11,6 +11,12 @@
     box-shadow: $container-box-shadow;
     padding: $container-padding;
 
+    @include modif (fresh) {
+        border: 1px solid $course-fresh-border-color;
+    }
+    @include modif (upcoming) {
+        border: 1px solid $course-upcoming-border-color;
+    }
     @include element (header-block) {
         margin-bottom: 8px;
     }

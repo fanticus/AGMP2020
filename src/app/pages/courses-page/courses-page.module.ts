@@ -6,11 +6,16 @@ import { CoursesPageComponent } from './components/courses-page.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
 
+import {
+    CourseHighlightDirective
+} from './directives/course-highlight/course-highlight.directive';
+
 @NgModule({
     declarations: [
         CoursesPageComponent,
         SearchBarComponent,
         CourseItemComponent,
+        CourseHighlightDirective,
     ],
     imports: [
         CommonModule,
