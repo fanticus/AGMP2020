@@ -21,4 +21,14 @@
             </a>
         </div>
     </div>
+    <div *ngIf="!coursesData.length" class="courses-page__not-data-wrapper">
+        <div class="courses-page__not-data">
+            <h3 class="courses-page__not-data--title">
+                No data
+            </h3>
+            <span class="courses-page__not-data--description">
+                Feel free to add new course
+            </span>
+        </div>
+    </div>
 </div>

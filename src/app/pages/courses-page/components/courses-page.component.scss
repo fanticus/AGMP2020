@@ -21,6 +21,10 @@
     @include element (list-wrapper) {
         width: 100%;
     }
+    @include element (not-data-wrapper) {
+        width: 100%;
+        height: calc(100% - 66px);
+    }
     @include element (list) {
         width: 100%;
     }
@@ -52,6 +56,25 @@
         color: $link-font-color;
         font-weight: 400;
         text-decoration: underline;
+    }
+    @include element (not-data) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+
+        @include modif (title) {
+            color: $title-font-color;
+            font-size: 30px;
+            font-weight: 600;
+        }
+        @include modif (description) {
+            color: $primary-font-color;
+            font-size: 20px;
+            font-weight: 400;
+        }
     }
     @include element (button) {
         color: $course-btn-text-color;
