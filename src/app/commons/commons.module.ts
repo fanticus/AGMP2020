@@ -10,10 +10,15 @@ import { UserComponent } from './components/header/user/user.component';
 
 import { CopyRightsComponent } from './components/footer/copy-rights/copy-rights.component';
 
+import { FormFieldComponent } from './components/form/form-field/form-field.component';
+import { FormComponent } from './components/form/form.component';
+
 const COMPONENTS = [
     FooterComponent,
     BreadcrumpsComponent,
     HeaderComponent,
+    FormComponent,
+    FormFieldComponent,
 ];
 
 @NgModule({

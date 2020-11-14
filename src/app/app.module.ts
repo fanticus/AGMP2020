@@ -9,6 +9,7 @@ import { ModalsModule } from './modals/modals.module';
 import {
     CoursesPageModule
 } from './pages/courses-page/courses-page.module';
+import { LoginPageModule } from './pages/login-page/login-page.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import {
         CommonsModule,
         ModalsModule,
         CoursesPageModule,
+        LoginPageModule,
     ],
     providers: [],
     bootstrap: [ AppComponent ]

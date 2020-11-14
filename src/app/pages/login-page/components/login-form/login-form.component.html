@@ -1,0 +1,30 @@
+<div class="login-form">
+    <app-form>
+        <div header class="form__header">
+            <h2 class="form__title">Login</h2>
+        </div>
+        <div body class="form__body">
+            <app-form-field titleField="email">
+                <input class="input" type="email"
+                    placeholder="Enter e-mail"
+                    id="email"
+                    [(ngModel)]="login"
+                />
+            </app-form-field>
+            <app-form-field titleField="password">
+                <input class="input" type="password"
+                    placeholder="Enter password"
+                    id="password"
+                    [(ngModel)]="password"
+                />
+            </app-form-field>
+        </div>
+        <div footer class="form__footer login-form__footer">
+            <a class="link">Forgot password?</a>
+            <button class="button button--primary"
+                (click)="handleLogin()"
+                [disabled]="!login || !password"
+            >Login</button>
+        </div>
+    </app-form>
+</div>

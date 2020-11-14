@@ -18,6 +18,12 @@
     @include modif (primary) {
         background-color: $btn-primary-color;
         border-color: $btn-primary-color;
+
+        &:disabled {
+            background-color: $btn-disabled-primary-color;
+            border-color: $btn-disabled-primary-color;
+            color: $btn-disabled-primary-text-color;
+        }
     }
     @include modif (secondary) {
         background-color: $secondary-color;

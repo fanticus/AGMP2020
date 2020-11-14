@@ -13,6 +13,11 @@ import { SearchBarComponent } from './pages/courses-page/components/search-bar/s
 import { FooterComponent } from './commons/components/footer/footer.component';
 import { CopyRightsComponent } from './commons/components/footer/copy-rights/copy-rights.component';
 
+import { LoginPageComponent } from './pages/login-page/components/login-page.component';
+import { LoginFormComponent } from './pages/login-page/components/login-form/login-form.component';
+import { FormComponent } from './commons/components/form/form.component';
+import { FormFieldComponent } from './commons/components/form/form-field/form-field.component';
+
 // PIPES
 import { DurationPipe } from './pages/courses-page/pipes/duration/duration.pipe';
 import { OrderByPipe } from './pages/courses-page/pipes/order-by/order-by.pipe';
@@ -31,7 +36,11 @@ export const APP_DECLARATIONS = [
     UserComponent,
     BreadcrumpsComponent,
     CoursesPageComponent,
+    LoginPageComponent,
     CourseItemComponent,
+    LoginFormComponent,
+    FormComponent,
+    FormFieldComponent,
     SearchBarComponent,
     FooterComponent,
     CopyRightsComponent,

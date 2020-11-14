@@ -1,0 +1,10 @@
+@import "../../../../../scss/mixins.scss";
+
+.login-form {
+    width: 368px;
+    height: 100%;
+
+    @include element (footer) {
+        justify-content: space-between;
+    }
+}

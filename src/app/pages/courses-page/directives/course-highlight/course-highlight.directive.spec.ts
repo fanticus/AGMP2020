@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { APP_DECLARATIONS } from '../../../../app.declarations';
-import { APP_IMPORTS } from '../../../../app.imports';
 
 @Component({
     template: '<div [appCourseHighlight]></div>'
@@ -17,7 +16,6 @@ describe('CourseHighlightDirective', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ APP_IMPORTS ],
             declarations: [
                 APP_DECLARATIONS,
                 TestComponent,

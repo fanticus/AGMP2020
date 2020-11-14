@@ -5,10 +5,7 @@ import {
     OnInit
 } from '@angular/core';
 
-enum CourseHighlightClasses {
-    Fresh = 'fresh',
-    Upcoming = 'upcoming',
-}
+import { CourseHighlightClasses } from '../../interfaces/CoursesInterface';
 
 @Directive({
     selector: '[appCourseHighlight]'

@@ -7,6 +7,7 @@ import { ROUTES } from './app-routing.module';
 import { CommonsModule } from './commons/commons.module';
 import { ModalsModule } from './modals/modals.module';
 import { CoursesPageModule } from './pages/courses-page/courses-page.module';
+import { LoginPageModule } from './pages/login-page/login-page.module';
 
 export const APP_IMPORTS = [
     RouterTestingModule.withRoutes(ROUTES),
@@ -15,4 +16,5 @@ export const APP_IMPORTS = [
     CommonsModule,
     ModalsModule,
     CoursesPageModule,
+    LoginPageModule,
 ];
