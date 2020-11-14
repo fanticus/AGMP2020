@@ -1,8 +1,8 @@
 <div class="user">
     <span class="user__user-login">
-        User login
+        {{ authSrv.userInfo }}
     </span>
-    <button class="button user__button user__button--logout">
-        Log out
-    </button>
+    <button class="button user__button user__button--logout"
+        (click)="authSrv.logout()"
+    >Log out</button>
 </div>

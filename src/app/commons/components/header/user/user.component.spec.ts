@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { APP_IMPORTS } from '../../../../app.imports';
 import { APP_DECLARATIONS } from '../../../../app.declarations';
 
 import { UserComponent } from './user.component';
@@ -11,6 +12,7 @@ describe('UserComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [ APP_IMPORTS ],
             declarations: [ APP_DECLARATIONS ],
         }).compileComponents();
     });
@@ -39,7 +41,7 @@ describe('UserComponent', () => {
     });
     it('nativeElement has a span with content', () => {
         expect(compiled.querySelector('span').textContent)
-            .toContain('User login');
+            .toContain(' ');
     });
     it('nativeElement has a button .user__button', () => {
         expect(compiled.querySelector('.user__button--logout')).toBeTruthy();

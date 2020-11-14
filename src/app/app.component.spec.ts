@@ -45,12 +45,12 @@ describe('AppComponent', () => {
     it('nativeElement has a main .root-wrapper__main', () => {
         expect(compiled.querySelector('.root-wrapper__main')).toBeTruthy();
     });
-    it('nativeElement has a div .root-wrapper__breadcrumps-wrapper', () => {
-        expect(compiled.querySelector('div .root-wrapper__breadcrumps-wrapper')).toBeTruthy();
-    });
-    it('nativeElement has a div .root-wrapper__breadcrumps', () => {
-        expect(compiled.querySelector('.root-wrapper__breadcrumps')).toBeTruthy();
-    });
+    // it('nativeElement has a div .root-wrapper__breadcrumps-wrapper', () => {
+    //     expect(compiled.querySelector('div .root-wrapper__breadcrumps-wrapper')).toBeTruthy();
+    // });
+    // it('nativeElement has a div .root-wrapper__breadcrumps', () => {
+    //     expect(compiled.querySelector('.root-wrapper__breadcrumps')).toBeTruthy();
+    // });
     it('nativeElement has a div .root-wrapper__content-wrapper', () => {
         expect(compiled.querySelector('div .root-wrapper__content-wrapper')).toBeTruthy();
     });
@@ -62,11 +62,5 @@ describe('AppComponent', () => {
     });
     it('nativeElement has a footer .root-wrapper__footer', () => {
         expect(compiled.querySelector('.root-wrapper__footer')).toBeTruthy();
-    });
-
-    it('title testing "agmp2020"', () => {
-        expect(component.title).toBeDefined();
-        expect(typeof component.title).toEqual('string');
-        expect(component.title).toEqual('agmp2020');
     });
 });

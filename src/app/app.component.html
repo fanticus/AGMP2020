@@ -6,7 +6,8 @@
         </div>
     </header>
     <main class="root-wrapper__main">
-        <div class="root-wrapper__breadcrumps-wrapper">
+        <div *ngIf="authSrv.isAuthenticated"
+            class="root-wrapper__breadcrumps-wrapper">
             <div class="root-wrapper__breadcrumps">
                 <app-breadcrumps></app-breadcrumps>
             </div>
