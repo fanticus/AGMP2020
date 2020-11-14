@@ -1,12 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { of } from 'rxjs';
 
-import { APP_PROVIDERS } from '../../../app.providers';
 import { APP_IMPORTS } from '../../../app.imports';
 import { APP_DECLARATIONS } from '../../../app.declarations';
 
-import { coursesDataStub } from '../../../../assets/dev-stubs/coursesData';
+import { ICourse } from '../../../commons/interfaces/ApiDataInterface';
+
+import { coursesDataStub } from '../../../../test-stubs/coursesData.stub';
+import { courseStub } from '../../../../test-stubs/course.stub';
 
 import { CoursesPageComponent } from './courses-page.component';
 
@@ -17,7 +20,6 @@ describe('CoursesPageComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            providers: [ APP_PROVIDERS ],
             imports: [ APP_IMPORTS ],
             declarations: [ APP_DECLARATIONS ],
         }).compileComponents();
@@ -122,27 +124,22 @@ describe('CoursesPageComponent', () => {
         expect(component.coursesData).toEqual(coursesDataStub);
     });
     it('ngOnInit() testing', () => {
-        spyOn(window.console, 'log');
-
-        const value = 'ngOnInit';
-        component.coursesData = [];
+        spyOn(component as any, 'getCourses');
 
         component.ngOnInit();
 
-        expect(window.console.log).toHaveBeenCalled();
-        expect(window.console.log).toHaveBeenCalledWith(value);
-        expect(component.coursesData).toEqual(coursesDataStub);
+        expect((component as any).getCourses).toHaveBeenCalled();
     });
-    it('deleteCourse() calls console.log', () => {
-        spyOn(window.console, 'log');
+    // it('deleteCourse() calls console.log', () => {
+    //     spyOn(window.console, 'log');
 
-        const value = 'test';
+    //     const value = 'test';
 
-        component.deleteCourse(value);
+    //     component.deleteCourse(value);
 
-        expect(window.console.log).toHaveBeenCalled();
-        expect(window.console.log).toHaveBeenCalledWith(value);
-    });
+    //     expect(window.console.log).toHaveBeenCalled();
+    //     expect(window.console.log).toHaveBeenCalledWith(value);
+    // });
     it('handleLoadMore() calls console.log', () => {
         spyOn(window.console, 'log');
 
@@ -152,5 +149,72 @@ describe('CoursesPageComponent', () => {
 
         expect(window.console.log).toHaveBeenCalled();
         expect(window.console.log).toHaveBeenCalledWith(value);
+    });
+    it('filterCourses() testing not exists filter', () => {
+        component.coursesData = coursesDataStub;
+        spyOn((component as any).filterPipe, 'transform')
+            .and.returnValue(component.coursesData);
+
+        const value = '';
+
+        component.filterCourses(value);
+
+        expect((component as any).filter).toEqual(value);
+        expect((component as any).filterPipe.transform).toHaveBeenCalled();
+        expect((component as any).filterPipe.transform)
+            .toHaveBeenCalledWith(component.coursesData, value);
+        expect(component.coursesList).toBeDefined();
+        expect(typeof component.coursesList).toEqual('object');
+        expect(component.coursesList).toEqual(component.coursesData);
+    });
+    it('filterCourses() testing exists filter', () => {
+        component.coursesData = coursesDataStub;
+        spyOn((component as any).filterPipe, 'transform')
+            .and.returnValue([]);
+
+        const value = 'test';
+
+        component.filterCourses(value);
+
+        expect((component as any).filter).toEqual(value);
+        expect((component as any).filterPipe.transform).toHaveBeenCalled();
+        expect((component as any).filterPipe.transform)
+            .toHaveBeenCalledWith(component.coursesData, value);
+        expect(component.coursesList).toBeDefined();
+        expect(typeof component.coursesList).toEqual('object');
+        expect(component.coursesList).toEqual([]);
+    });
+    it('getCourses() testing not exists filter', () => {
+        const res: ICourse[] = coursesDataStub;
+        spyOn((component as any).courseSrv, 'getCourses')
+            .and.returnValue(of(res));
+
+        spyOn(component, 'filterCourses');
+
+        (component as any).getCourses();
+
+        expect((component as any).courseSrv.getCourses).toHaveBeenCalled();
+        expect(component.coursesData).toEqual(res);
+        expect((component as any).filter).toBeUndefined();
+        expect(component.filterCourses).not.toHaveBeenCalled();
+        expect(component.coursesList).toEqual(res);
+    });
+    it('getCourses() testing exists filter', () => {
+        const res: ICourse[] = coursesDataStub;
+        spyOn((component as any).courseSrv, 'getCourses')
+            .and.returnValue(of(res));
+
+        (component as any).filter = 'test';
+
+        spyOn(component, 'filterCourses');
+
+        (component as any).getCourses();
+
+        expect((component as any).courseSrv.getCourses).toHaveBeenCalled();
+        expect(component.coursesData).toEqual(res);
+        expect((component as any).filter).toBeTruthy();
+        expect(component.filterCourses).toHaveBeenCalled();
+        expect(component.filterCourses)
+            .toHaveBeenCalledWith((component as any).filter);
     });
 });

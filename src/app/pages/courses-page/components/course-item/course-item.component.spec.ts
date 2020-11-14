@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { APP_PROVIDERS } from '../../../../app.providers';
 import { APP_DECLARATIONS } from '../../../../app.declarations';
 
 import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
@@ -18,7 +17,6 @@ describe('CourseItemComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            providers: [ APP_PROVIDERS ],
             declarations: [ APP_DECLARATIONS ],
         }).compileComponents();
     });
@@ -138,7 +136,7 @@ describe('CourseItemComponent', () => {
     });
     it('deleteCourse testing', () => {
         expect((component as any).deleteCourse).toBeDefined();
-        expect((component as any).deleteCourse instanceof EventEmitter).toBeTruthy();
+        expect((component as any).deleteCourse).toBeInstanceOf(EventEmitter);
     });
     it('handleDelete() testing', () => {
         spyOn((component as any).deleteCourse, 'emit');
@@ -147,6 +145,6 @@ describe('CourseItemComponent', () => {
 
         expect((component as any).deleteCourse.emit).toHaveBeenCalled();
         expect((component as any).deleteCourse.emit)
-            .toHaveBeenCalledWith(component.courseItem.id);
+            .toHaveBeenCalledWith(component.courseItem);
     });
 });

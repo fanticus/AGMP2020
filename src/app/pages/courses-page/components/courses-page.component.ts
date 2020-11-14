@@ -1,10 +1,12 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
 
 import { ICourse } from '../../../commons/interfaces/ApiDataInterface';
-
-import { coursesDataStub } from '../../../../assets/dev-stubs/coursesData';
-
 import { FilterPipe } from '../pipes/filter/filter.pipe';
+
+import { CoursesService } from '../services/courses/courses.service';
 
 @Component({
     selector: 'app-courses-page',
@@ -12,27 +14,25 @@ import { FilterPipe } from '../pipes/filter/filter.pipe';
     styleUrls: ['./courses-page.component.scss'],
     providers: [ FilterPipe ]
 })
-export class CoursesPageComponent implements OnInit, OnChanges {
+export class CoursesPageComponent implements OnInit {
 
     public coursesData: ICourse[] = [];
     public coursesList: ICourse[] = [];
 
+    private filter: string;
+
     constructor(
-        private filterPipe: FilterPipe
+        private courseSrv: CoursesService,
+        private filterPipe: FilterPipe,
     ) { }
 
     ngOnInit(): void {
-        console.log( 'ngOnInit' );
-        this.coursesData = coursesDataStub;
-        this.coursesList = [ ...this.coursesData ];
+        this.getCourses();
     }
 
-    ngOnChanges() {
-        console.log( 'ngOnChanges' );
-    }
-
-    public deleteCourse( id: string ): void {
-        console.log( id );
+    public deleteCourse( course: ICourse ): void {
+        this.courseSrv.removeCourse( course.id );
+        this.getCourses();
     }
 
     public handleLoadMore(): void {
@@ -40,7 +40,19 @@ export class CoursesPageComponent implements OnInit, OnChanges {
     }
 
     public filterCourses( value: string ): void {
+        this.filter = value;
         this.coursesList = this.filterPipe
             .transform( this.coursesData, value );
+    }
+
+    private getCourses(): void {
+        this.courseSrv.getCourses().subscribe( courses => {
+            this.coursesData = courses;
+            if ( this.filter ) {
+                this.filterCourses( this.filter );
+            } else {
+                this.coursesList = [ ...this.coursesData ];
+            }
+        });
     }
 }
