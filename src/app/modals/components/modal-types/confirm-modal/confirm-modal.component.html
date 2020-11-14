@@ -1,0 +1,31 @@
+<div class="confirmation-modal">
+    <div class="confirmation-modal__block">
+        <div class="confirmation-modal__header-wrapper">
+            <div class="confirmation-modal__header">
+                <h3 *ngIf="data?.title"
+                    class="confirmation-modal__title"
+                >{{ data.title }}</h3>
+                <div class="confirmation-modal__close"
+                    (click)="handleCancel()"
+                ></div>
+            </div>
+        </div>
+        <div class="confirmation-modal__body-wrapper">
+            <div class="confirmation-modal__body">
+                <p *ngIf="data?.description"
+                    class="confirmation-modal__description"
+                >{{ data.description }}</p>
+            </div>
+        </div>
+        <div class="confirmation-modal__footer-wrapper">
+            <div class="confirmation-modal__footer">
+                <button class="button button--primary confirmation-modal__button"
+                    (click)="handleOk()"
+                >{{ data?.button?.ok || 'Ok' }}</button>
+                <button class="button button--secondary confirmation-modal__button"
+                    (click)="handleCancel()"
+                >Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

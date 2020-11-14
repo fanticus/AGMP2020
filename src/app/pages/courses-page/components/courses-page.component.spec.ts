@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { APP_IMPORTS } from '../../../app.imports';
 import { APP_DECLARATIONS } from '../../../app.declarations';
 
+import { IModalResponse } from '../../../modals/interfaces/ModalInterface';
 import { ICourse } from '../../../commons/interfaces/ApiDataInterface';
 
 import { coursesDataStub } from '../../../../test-stubs/coursesData.stub';
@@ -87,14 +88,14 @@ describe('CoursesPageComponent', () => {
 
         expect(component.handleLoadMore).toHaveBeenCalled();
     });
-    it('nativeElement has a div .courses-page__load-more-block', () => {
-        expect(compiled.querySelector('div .courses-page__load-more-block')).toBeTruthy();
+    it('nativeElement has a div .courses-page__load-more', () => {
+        expect(compiled.querySelector('div .courses-page__load-more')).toBeTruthy();
     });
-    it('nativeElement has a link .courses-page__load-more', () => {
-        expect(compiled.querySelector('.courses-page__load-more')).toBeTruthy();
+    it('nativeElement has a link', () => {
+        expect(compiled.querySelector('.link')).toBeTruthy();
     });
-    it('nativeElement has a link .courses-page__load-more with content', () => {
-        expect(compiled.querySelector('.courses-page__load-more').textContent)
+    it('nativeElement has a link with content', () => {
+        expect(compiled.querySelector('.link').textContent)
             .toContain('Load more');
     });
     // it('nativeElement has a div .courses-page__not-data-wrapper', () => {
@@ -130,16 +131,42 @@ describe('CoursesPageComponent', () => {
 
         expect((component as any).getCourses).toHaveBeenCalled();
     });
-    // it('deleteCourse() calls console.log', () => {
-    //     spyOn(window.console, 'log');
+    it('deleteCourse() testing status true', () => {
+        const res: IModalResponse = {
+            status: true
+        };
+        spyOn((component as any).modalsSrv, 'showModal')
+            .and.returnValue(of(res));
+        spyOn((component as any).courseSrv, 'removeCourse');
+        spyOn((component as any), 'getCourses');
 
-    //     const value = 'test';
+        const value = courseStub;
 
-    //     component.deleteCourse(value);
+        component.deleteCourse(value);
 
-    //     expect(window.console.log).toHaveBeenCalled();
-    //     expect(window.console.log).toHaveBeenCalledWith(value);
-    // });
+        expect((component as any).modalsSrv.showModal).toHaveBeenCalled();
+        expect((component as any).courseSrv.removeCourse).toHaveBeenCalled();
+        expect((component as any).courseSrv.removeCourse)
+            .toHaveBeenCalledWith(value.id);
+        expect((component as any).getCourses).toHaveBeenCalled();
+    });
+    it('deleteCourse() testing status false', () => {
+        const res: IModalResponse = {
+            status: false
+        };
+        spyOn((component as any).modalsSrv, 'showModal')
+            .and.returnValue(of(res));
+        spyOn((component as any).courseSrv, 'removeCourse');
+        spyOn((component as any), 'getCourses');
+
+        const value = courseStub;
+
+        component.deleteCourse(value);
+
+        expect((component as any).modalsSrv.showModal).toHaveBeenCalled();
+        expect((component as any).courseSrv.removeCourse).not.toHaveBeenCalled();
+        expect((component as any).getCourses).not.toHaveBeenCalled();
+    });
     it('handleLoadMore() calls console.log', () => {
         spyOn(window.console, 'log');
 

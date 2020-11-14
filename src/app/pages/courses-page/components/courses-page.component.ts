@@ -4,9 +4,11 @@ import {
 } from '@angular/core';
 
 import { ICourse } from '../../../commons/interfaces/ApiDataInterface';
+import { ModalTypes } from '../../../modals/interfaces/ModalInterface';
 import { FilterPipe } from '../pipes/filter/filter.pipe';
 
 import { CoursesService } from '../services/courses/courses.service';
+import { ModalsService } from '../../../modals/services/modals/modals.service';
 
 @Component({
     selector: 'app-courses-page',
@@ -24,6 +26,7 @@ export class CoursesPageComponent implements OnInit {
     constructor(
         private courseSrv: CoursesService,
         private filterPipe: FilterPipe,
+        private modalsSrv: ModalsService
     ) { }
 
     ngOnInit(): void {
@@ -31,8 +34,18 @@ export class CoursesPageComponent implements OnInit {
     }
 
     public deleteCourse( course: ICourse ): void {
-        this.courseSrv.removeCourse( course.id );
-        this.getCourses();
+        this.modalsSrv.showModal( ModalTypes.Confirm, {
+            title: 'Delete course?',
+            description: `Are you sure you want to delete ${ course.title }?`,
+            button: {
+                ok: 'Yes, delete'
+            }
+        }).subscribe( result => {
+            if ( result.status ) {
+                this.courseSrv.removeCourse( course.id );
+                this.getCourses();
+            }
+        });
     }
 
     public handleLoadMore(): void {

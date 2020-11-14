@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CommonsModule } from './commons/commons.module';
+import { ModalsModule } from './modals/modals.module';
 import {
     CoursesPageModule
 } from './pages/courses-page/courses-page.module';
@@ -17,6 +18,7 @@ import {
         BrowserModule,
         AppRoutingModule,
         CommonsModule,
+        ModalsModule,
         CoursesPageModule,
     ],
     providers: [],

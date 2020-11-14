@@ -3,20 +3,18 @@
 @import "../../../../../scss/mixins.scss";
 
 .course-item {
-    width: 100%;
-    background-color: $container-bg-color;
-    border-radius: $container-border-radius;
-    box-shadow: $container-box-shadow;
-    padding: $container-padding;
+    @include content-block;
+    border: 1px solid $secondary-color;
 
     @include modif (fresh) {
-        border: 1px solid $course-fresh-border-color;
+        border-color: $course-fresh-border-color;
     }
     @include modif (upcoming) {
-        border: 1px solid $course-upcoming-border-color;
+        border-color: $course-upcoming-border-color;
     }
     @include modif (rate) {
-        background-color: darken($container-bg-color, 1%);
+        background-color: darken($secondary-color, 1%);
+        border-color: darken($secondary-color, 1%);
     }
     @include element (block) {
         display: flex;
@@ -66,7 +64,7 @@
     @include element (actions-wrapper) {
         width: min-content;
         height: 100%;
-        padding-left: 40px;
+        padding-left: 24px;
     }
     @include element (actions) {
         display: flex;
@@ -88,9 +86,8 @@
         height: 100%;
     }
     @include element (title) {
-        color: $title-font-color;
+        @include content-title;
         font-size: 24px;
-        font-weight: 600;
     }
     @include element (star) {
         width: 17px;
@@ -103,10 +100,9 @@
         margin-left: 15px;
     }
     @include element (info) {
+        @include description-text;
         min-width: max-content;
         color: $course-info-font-color;
-        font-size: 14px;
-        font-weight: 400;
         background-repeat: no-repeat;
         background-position: center left;
         background-size: 16px;
@@ -125,9 +121,8 @@
         }
     }
     @include element (description) {
-        color: $primary-font-color;
+        @include content-text;
         font-size: 14px;
-        font-weight: 400;
     }
     @include element (button) {
         height: 24px;
@@ -141,10 +136,6 @@
         background-size: 10px;
         background-position: 10px center;
         padding: 0 12px 0 27px;
-
-        &:not(:first-child) {
-            margin-left: 12px;
-        }
 
         @include modif (edit) {
             background-image: url('../../../../../assets/icons/edit.svg');

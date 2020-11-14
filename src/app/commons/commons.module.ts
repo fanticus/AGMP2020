@@ -10,20 +10,20 @@ import { UserComponent } from './components/header/user/user.component';
 
 import { CopyRightsComponent } from './components/footer/copy-rights/copy-rights.component';
 
+const COMPONENTS = [
+    FooterComponent,
+    BreadcrumpsComponent,
+    HeaderComponent,
+];
+
 @NgModule({
     declarations: [
-        FooterComponent,
-        BreadcrumpsComponent,
-        HeaderComponent,
+        ...COMPONENTS,
         LogoComponent,
         UserComponent,
         CopyRightsComponent,
     ],
     imports: [ CommonModule ],
-    exports: [
-        FooterComponent,
-        BreadcrumpsComponent,
-        HeaderComponent,
-    ]
+    exports: [ ...COMPONENTS ]
 })
 export class CommonsModule { }

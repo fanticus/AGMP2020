@@ -16,10 +16,7 @@
         background-size: $logo-size;
     }
     @include element (title) {
-        color: $secondary-font-color;
-        text-transform: uppercase;
-        font-size: 18px;
-        font-weight: 700;
+        @include logo-title;
         margin-left: 12px;
     }
 }
