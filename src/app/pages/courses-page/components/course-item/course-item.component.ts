@@ -1,4 +1,5 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     EventEmitter,
     Input,
@@ -11,7 +12,8 @@ import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
 @Component({
     selector: 'app-course-item',
     templateUrl: './course-item.component.html',
-    styleUrls: ['./course-item.component.scss']
+    styleUrls: ['./course-item.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent implements OnInit {
 
