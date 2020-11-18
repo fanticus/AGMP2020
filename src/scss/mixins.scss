@@ -78,6 +78,7 @@
     border-radius: $container-border-radius;
     box-shadow: $container-box-shadow;
     padding: $container-padding;
+    transition: all .25s ease;
 }
 
 @mixin modal-block {
@@ -95,6 +96,13 @@
     border-radius: $input-border-radius;
     padding: 0 12px;
 
+    &:hover {
+        border-color: $input-hover-border-color;
+    }
+    &:focus {
+        border-color: $input-focus-border-color;
+        box-shadow: $btn-focus-box-shadow;
+    }
     &::placeholder {
         @include input-placeholder;
     }

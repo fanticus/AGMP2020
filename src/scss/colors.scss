@@ -9,25 +9,34 @@ $secondary-bg-color: #303240;
 $secondary-font-color:#FFFFFF;
 
 $input-border-color: #CED0DB;
+$input-hover-border-color: #6C6F80;
+$input-focus-border-color: #007799;
 $input-placeholder-text-color: #ACAFBF;
 
 $btn-primary-color: #67A300;
-$btn-secondary-border-color: #ACAFBF;
 $btn-primary-text-color: #FFFFFF;
-$btn-secondary-text-color: #6C6F80;
+$btn-primary-hover-color: #558a00;
 $btn-disabled-primary-color: #E1E3EB;
 $btn-disabled-primary-text-color: #A8A9B4;
+
+$btn-secondary-border-color: #ACAFBF;
+$btn-secondary-text-color: #6C6F80;
+
+$btn-tertiary-color: #009ECC;
+$btn-tertiary-text-color: #FFFFFF;
+$btn-tertiary-hover-color: #008ABD;
+
+$btn-focus-box-shadow: 0 0 0 2px rgba(48, 182, 221, 0.4);
 
 $link-font-color: #5681EE;
 
 $title-font-color: #333333;
 
-$container-box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1), 0 2px 10px 0 rgba(29, 30, 38, 0.15);
+$container-box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.05), 0 3px 10px 0 rgba(29, 30, 38, 0.1);
+$container-hover-box-shadow: 0 4px 14px 0 rgba(29, 30, 38, 0.15);
 
 $breadcrumps-font-color: #464A5A;
 
-$course-btn-bg-color: #009ECC;
-$course-btn-text-color: #FFFFFF;
 $course-info-font-color: #858997;
 $course-fresh-border-color: #858997;
 $course-upcoming-border-color: #2980B9;

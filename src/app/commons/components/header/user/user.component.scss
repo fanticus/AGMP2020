@@ -30,10 +30,15 @@
         border: none;
         padding: 0 0 0 20px;
 
+        // &:hover {
+        //     color: $btn-tertiary-hover-color;
+        // }
+        &:focus {
+            box-shadow: none;
+        }
         &:not(:first-child) {
             margin-left: $container-margin;
         }
-
         @include modif (logout) {
             background-image: url('../../../../../assets/icons/logout.svg');
         }

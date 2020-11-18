@@ -9,6 +9,7 @@ app-form-field {
 .link {
     @include link-text;
     text-decoration: underline;
+    cursor: pointer;
 
     &:hover {
         text-decoration: none;
@@ -26,4 +27,13 @@ input:-internal-autofill-selected {
     @include content-text;
     font-size: 14px;
     box-shadow: inset 0 0 0 50px $secondary-color;
+}
+input:-webkit-autofill:focus {
+    box-shadow: inset 0 0 0 50px $secondary-color, $btn-focus-box-shadow;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

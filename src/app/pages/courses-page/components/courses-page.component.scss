@@ -46,8 +46,13 @@
         margin-top: $container-margin;
         cursor: pointer;
 
-        &:hover .link {
-            text-decoration: none;
+        &:hover {
+            box-shadow: $container-hover-box-shadow;
+            transition: all .1s ease;
+
+            .link {
+                text-decoration: none;
+            }
         }
     }
     @include element (load-more) {
@@ -85,13 +90,18 @@
         height: 100%;
     }
     @include element (button) {
-        color: $course-btn-text-color;
-        background-color: $course-btn-bg-color;
+        color: $btn-tertiary-text-color;
+        background-color: $btn-tertiary-color;
         background-image: url('../../../../assets/icons/add.svg');
         background-repeat: no-repeat;
         background-size: 22px;
         background-position: 8px center;
-        border-color: $course-btn-bg-color;
+        border-color: $btn-tertiary-color;
         padding: 0 12px 0 33px;
+
+        &:hover {
+            background-color: $btn-tertiary-hover-color;
+            border-color: $btn-tertiary-hover-color;
+        }
     }
 }

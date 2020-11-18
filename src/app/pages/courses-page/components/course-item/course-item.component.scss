@@ -5,7 +5,11 @@
 .course-item {
     @include content-block;
     border: 1px solid $secondary-color;
-
+    
+    &:hover {
+        box-shadow: $container-hover-box-shadow;
+        transition: all .1s ease;
+    }
     @include modif (fresh) {
         border-color: $course-fresh-border-color;
     }
@@ -112,7 +116,6 @@
         &:not(:first-child) {
             margin-left: $container-margin;
         }
-
         @include modif (clock) {
             background-image: url('../../../../../assets/icons/clock.svg');
         }
@@ -127,16 +130,20 @@
     @include element (button) {
         height: 24px;
         font-size: 12px;
-        color: $course-btn-text-color;
+        color: $btn-tertiary-text-color;
         text-transform: capitalize;
-        background-color: $course-btn-bg-color;
-        border-color: $course-btn-bg-color;
+        background-color: $btn-tertiary-color;
+        border-color: $btn-tertiary-color;
         background-repeat: no-repeat;
         background-position: center left;
         background-size: 10px;
         background-position: 10px center;
         padding: 0 12px 0 27px;
 
+        &:hover {
+            background-color: $btn-tertiary-hover-color;
+            border-color: $btn-tertiary-hover-color;
+        }
         @include modif (edit) {
             background-image: url('../../../../../assets/icons/edit.svg');
         }

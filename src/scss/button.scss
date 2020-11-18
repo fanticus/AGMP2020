@@ -10,8 +10,11 @@
     border: 1px solid;
     padding: 0 17px;
     cursor: pointer;
-    outline: none;
+    text-decoration: none;
 
+    &:focus {
+        box-shadow: $btn-focus-box-shadow;
+    }
     &:not(:first-child) {
         margin-left: 12px;
     }
@@ -19,15 +22,26 @@
         background-color: $btn-primary-color;
         border-color: $btn-primary-color;
 
+        &:hover {
+            background-color: $btn-primary-hover-color;
+            border-color: $btn-primary-hover-color;
+        }
         &:disabled {
             background-color: $btn-disabled-primary-color;
             border-color: $btn-disabled-primary-color;
             color: $btn-disabled-primary-text-color;
+            cursor: default;
         }
     }
     @include modif (secondary) {
         background-color: $secondary-color;
         border-color: $btn-secondary-border-color;
         color: $btn-secondary-text-color;
+
+        &:hover {
+            background-color: $btn-primary-color;
+            border-color: $btn-primary-color;
+            color: $btn-primary-text-color;
+        }
     }
 }
