@@ -7,10 +7,15 @@ import {
 import {
     LoginPageComponent
 } from './pages/login-page/components/login-page.component';
+import {
+    CoursePageComponent
+} from './pages/course-page/components/course-page.component';
 
 export const ROUTES: Routes = [
-    { path: '', component: CoursesPageComponent },
-    { path: 'login', component: LoginPageComponent, pathMatch: 'full'}
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: 'login', component: LoginPageComponent },
+    { path: 'courses', component: CoursesPageComponent },
+    { path: 'course/:id', component: CoursePageComponent },
 ];
 
 @NgModule({

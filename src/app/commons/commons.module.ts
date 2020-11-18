@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// COMPONENTS
 import { FooterComponent } from './components/footer/footer.component';
 import { BreadcrumpsComponent } from './components/breadcrumps/breadcrumps.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -13,12 +14,16 @@ import { CopyRightsComponent } from './components/footer/copy-rights/copy-rights
 import { FormFieldComponent } from './components/form/form-field/form-field.component';
 import { FormComponent } from './components/form/form.component';
 
+// PIPES
+import { DurationPipe } from './pipes/duration/duration.pipe';
+
 const COMPONENTS = [
     FooterComponent,
     BreadcrumpsComponent,
     HeaderComponent,
     FormComponent,
     FormFieldComponent,
+    DurationPipe,
 ];
 
 @NgModule({

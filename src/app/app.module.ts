@@ -10,6 +10,7 @@ import {
     CoursesPageModule
 } from './pages/courses-page/courses-page.module';
 import { LoginPageModule } from './pages/login-page/login-page.module';
+import { CoursePageModule } from './pages/course-page/course-page.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { LoginPageModule } from './pages/login-page/login-page.module';
         ModalsModule,
         CoursesPageModule,
         LoginPageModule,
+        CoursePageModule,
     ],
     providers: [],
     bootstrap: [ AppComponent ]

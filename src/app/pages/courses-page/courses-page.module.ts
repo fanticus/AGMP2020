@@ -13,9 +13,12 @@ import {
 } from './directives/course-highlight/course-highlight.directive';
 
 // PIPES
-import { DurationPipe } from './pipes/duration/duration.pipe';
 import { OrderByPipe } from './pipes/order-by/order-by.pipe';
 import { FilterPipe } from './pipes/filter/filter.pipe';
+
+// MODULES
+import { CommonsModule } from '../../commons/commons.module';
+import { AppRoutingModule } from '../../app-routing.module';
 
 @NgModule({
     declarations: [
@@ -23,13 +26,14 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
         SearchBarComponent,
         CourseItemComponent,
         CourseHighlightDirective,
-        DurationPipe,
         OrderByPipe,
         FilterPipe,
     ],
     imports: [
         CommonModule,
         FormsModule,
+        CommonsModule,
+        AppRoutingModule,
     ],
     exports: [ CoursesPageComponent ]
 })

@@ -1,3 +1,40 @@
 .input {
     @include default-input;
+
+    @include element (wrapper) {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+
+        &:not(:first-child) {
+            margin-top: 12px;
+        }
+    }
+    @include element (block) {
+
+        &:not(:first-child) {
+            margin-top: 12px;
+        }
+        @include modif (short) {
+            display: flex;
+            min-width: 150px;
+        }
+        @include modif (middle) {
+            width: 312px;
+        }
+    }
+    @include element (description) {
+        @include content-text;
+        display: flex;
+        align-items: center;
+        min-height: 36px;
+        padding-left: 19px;
+    }
+}
+
+.textarea {
+    @include default-input;
+    height: auto;
+    padding: 9px 12px;
+    resize: none;
 }

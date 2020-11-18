@@ -10,12 +10,12 @@ import { coursesDataStub } from '../../../../../assets/dev-stubs/coursesData';
 })
 export class CoursesService {
 
-    private courseList: ICourse[];
+    private courseList: ICourse[] = [];
 
     constructor() { }
 
     public getCourses(): Observable<ICourse[]> {
-        if ( !this.courseList ) {
+        if ( !this.courseList.length ) {
           this.courseList = coursesDataStub;
         }
         return of( this.courseList );
@@ -26,7 +26,8 @@ export class CoursesService {
     }
 
     public getCourseById( id: string ): ICourse {
-        return this.courseList.find( obj => obj.id === id );
+        const course = this.courseList.find( obj => obj.id === id );
+        return course ? { ...course } : null;
     }
 
     public updateCourse(): void {

@@ -1,4 +1,4 @@
-<article class="course-item"
+<article *ngIf="courseItem" class="course-item"
     [ngClass] = "{
         'course-item--rate': courseItem.topRated
     }"
@@ -36,9 +36,9 @@
             </div>
             <div class="course-item__actions-wrapper">
                 <div class="course-item__actions">
-                    <a class="button course-item__button course-item__button--edit">
-                        edit
-                    </a>
+                    <a class="button course-item__button course-item__button--edit"
+                        [routerLink]="['/course', courseItem.id]"
+                    >edit</a>
                     <button class="button course-item__button course-item__button--delete"
                         (click)="handleDelete()"
                     >delete</button>

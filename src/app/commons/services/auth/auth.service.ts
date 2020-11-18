@@ -12,7 +12,7 @@ export class AuthService {
     constructor(
         private router: Router
     ) {
-        this.userLogin = localStorage.getItem('userLogin');
+        this.userLogin = localStorage.getItem( 'userLogin' );
     }
 
     get userInfo(): string {
@@ -23,19 +23,19 @@ export class AuthService {
         return !!this.userLogin;
     }
 
-    login( login: string, password: string ): void {
+    public login( login: string, password: string ): void {
         this.userLogin = login;
         this.userPassword = password;
-        localStorage.setItem('userLogin', login);
-        console.log('login');
-        this.router.navigate(['']);
+        localStorage.setItem( 'userLogin', login );
+        console.log( 'login' );
+        this.router.navigate( [ 'courses' ] );
     }
 
-    logout(): void {
+    public logout(): void {
         this.userLogin = null;
         this.userPassword = null;
-        localStorage.removeItem('userLogin');
-        console.log('logout');
-        this.router.navigate(['login']);
+        localStorage.removeItem( 'userLogin' );
+        console.log( 'logout' );
+        this.router.navigate( [ 'login' ] );
     }
 }
