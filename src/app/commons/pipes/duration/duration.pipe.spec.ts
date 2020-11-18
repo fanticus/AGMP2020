@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { APP_DECLARATIONS } from '../../../../app.declarations';
+import { APP_DECLARATIONS } from '../../../app.declarations';
 
 @Component({
     template: '<div> {{ value | duration }}</div>'

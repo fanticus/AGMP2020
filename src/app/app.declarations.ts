@@ -18,15 +18,21 @@ import { LoginFormComponent } from './pages/login-page/components/login-form/log
 import { FormComponent } from './commons/components/form/form.component';
 import { FormFieldComponent } from './commons/components/form/form-field/form-field.component';
 
+import { CoursePageComponent } from './pages/course-page/components/course-page.component';
+import { CourseFormComponent } from './pages/course-page/components/course-form/course-form.component';
+
+import { ModalsOverlayComponent } from './modals/components/modals-overlay/modals-overlay.component';
+import { ConfirmModalComponent } from './modals/components/modal-types/confirm-modal/confirm-modal.component';
+
 // PIPES
-import { DurationPipe } from './pages/courses-page/pipes/duration/duration.pipe';
+import { DurationPipe } from './commons/pipes/duration/duration.pipe';
 import { OrderByPipe } from './pages/courses-page/pipes/order-by/order-by.pipe';
 import { FilterPipe } from './pages/courses-page/pipes/filter/filter.pipe';
+
+// DIRECTIVES
 import {
     CourseHighlightDirective
 } from './pages/courses-page/directives/course-highlight/course-highlight.directive';
-import { ModalsOverlayComponent } from './modals/components/modals-overlay/modals-overlay.component';
-import { ConfirmModalComponent } from './modals/components/modal-types/confirm-modal/confirm-modal.component';
 import { ModalHostDirective } from './modals/directives/modal-host.directive';
 
 export const APP_DECLARATIONS = [
@@ -37,6 +43,8 @@ export const APP_DECLARATIONS = [
     BreadcrumpsComponent,
     CoursesPageComponent,
     LoginPageComponent,
+    CoursePageComponent,
+    CourseFormComponent,
     CourseItemComponent,
     LoginFormComponent,
     FormComponent,

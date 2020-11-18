@@ -23,7 +23,7 @@ describe('CoursesService', () => {
 
     it('getCourses() testing not exists courseList', () => {
 
-        expect((service as any).courseList).toBeUndefined();
+        expect((service as any).courseList).toEqual([]);
 
         const value = coursesDataStub;
         const result = service.getCourses();
@@ -41,8 +41,6 @@ describe('CoursesService', () => {
         const value = [ courseStub ];
 
         (service as any).courseList = value;
-
-        expect((service as any).courseList).toBeDefined();
 
         const result = service.getCourses();
 
@@ -73,7 +71,7 @@ describe('CoursesService', () => {
         const value = '';
         const res = service.getCourseById(value);
 
-        expect(res).toBeUndefined();
+        expect(res).toBeNull();
     });
     it('createCourse() calls console.log', () => {
         spyOn(window.console, 'log');

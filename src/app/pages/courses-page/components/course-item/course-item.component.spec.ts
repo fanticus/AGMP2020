@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
+import { APP_IMPORTS } from '../../../../app.imports';
 import { APP_DECLARATIONS } from '../../../../app.declarations';
 
 import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
@@ -17,6 +18,7 @@ describe('CourseItemComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [ APP_IMPORTS ],
             declarations: [ APP_DECLARATIONS ],
         }).compileComponents();
     });
