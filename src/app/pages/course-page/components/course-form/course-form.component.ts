@@ -15,19 +15,19 @@ export class CourseFormComponent implements OnInit {
     public course: ICourse;
     public titleForm: string;
 
+    private courseId: string;
+
     constructor(
         private coursesService: CoursesService,
         private route: ActivatedRoute,
     ) { }
 
     ngOnInit(): void {
-        this.route.paramMap.subscribe( params => {
-            const courseId = params.get('id');
-            this.getTitle( courseId );
-            this.course = courseId === 'create'
-                ? this.createCourse()
-                : this.coursesService.getCourseById( courseId );
-        });
+        this.courseId = this.route.snapshot.paramMap.get( 'id' );
+        this.getTitle( this.courseId );
+        this.course = this.courseId
+            ? this.coursesService.getCourseById( this.courseId )
+            : this.createCourse();
     }
 
     public handleSave(): void {
@@ -35,9 +35,9 @@ export class CourseFormComponent implements OnInit {
     }
 
     private getTitle( courseId: string ): void {
-        this.titleForm = courseId === 'create'
-            ? 'New course'
-            : 'Edit course';
+        this.titleForm = courseId
+            ? 'Edit course'
+            : 'New course';
     }
 
     private createCourse(): ICourse {

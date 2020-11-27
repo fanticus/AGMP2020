@@ -37,7 +37,7 @@
             <div class="course-item__actions-wrapper">
                 <div class="course-item__actions">
                     <a class="button course-item__button course-item__button--edit"
-                        [routerLink]="['/course', courseItem.id]"
+                        [routerLink]="courseItem.id"
                     >edit</a>
                     <button class="button course-item__button course-item__button--delete"
                         (click)="handleDelete()"
