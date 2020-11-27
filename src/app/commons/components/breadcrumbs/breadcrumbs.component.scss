@@ -1,0 +1,31 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/mixins.scss";
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    @include element (list) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        list-style-type: none;
+    }
+    @include element (item) {
+
+        &:not(:last-child) a {
+            @include breadcrumbs-text;
+        }
+        &:last-child {
+            @include breadcrumbs-text;
+            color: $breadcrumbs-active-font-color;
+            font-weight: 700;
+        }
+    }
+    @include element (separator) {
+        @include breadcrumbs-text;
+        padding: 0 3px;
+    }
+}

@@ -39,6 +39,14 @@
     font-weight: 400;
 }
 
+@mixin breadcrumbs-text {
+    font-size: 14px;
+    color: $breadcrumbs-font-color;
+    font-weight: 400;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
 @mixin input-text {
     @include content-text;
     font-size: 14px;

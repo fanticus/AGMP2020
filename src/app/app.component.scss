@@ -48,11 +48,11 @@
         height: 100%;
         max-width: $page-width;
     }
-    @include element (breadcrumps-wrapper) {
+    @include element (breadcrumbs-wrapper) {
         @include main-wrapper;
-        height: $breadcrumps-height;
+        height: $breadcrumbs-height;
     }
-    @include element (breadcrumps) {
+    @include element (breadcrumbs) {
         width: 100%;
         height: 100%;
         max-width: $page-width;

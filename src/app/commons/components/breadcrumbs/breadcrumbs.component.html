@@ -1,0 +1,20 @@
+<div class="breadcrumbs">
+    <nav aria-label="breadcrumbs__nav">
+        <ol class="breadcrumbs__list">
+            <li class="breadcrumbs__item"
+                *ngFor="let breadcrumb of breadcrumbs; index as i">
+                <a *ngIf="breadcrumbs.length > 1
+                    && i + 1 !== breadcrumbs.length"
+                    [routerLink]="breadcrumb"
+                >{{ getText(breadcrumb) }}</a>
+                <span *ngIf="breadcrumbs.length > 1
+                    && i + 1 !== breadcrumbs.length"
+                    class="breadcrumbs__separator"
+                >/</span>
+                <span *ngIf="breadcrumbs.length === 1
+                    || i + 1 === breadcrumbs.length"
+                >{{ getText(breadcrumb) }}</span>
+            </li>
+        </ol>
+    </nav>
+</div>

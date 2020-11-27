@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // COMPONENTS
 import { FooterComponent } from './components/footer/footer.component';
-import { BreadcrumpsComponent } from './components/breadcrumps/breadcrumps.component';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LogoComponent } from './components/logo/logo.component';
 
@@ -17,9 +17,12 @@ import { FormComponent } from './components/form/form.component';
 // PIPES
 import { DurationPipe } from './pipes/duration/duration.pipe';
 
+// MODULES
+import { AppRoutingModule } from '../app-routing.module';
+
 const COMPONENTS = [
     FooterComponent,
-    BreadcrumpsComponent,
+    BreadcrumbsComponent,
     HeaderComponent,
     FormComponent,
     FormFieldComponent,
@@ -33,7 +36,10 @@ const COMPONENTS = [
         UserComponent,
         CopyRightsComponent,
     ],
-    imports: [ CommonModule ],
+    imports: [
+        CommonModule,
+        AppRoutingModule,
+    ],
     exports: [ ...COMPONENTS ]
 })
 export class CommonsModule { }

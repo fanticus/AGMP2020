@@ -5,8 +5,8 @@ import { HeaderComponent } from './commons/components/header/header.component';
 import { LogoComponent } from './commons/components/logo/logo.component';
 import { UserComponent } from './commons/components/header/user/user.component';
 import {
-    BreadcrumpsComponent
-} from './commons/components/breadcrumps/breadcrumps.component';
+    BreadcrumbsComponent
+} from './commons/components/breadcrumbs/breadcrumbs.component';
 
 import { CoursesPageComponent } from './pages/courses-page/components/courses-page.component';
 import {
@@ -52,7 +52,7 @@ export const APP_DECLARATIONS = [
     HeaderComponent,
     LogoComponent,
     UserComponent,
-    BreadcrumpsComponent,
+    BreadcrumbsComponent,
     CoursesPageComponent,
     LoginPageComponent,
     CoursePageComponent,

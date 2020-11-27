@@ -45,11 +45,11 @@ describe('AppComponent', () => {
     it('nativeElement has a main .root-wrapper__main', () => {
         expect(compiled.querySelector('.root-wrapper__main')).toBeTruthy();
     });
-    // it('nativeElement has a div .root-wrapper__breadcrumps-wrapper', () => {
-    //     expect(compiled.querySelector('div .root-wrapper__breadcrumps-wrapper')).toBeTruthy();
+    // it('nativeElement has a div .root-wrapper__breadcrumbs-wrapper', () => {
+    //     expect(compiled.querySelector('div .root-wrapper__breadcrumbs-wrapper')).toBeTruthy();
     // });
-    // it('nativeElement has a div .root-wrapper__breadcrumps', () => {
-    //     expect(compiled.querySelector('.root-wrapper__breadcrumps')).toBeTruthy();
+    // it('nativeElement has a div .root-wrapper__breadcrumbs', () => {
+    //     expect(compiled.querySelector('.root-wrapper__breadcrumbs')).toBeTruthy();
     // });
     it('nativeElement has a div .root-wrapper__content-wrapper', () => {
         expect(compiled.querySelector('div .root-wrapper__content-wrapper')).toBeTruthy();
