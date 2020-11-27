@@ -6,8 +6,10 @@ import {
     ChangeDetectorRef,
     ChangeDetectionStrategy,
     Type,
+    OnDestroy,
 } from '@angular/core';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import {
     IModal
@@ -27,12 +29,14 @@ import { ModalHostDirective } from '../../directives/modal-host.directive';
     styleUrls: ['./modals-overlay.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ModalsOverlayComponent implements OnInit {
+export class ModalsOverlayComponent implements OnInit, OnDestroy {
 
     public displayOverlay$ = new Subject<boolean>();
 
     private modalHost: ModalHostDirective;
     private modalData: IModal;
+
+    private unsubscribe$ = new Subject<void>();
 
     @ViewChild ( ModalHostDirective, { static: false } )
     set content( content: ModalHostDirective ) {
@@ -50,9 +54,16 @@ export class ModalsOverlayComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.modalsService.newModal$.subscribe( modal => {
-            this.showOverlay( modal );
-        });
+        this.modalsService.newModal$
+          .pipe( takeUntil( this.unsubscribe$ ) )
+          .subscribe( modal => {
+              this.showOverlay( modal );
+          });
+    }
+
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 
     private showOverlay( res: IModal ): void {

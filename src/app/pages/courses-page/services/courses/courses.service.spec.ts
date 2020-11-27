@@ -73,15 +73,18 @@ describe('CoursesService', () => {
 
         expect(res).toBeNull();
     });
-    it('createCourse() calls console.log', () => {
-        spyOn(window.console, 'log');
+    it('createCourse() testing', () => {
 
-        const value = 'createCourse';
+        spyOn((service as any), 'getIdCourse');
 
-        service.createCourse();
+        (service as any).courseList = coursesDataStub;
 
-        expect(window.console.log).toHaveBeenCalled();
-        expect(window.console.log).toHaveBeenCalledWith(value);
+        const value = courseStub;
+
+        service.createCourse(value);
+
+        expect((service as any).getIdCourse).toHaveBeenCalled();
+        expect((service as any).courseList).not.toEqual(coursesDataStub);
     });
     it('removeCourse() testing exists id', () => {
 
@@ -96,23 +99,25 @@ describe('CoursesService', () => {
         expect(typeof (service as any).courseList).toEqual('object');
         expect((service as any).courseList).toEqual(res);
     });
-    it('removeCourse() testing not exists id', () => {
+    // it('removeCourse() testing not exists id', () => {
 
-        (service as any).courseList = coursesDataStub;
+    //     (service as any).courseList = coursesDataStub;
 
-        const value = '';
-        service.removeCourse(value);
+    //     const value = '';
+    //     service.removeCourse(value);
 
-        expect((service as any).courseList).toEqual(coursesDataStub);
-    });
-    it('updateCourse() calls console.log', () => {
-        spyOn(window.console, 'log');
+    //     expect((service as any).courseList).toEqual(coursesDataStub);
+    //     expect((service as any).courseList.length).not.toEqual(coursesDataStub.length);
+    // });
+    // it('updateCourse() calls console.log', () => {
 
-        const value = 'updateCourse';
+    //     (service as any).courseList = coursesDataStub;
 
-        service.updateCourse();
+    //     const value = courseStub;
 
-        expect(window.console.log).toHaveBeenCalled();
-        expect(window.console.log).toHaveBeenCalledWith(value);
-    });
+    //     service.updateCourse(value);
+
+    //     expect((service as any).courseList).toEqual(coursesDataStub);
+    //     expect((service as any).courseList.length).toEqual(coursesDataStub.length);
+    // });
 });

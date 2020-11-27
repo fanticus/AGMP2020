@@ -36,29 +36,29 @@ describe('CourseFormComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('handleSave() calls console.log', () => {
-        spyOn(window.console, 'log');
+    // it('handleSave() calls console.log', () => {
+    //     spyOn(window.console, 'log');
 
-        const value = 'handleSave';
+    //     const value = 'handleSave';
 
-        component.handleSave();
+    //     component.handleSave();
 
-        expect(window.console.log).toHaveBeenCalled();
-        expect(window.console.log).toHaveBeenCalledWith(value);
-    });
-    it('getTitle() testing no exists id', () => {
+    //     expect(window.console.log).toHaveBeenCalled();
+    //     expect(window.console.log).toHaveBeenCalledWith(value);
+    // });
+    // it('getTitle() testing no exists id', () => {
 
-        const value = 'create';
-        const result = 'New course';
+    //     const value = 'create';
+    //     const result = 'New course';
 
-        component.titleForm = '';
+    //     component.titleForm = '';
 
-        (component as any).getTitle(value);
+    //     (component as any).getTitle(value);
 
-        expect(component.titleForm).toBeDefined();
-        expect(typeof component.titleForm).toEqual('string');
-        expect(component.titleForm).toEqual(result);
-    });
+    //     expect(component.titleForm).toBeDefined();
+    //     expect(typeof component.titleForm).toEqual('string');
+    //     expect(component.titleForm).toEqual(result);
+    // });
     it('getTitle() testing exists id', () => {
 
         const value = 'test';

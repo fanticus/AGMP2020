@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
 
@@ -20,6 +20,7 @@ export class CourseFormComponent implements OnInit {
     constructor(
         private coursesService: CoursesService,
         private route: ActivatedRoute,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -31,7 +32,10 @@ export class CourseFormComponent implements OnInit {
     }
 
     public handleSave(): void {
-        console.log('handleSave');
+        this.courseId
+            ? this.coursesService.updateCourse( this.course )
+            : this.coursesService.createCourse( this.course );
+        this.router.navigate([ '/courses' ]);
     }
 
     private getTitle( courseId: string ): void {

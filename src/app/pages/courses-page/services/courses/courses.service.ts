@@ -21,8 +21,12 @@ export class CoursesService {
         return of( this.courseList );
     }
 
-    public createCourse(): void {
-        console.log('createCourse');
+    public createCourse( course: ICourse ): void {
+        const id = this.getIdCourse();
+        this.courseList = [
+            { ...course, id },
+            ...this.courseList
+        ];
     }
 
     public getCourseById( id: string ): ICourse {
@@ -30,12 +34,27 @@ export class CoursesService {
         return course ? { ...course } : null;
     }
 
-    public updateCourse(): void {
-        console.log('updateCourse');
+    public updateCourse( course: ICourse ): void {
+        this.courseList = this.courseList.map( courseItem => {
+            return courseItem.id === course.id
+                ? course
+                : courseItem;
+        });
     }
 
     public removeCourse( courseId: string ): void {
         this.courseList = this.courseList
             .filter( course => course.id !== courseId );
+    }
+
+    private getIdCourse(): string {
+        const value = Math.random() * 10;
+        const newId = Math.floor( Math.random() * value + value );
+        const isExistsValue = !!this.courseList.find( ( course: ICourse ) => {
+            return +course.id === newId;
+        });
+        return isExistsValue
+            ? this.getIdCourse()
+            : newId.toString();
     }
 }

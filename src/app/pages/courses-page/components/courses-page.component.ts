@@ -1,7 +1,10 @@
 import {
     Component,
+    OnDestroy,
     OnInit
 } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { ICourse } from '../../../commons/interfaces/ApiDataInterface';
 import { ModalTypes } from '../../../modals/interfaces/ModalInterface';
@@ -16,12 +19,14 @@ import { ModalsService } from '../../../modals/services/modals/modals.service';
     styleUrls: ['./courses-page.component.scss'],
     providers: [ FilterPipe ]
 })
-export class CoursesPageComponent implements OnInit {
+export class CoursesPageComponent implements OnInit, OnDestroy {
 
     public coursesData: ICourse[] = [];
     public coursesList: ICourse[] = [];
 
     private filter: string;
+
+    private unsubscribe$ = new Subject<void>();
 
     constructor(
         private courseSrv: CoursesService,
@@ -33,6 +38,11 @@ export class CoursesPageComponent implements OnInit {
         this.getCourses();
     }
 
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
+
     public deleteCourse( course: ICourse ): void {
         this.modalsSrv.showModal( ModalTypes.Confirm, {
             title: 'Delete course?',
@@ -40,7 +50,8 @@ export class CoursesPageComponent implements OnInit {
             button: {
                 ok: 'Yes, delete'
             }
-        }).subscribe( result => {
+        }).pipe( takeUntil( this.unsubscribe$ ) )
+        .subscribe( result => {
             if ( result.status ) {
                 this.courseSrv.removeCourse( course.id );
                 this.getCourses();
@@ -59,13 +70,15 @@ export class CoursesPageComponent implements OnInit {
     }
 
     private getCourses(): void {
-        this.courseSrv.getCourses().subscribe( courses => {
-            this.coursesData = courses;
-            if ( this.filter ) {
-                this.filterCourses( this.filter );
-            } else {
-                this.coursesList = [ ...this.coursesData ];
-            }
-        });
+        this.courseSrv.getCourses()
+          .pipe( takeUntil( this.unsubscribe$ ) )
+          .subscribe( courses => {
+              this.coursesData = courses;
+              if ( this.filter ) {
+                  this.filterCourses( this.filter );
+              } else {
+                  this.coursesList = [ ...this.coursesData ];
+              }
+          });
     }
 }
