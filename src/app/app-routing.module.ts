@@ -10,6 +10,9 @@ import {
     NotFoundPageComponent
 } from './pages/not-found-page/components/not-found-page.component';
 
+// GUARDS
+import { AuthGuard } from './commons/guards/auth/auth.guard';
+
 const COURSES_ROUTES: Routes = [
     { path: '', component: CoursesPageComponent },
     { path: 'new', component: CoursePageComponent },
@@ -19,7 +22,11 @@ const COURSES_ROUTES: Routes = [
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'courses', pathMatch: 'full' },
     { path: 'login', component: LoginPageComponent },
-    { path: 'courses', children: COURSES_ROUTES },
+    {
+        path: 'courses',
+        canActivate: [ AuthGuard ],
+        children: COURSES_ROUTES,
+    },
     { path: '404', component: NotFoundPageComponent },
     { path: '**',  redirectTo: '404' },
 ];
