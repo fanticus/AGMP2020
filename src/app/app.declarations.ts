@@ -29,6 +29,8 @@ import {
     CourseFormComponent
 } from './pages/course-page/components/course-form/course-form.component';
 
+import { NotFoundPageComponent } from './pages/not-found-page/components/not-found-page.component';
+
 import { ModalsOverlayComponent } from './modals/components/modals-overlay/modals-overlay.component';
 import {
     ConfirmModalComponent
@@ -54,6 +56,7 @@ export const APP_DECLARATIONS = [
     CoursesPageComponent,
     LoginPageComponent,
     CoursePageComponent,
+    NotFoundPageComponent,
     CourseFormComponent,
     CourseItemComponent,
     LoginFormComponent,

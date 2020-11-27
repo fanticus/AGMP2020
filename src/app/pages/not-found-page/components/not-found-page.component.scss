@@ -1,0 +1,30 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/variables.scss";
+@import "../../../../scss/mixins.scss";
+
+.not-found-page {
+    width: 100%;
+    height: 100%;
+
+    @include element (block) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    @include element (title) {
+        @include content-title;
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    @include element (description) {
+        @include content-text;
+        font-size: 14px;
+    }
+    @include element (button) {
+        margin-top: 28px;
+        margin-left: 0;
+    }
+}

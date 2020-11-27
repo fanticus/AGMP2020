@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from './commons/services/auth/auth.service';
 
@@ -10,6 +11,7 @@ import { AuthService } from './commons/services/auth/auth.service';
 export class AppComponent {
 
     constructor(
-        public authSrv: AuthService
+        public authSrv: AuthService,
+        public router: Router
     ) {}
 }
