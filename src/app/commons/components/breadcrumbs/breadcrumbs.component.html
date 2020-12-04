@@ -2,18 +2,18 @@
     <nav aria-label="breadcrumbs__nav">
         <ol class="breadcrumbs__list">
             <li class="breadcrumbs__item"
-                *ngFor="let breadcrumb of breadcrumbs; index as i">
-                <a *ngIf="breadcrumbs.length > 1
-                    && i + 1 !== breadcrumbs.length"
+                *ngFor="let breadcrumb of breadcrumbs as list; index as i">
+                <a *ngIf="list.length > 1
+                    && i + 1 !== list.length"
                     [routerLink]="breadcrumb"
                 >{{ getText(breadcrumb) }}</a>
-                <span *ngIf="breadcrumbs.length > 1
-                    && i + 1 !== breadcrumbs.length"
+                <span *ngIf="list.length > 1
+                    && i + 1 !== list.length"
                     class="breadcrumbs__separator"
                 >/</span>
-                <span *ngIf="breadcrumbs.length === 1
-                    || i + 1 === breadcrumbs.length"
-                >{{ getText(breadcrumb) }}</span>
+                <span *ngIf="list.length === 1
+                    || i + 1 === list.length"
+                >{{ getText(breadcrumb) || (courseTitle$ | async) }}</span>
             </li>
         </ol>
     </nav>

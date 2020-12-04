@@ -3,11 +3,10 @@ import {
     Component,
     EventEmitter,
     Input,
-    OnInit,
     Output
 } from '@angular/core';
 
-import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
+import { ICourse } from '../../../../commons/interfaces/CourseInterface';
 
 @Component({
     selector: 'app-course-item',
@@ -15,7 +14,7 @@ import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
     styleUrls: ['./course-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseItemComponent implements OnInit {
+export class CourseItemComponent {
 
     @Input()
     public courseItem: ICourse;
@@ -24,9 +23,6 @@ export class CourseItemComponent implements OnInit {
     private deleteCourse = new EventEmitter<ICourse>();
 
     constructor() { }
-
-    ngOnInit(): void {
-    }
 
     public handleDelete(): void {
         this.deleteCourse.emit( this.courseItem );

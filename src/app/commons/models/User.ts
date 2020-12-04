@@ -1,8 +1,8 @@
-import { IUser } from '../interfaces/ApiDataInterface';
+import { IUser } from '../interfaces/CourseInterface';
 
 export class User implements IUser {
 
-    public id: string;
+    public id: number;
     public firstName: string;
     public lastName: string;
 }

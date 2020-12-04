@@ -1,60 +1,76 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
+import { ICourse } from './../../../../commons/interfaces/CourseInterface';
+import { IApiCourse } from '../../../../commons/interfaces/ApiDataInterface';
 
-import { coursesDataStub } from '../../../../../assets/dev-stubs/coursesData';
+import { UtilitiesService } from './../../../../commons/services/utilities/utilities.service';
+import { CoursesApiService } from '../courses-api/courses-api.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CoursesService {
 
-    private courseList: ICourse[] = [];
+    public courseList$ = new Subject<ICourse[]>();
 
-    constructor() { }
+    constructor(
+        private coursesApiSrv: CoursesApiService,
+        private utilitiesSrv: UtilitiesService,
+        private router: Router,
+    ) { }
 
-    public getCourses(): Observable<ICourse[]> {
-        if ( !this.courseList.length ) {
-          this.courseList = coursesDataStub;
-        }
-        return of( this.courseList );
+    public load( count?: number ): void {
+        this.coursesApiSrv.load( count )
+            .pipe(
+                map( ( res: IApiCourse[] ) => {
+                    return res.map( course => this.utilitiesSrv
+                        .convertCourseData( course ) );
+                })
+            ).subscribe( courses => {
+                this.courseList$.next( courses );
+            });
     }
 
-    public createCourse( course: ICourse ): void {
-        const id = this.getIdCourse();
-        this.courseList = [
-            { ...course, id },
-            ...this.courseList
-        ];
+    public loadSort( value: string, count?: number ): void {
+        this.coursesApiSrv.loadSort( value, count )
+            .pipe(
+                map( ( res: IApiCourse[] ) => {
+                    return res.map( course => this.utilitiesSrv
+                        .convertCourseData( course ) );
+                })
+            ).subscribe( courses => {
+                this.courseList$.next( courses );
+            });
     }
 
-    public getCourseById( id: string ): ICourse {
-        const course = this.courseList.find( obj => obj.id === id );
-        return course ? { ...course } : null;
+    public create( course: ICourse ): void {
+        const courseData = this.utilitiesSrv.convertCourse( course );
+        this.coursesApiSrv.create( courseData )
+            .subscribe( () => {
+                this.router.navigate([ '/courses' ]);
+            });
     }
 
-    public updateCourse( course: ICourse ): void {
-        this.courseList = this.courseList.map( courseItem => {
-            return courseItem.id === course.id
-                ? course
-                : courseItem;
-        });
+    public removeItem( courseId: number ): void {
+        this.coursesApiSrv.removeItem( courseId )
+            .subscribe( () => {} );
     }
 
-    public removeCourse( courseId: string ): void {
-        this.courseList = this.courseList
-            .filter( course => course.id !== courseId );
+    public updateItem( course: ICourse ): void {
+        const courseData = this.utilitiesSrv.convertCourse( course );
+        this.coursesApiSrv.updateItem( courseData )
+            .subscribe( () => {
+                this.router.navigate([ '/courses' ]);
+            } );
     }
 
-    private getIdCourse(): string {
-        const value = Math.random() * 10;
-        const newId = Math.floor( Math.random() * value + value );
-        const isExistsValue = !!this.courseList.find( ( course: ICourse ) => {
-            return +course.id === newId;
-        });
-        return isExistsValue
-            ? this.getIdCourse()
-            : newId.toString();
+    public getItemById( id: number ): Observable<ICourse> {
+        return this.coursesApiSrv.getItemById( id ).pipe(
+            map( ( res: IApiCourse ) => {
+                return this.utilitiesSrv.convertCourseData( res );
+            }));
     }
 }

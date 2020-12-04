@@ -1,8 +1,8 @@
 <div class="user">
     <span class="user__user-login">
-        {{ authSrv.userInfo }}
+        {{ username$ | async }}
     </span>
     <button class="button user__button user__button--logout"
-        (click)="authSrv.logout()"
+        (click)="logoutUser()"
     >Log out</button>
 </div>

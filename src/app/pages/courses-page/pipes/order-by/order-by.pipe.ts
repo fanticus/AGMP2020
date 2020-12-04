@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
+import { ICourse } from '../../../../commons/interfaces/CourseInterface';
 
 @Pipe({
     name: 'orderBy'

@@ -2,7 +2,7 @@
     <div class="courses-page__action-bar-wrapper">
         <div class="courses-page__action-bar">
             <app-search-bar class="courses-page__action-bar--search"
-                (eventSearch)="filterCourses($event)"
+                (eventSearch)="loadSortCourses($event)"
             ></app-search-bar>
             <div class="courses-page__actions-wrapper">
                 <div class="courses-page__actions">
@@ -16,13 +16,14 @@
     <div *ngIf="coursesList.length" class="courses-page__list-wrapper">
         <div class="courses-page__list">
             <app-course-item
-                *ngFor="let course of coursesList | orderBy: 'creationDate'"
+                *ngFor="let course of coursesList"
                 class="courses-page__list-item"
                 [courseItem]="course"
                 (deleteCourse)="deleteCourse($event)"
             ></app-course-item>
         </div>
-        <div class="courses-page__load-more-wrapper"
+        <div *ngIf="isDisplayLoadMore"
+            class="courses-page__load-more-wrapper"
             (click)="handleLoadMore()">
             <div class="courses-page__load-more">
                 <a class="link">Load more</a>

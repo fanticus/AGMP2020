@@ -1,11 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import {
     filter,
     distinctUntilChanged,
-    takeUntil
+    takeUntil,
+    pluck
 } from 'rxjs/operators';
+
+import { CoursesService } from './../../../pages/courses-page/services/courses/courses.service';
 
 @Component({
     selector: 'app-breadcrumbs',
@@ -16,21 +19,23 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
     public breadcrumbs: string[] = [];
 
+    public courseTitle$: Observable<string>;
+
     private textBreadcrumbs: { [ key: string ]: string } = {
         courses: 'courses',
         new: 'new course',
-        edit: 'edit course'
     };
 
     private unsubscribe$ = new Subject<void>();
 
     constructor(
+        public coursesSrv: CoursesService,
         private router: Router,
-      ) {
+    ) {
     }
 
     ngOnInit() {
-        this.breadcrumbs = [ this.router.url.replace( '/', '' ) ];
+        this.breadcrumbs = this.getBreadCrumb( this.router.url );
         this.subscribeToEvent();
     }
 
@@ -43,15 +48,24 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
         if ( this.textBreadcrumbs.hasOwnProperty( value ) ) {
             return this.textBreadcrumbs[ value ];
         }
-        return this.textBreadcrumbs[ 'edit' ];
+        return null;
     }
 
-    private getBreadCrumb( route: NavigationEnd ): string[] {
-        const url = route.url;
-        const newBreadcrumbs: string[] = url.includes( '/' )
-            ? url.split( '/' ).slice( 1 )
-            : [ url ];
-        return newBreadcrumbs;
+    private getBreadCrumb( url: string ): string[] {
+        if ( url && url !== '/' ) {
+            const urls = url.split( '/' ).slice( 1 );
+            this.getTitleCourse( urls[1] );
+            return urls;
+        }
+        return [ 'courses' ];
+    }
+
+    private getTitleCourse( idCourse: string ): void {
+        if ( idCourse && !this.textBreadcrumbs
+            .hasOwnProperty( idCourse ) ) {
+            this.courseTitle$ = this.coursesSrv.getItemById( +idCourse )
+                .pipe( pluck( 'title' ) );
+        }
     }
 
     private subscribeToEvent(): void {
@@ -60,7 +74,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                 distinctUntilChanged(),
                 takeUntil( this.unsubscribe$ )
             ).subscribe( ( event: NavigationEnd ) => {
-                this.breadcrumbs = this.getBreadCrumb( event );
+                this.breadcrumbs = this.getBreadCrumb( event.url );
             });
     }
 }
