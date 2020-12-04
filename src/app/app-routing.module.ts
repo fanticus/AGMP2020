@@ -21,7 +21,11 @@ const COURSES_ROUTES: Routes = [
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'courses', pathMatch: 'full' },
-    { path: 'login', component: LoginPageComponent },
+    {
+        path: 'login',
+        component: LoginPageComponent,
+        canActivate: [ AuthGuard ],
+    },
     {
         path: 'courses',
         canActivate: [ AuthGuard ],
