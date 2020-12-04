@@ -5,7 +5,7 @@ import { APP_DECLARATIONS } from '../../../../app.declarations';
 
 import { CourseFormComponent } from './course-form.component';
 
-import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
+import { ICourse } from '../../../../commons/interfaces/CourseInterface';
 
 describe('CourseFormComponent', () => {
     let component: CourseFormComponent;
@@ -36,29 +36,49 @@ describe('CourseFormComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    // it('handleSave() calls console.log', () => {
-    //     spyOn(window.console, 'log');
+    it('course testing', () => {
+        expect(component.course).toBeDefined();
+        expect(typeof component.course).toEqual('object');
+    });
+    it('titleForm testing', () => {
+        expect(component.titleForm).toBeDefined();
+        expect(typeof component.titleForm).toEqual('string');
+    });
+    it('handleSave() testing not exists courseId', () => {
 
-    //     const value = 'handleSave';
+        spyOn((component as any).coursesSrv, 'updateItem');
+        spyOn((component as any).coursesSrv, 'create');
 
-    //     component.handleSave();
+        component.handleSave();
 
-    //     expect(window.console.log).toHaveBeenCalled();
-    //     expect(window.console.log).toHaveBeenCalledWith(value);
-    // });
-    // it('getTitle() testing no exists id', () => {
+        expect((component as any).coursesSrv.updateItem).not.toHaveBeenCalled();
+        expect((component as any).coursesSrv.create).toHaveBeenCalled();
+    });
+    it('handleSave() testing exists courseId', () => {
 
-    //     const value = 'create';
-    //     const result = 'New course';
+        spyOn((component as any).coursesSrv, 'updateItem');
+        spyOn((component as any).coursesSrv, 'create');
 
-    //     component.titleForm = '';
+        (component as any).courseId = 'test';
 
-    //     (component as any).getTitle(value);
+        component.handleSave();
 
-    //     expect(component.titleForm).toBeDefined();
-    //     expect(typeof component.titleForm).toEqual('string');
-    //     expect(component.titleForm).toEqual(result);
-    // });
+        expect((component as any).coursesSrv.updateItem).toHaveBeenCalled();
+        expect((component as any).coursesSrv.create).not.toHaveBeenCalled();
+    });
+    it('getTitle() testing no exists id', () => {
+
+        const value = '';
+        const result = 'New course';
+
+        component.titleForm = '';
+
+        (component as any).getTitle(value);
+
+        expect(component.titleForm).toBeDefined();
+        expect(typeof component.titleForm).toEqual('string');
+        expect(component.titleForm).toEqual(result);
+    });
     it('getTitle() testing exists id', () => {
 
         const value = 'test';
@@ -81,6 +101,7 @@ describe('CourseFormComponent', () => {
             duration: null,
             description: '',
             topRated: false,
+            authors: []
         };
 
         const res = (component as any).createCourse();

@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { APP_IMPORTS } from '../../../../app.imports';
 import { APP_DECLARATIONS } from '../../../../app.declarations';
 
-import { ICourse } from '../../../../commons/interfaces/ApiDataInterface';
+import { ICourse } from '../../../../commons/interfaces/CourseInterface';
 
 import { courseStub } from '../../../../../test-stubs/course.stub';
 

@@ -73,23 +73,17 @@ describe('SearchBarComponent', () => {
         expect(typeof component.searchValue).toEqual('string');
         expect(component.searchValue).toEqual('');
     });
+    it('eventSearch testing', () => {
+        expect((component as any).eventSearch).toBeDefined();
+        expect((component as any).eventSearch).toBeInstanceOf(EventEmitter);
+    });
     it('handleSearch() testing', () => {
         spyOn((component as any).eventSearch, 'emit');
 
         component.handleSearch();
 
-        expect((component as any).eventSearch).toBeDefined();
-        expect((component as any).eventSearch instanceof EventEmitter).toBeTruthy();
-    });
-    it('handleSearch() change searchValue testing', () => {
-        spyOn((component as any).eventSearch, 'emit');
-
-        const value = 'test';
-        component.searchValue = value;
-
-        component.handleSearch();
-
-        expect((component as any).eventSearch).toBeDefined();
-        expect((component as any).eventSearch instanceof EventEmitter).toBeTruthy();
+        expect((component as any).eventSearch.emit).toHaveBeenCalled();
+        expect((component as any).eventSearch.emit)
+            .toHaveBeenCalledWith(component.searchValue);
     });
 });

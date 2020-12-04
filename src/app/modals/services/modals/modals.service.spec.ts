@@ -20,8 +20,9 @@ describe('ModalsService', () => {
     });
 
     it('newModal$ testing', () => {
-        expect(service.newModal$).toBeTruthy();
-        expect(service.newModal$).toEqual(new Subject());
+        expect(service.newModal$).toBeDefined();
+        expect(typeof service.newModal$).toEqual('object');
+        expect(service.newModal$).toBeInstanceOf(Subject);
     });
     it('showModal() testing', () => {
         spyOn(service.newModal$, 'next');

@@ -40,7 +40,7 @@ describe('CoursesApiService', () => {
 
         expect((service as any).apiSrv.request).toHaveBeenCalled();
         expect(res).toBeDefined();
-        expect(res instanceof Observable).toBeTrue();
+        expect(res).toBeInstanceOf(Observable);
         expect(res).toEqual(response);
     });
     it('load() testing exists count', () => {
@@ -54,7 +54,7 @@ describe('CoursesApiService', () => {
 
         expect((service as any).apiSrv.request).toHaveBeenCalled();
         expect(res).toBeDefined();
-        expect(res instanceof Observable).toBeTrue();
+        expect(res).toBeInstanceOf(Observable);
         expect(res).toEqual(response);
     });
     it('create() testing', () => {
@@ -69,7 +69,7 @@ describe('CoursesApiService', () => {
         expect((service as any).apiSrv.request).toHaveBeenCalled();
         expect((service as any).apiSrv.request).toHaveBeenCalledWith('post', 'courses', course);
         expect(res).toBeDefined();
-        expect(res instanceof Observable).toBeTrue();
+        expect(res).toBeInstanceOf(Observable);
         expect(res).toEqual(response);
     });
     it('removeItem() testing', () => {
@@ -84,7 +84,7 @@ describe('CoursesApiService', () => {
         expect((service as any).apiSrv.request).toHaveBeenCalled();
         expect((service as any).apiSrv.request).toHaveBeenCalledWith('delete', `courses/${ id }`);
         expect(res).toBeDefined();
-        expect(res instanceof Observable).toBeTrue();
+        expect(res).toBeInstanceOf(Observable);
         expect(res).toEqual(response);
     });
     it('updateItem() testing', () => {
@@ -100,7 +100,7 @@ describe('CoursesApiService', () => {
         expect((service as any).apiSrv.request)
             .toHaveBeenCalledWith('patch', `courses/${ course.id }`, course);
         expect(res).toBeDefined();
-        expect(res instanceof Observable).toBeTrue();
+        expect(res).toBeInstanceOf(Observable);
         expect(res).toEqual(response);
     });
     it('getItemById() testing', () => {
@@ -115,7 +115,7 @@ describe('CoursesApiService', () => {
         expect((service as any).apiSrv.request).toHaveBeenCalled();
         expect((service as any).apiSrv.request).toHaveBeenCalledWith('get', `courses/${ id }`);
         expect(res).toBeDefined();
-        expect(res instanceof Observable).toBeTrue();
+        expect(res).toBeInstanceOf(Observable);
         expect(res).toEqual(response);
     });
 });

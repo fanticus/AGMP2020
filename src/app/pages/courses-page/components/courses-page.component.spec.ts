@@ -1,16 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { of } from 'rxjs';
 
 import { APP_IMPORTS } from '../../../app.imports';
 import { APP_DECLARATIONS } from '../../../app.declarations';
-
-import { IModalResponse } from '../../../modals/interfaces/ModalInterface';
-import { ICourse } from '../../../commons/interfaces/ApiDataInterface';
-
-import { coursesDataStub } from '../../../../test-stubs/coursesData.stub';
-import { courseStub } from '../../../../test-stubs/course.stub';
 
 import { CoursesPageComponent } from './courses-page.component';
 
@@ -67,37 +60,37 @@ describe('CoursesPageComponent', () => {
         expect(compiled.querySelector('.courses-page__button').textContent)
             .toContain('Add course');
     });
-    it('nativeElement has a div .courses-page__list-wrapper', () => {
-        expect(compiled.querySelector('div .courses-page__list-wrapper')).toBeTruthy();
-    });
-    it('nativeElement has a div .courses-page__list', () => {
-        expect(compiled.querySelector('div .courses-page__list')).toBeTruthy();
-    });
-    it('nativeElement has a div .courses-page__list-item', () => {
-        expect(compiled.querySelector('.courses-page__list-item')).toBeTruthy();
-    });
-    it('nativeElement has a div .courses-page__load-more-wrapper', () => {
-        expect(compiled.querySelector('div .courses-page__load-more-wrapper')).toBeTruthy();
-    });
-    it('nativeElement has a div .courses-page__load-more-wrapper with event click', () => {
-        spyOn(component, 'handleLoadMore');
+    // it('nativeElement has a div .courses-page__list-wrapper', () => {
+    //     expect(compiled.querySelector('div .courses-page__list-wrapper')).toBeTruthy();
+    // });
+    // it('nativeElement has a div .courses-page__list', () => {
+    //     expect(compiled.querySelector('div .courses-page__list')).toBeTruthy();
+    // });
+    // it('nativeElement has a div .courses-page__list-item', () => {
+    //     expect(compiled.querySelector('.courses-page__list-item')).toBeTruthy();
+    // });
+    // it('nativeElement has a div .courses-page__load-more-wrapper', () => {
+    //     expect(compiled.querySelector('div .courses-page__load-more-wrapper')).toBeTruthy();
+    // });
+    // it('nativeElement has a div .courses-page__load-more-wrapper with event click', () => {
+    //     spyOn(component, 'handleLoadMore');
 
-        const button: DebugElement = fixture.debugElement
-            .query(By.css('.courses-page__load-more-wrapper'));
-        button.triggerEventHandler('click', null);
+    //     const button: DebugElement = fixture.debugElement
+    //         .query(By.css('.courses-page__load-more-wrapper'));
+    //     button.triggerEventHandler('click', null);
 
-        expect(component.handleLoadMore).toHaveBeenCalled();
-    });
-    it('nativeElement has a div .courses-page__load-more', () => {
-        expect(compiled.querySelector('div .courses-page__load-more')).toBeTruthy();
-    });
-    it('nativeElement has a link', () => {
-        expect(compiled.querySelector('.link')).toBeTruthy();
-    });
-    it('nativeElement has a link with content', () => {
-        expect(compiled.querySelector('.link').textContent)
-            .toContain('Load more');
-    });
+    //     expect(component.handleLoadMore).toHaveBeenCalled();
+    // });
+    // it('nativeElement has a div .courses-page__load-more', () => {
+    //     expect(compiled.querySelector('div .courses-page__load-more')).toBeTruthy();
+    // });
+    // it('nativeElement has a link', () => {
+    //     expect(compiled.querySelector('.link')).toBeTruthy();
+    // });
+    // it('nativeElement has a link with content', () => {
+    //     expect(compiled.querySelector('.link').textContent)
+    //         .toContain('Load more');
+    // });
     // it('nativeElement has a div .courses-page__not-data-wrapper', () => {
     //     expect(compiled.querySelector('div .courses-page__not-data-wrapper')).toBeTruthy();
     // });
@@ -119,129 +112,83 @@ describe('CoursesPageComponent', () => {
     //         .toContain('Feel free to add new course');
     // });
 
-    it('coursesData testing', () => {
-        expect(component.coursesData).toBeDefined();
-        expect(typeof component.coursesData).toEqual('object');
-        expect(component.coursesData).toEqual(coursesDataStub);
-    });
-    it('ngOnInit() testing', () => {
-        spyOn(component as any, 'getCourses');
-
-        component.ngOnInit();
-
-        expect((component as any).getCourses).toHaveBeenCalled();
-    });
-    it('deleteCourse() testing status true', () => {
-        const res: IModalResponse = {
-            status: true
-        };
-        spyOn((component as any).modalsSrv, 'showModal')
-            .and.returnValue(of(res));
-        spyOn((component as any).courseSrv, 'removeCourse');
-        spyOn((component as any), 'getCourses');
-
-        const value = courseStub;
-
-        component.deleteCourse(value);
-
-        expect((component as any).modalsSrv.showModal).toHaveBeenCalled();
-        expect((component as any).courseSrv.removeCourse).toHaveBeenCalled();
-        expect((component as any).courseSrv.removeCourse)
-            .toHaveBeenCalledWith(value.id);
-        expect((component as any).getCourses).toHaveBeenCalled();
-    });
-    it('deleteCourse() testing status false', () => {
-        const res: IModalResponse = {
-            status: false
-        };
-        spyOn((component as any).modalsSrv, 'showModal')
-            .and.returnValue(of(res));
-        spyOn((component as any).courseSrv, 'removeCourse');
-        spyOn((component as any), 'getCourses');
-
-        const value = courseStub;
-
-        component.deleteCourse(value);
-
-        expect((component as any).modalsSrv.showModal).toHaveBeenCalled();
-        expect((component as any).courseSrv.removeCourse).not.toHaveBeenCalled();
-        expect((component as any).getCourses).not.toHaveBeenCalled();
-    });
-    it('handleLoadMore() calls console.log', () => {
-        spyOn(window.console, 'log');
-
-        const value = 'Load more';
-
-        component.handleLoadMore();
-
-        expect(window.console.log).toHaveBeenCalled();
-        expect(window.console.log).toHaveBeenCalledWith(value);
-    });
-    it('filterCourses() testing not exists filter', () => {
-        component.coursesData = coursesDataStub;
-        spyOn((component as any).filterPipe, 'transform')
-            .and.returnValue(component.coursesData);
-
-        const value = '';
-
-        component.filterCourses(value);
-
-        expect((component as any).filter).toEqual(value);
-        expect((component as any).filterPipe.transform).toHaveBeenCalled();
-        expect((component as any).filterPipe.transform)
-            .toHaveBeenCalledWith(component.coursesData, value);
-        expect(component.coursesList).toBeDefined();
-        expect(typeof component.coursesList).toEqual('object');
-        expect(component.coursesList).toEqual(component.coursesData);
-    });
-    it('filterCourses() testing exists filter', () => {
-        component.coursesData = coursesDataStub;
-        spyOn((component as any).filterPipe, 'transform')
-            .and.returnValue([]);
-
-        const value = 'test';
-
-        component.filterCourses(value);
-
-        expect((component as any).filter).toEqual(value);
-        expect((component as any).filterPipe.transform).toHaveBeenCalled();
-        expect((component as any).filterPipe.transform)
-            .toHaveBeenCalledWith(component.coursesData, value);
+    it('coursesList testing', () => {
         expect(component.coursesList).toBeDefined();
         expect(typeof component.coursesList).toEqual('object');
         expect(component.coursesList).toEqual([]);
     });
-    it('getCourses() testing not exists filter', () => {
-        const res: ICourse[] = coursesDataStub;
-        spyOn((component as any).courseSrv, 'getCourses')
-            .and.returnValue(of(res));
-
-        spyOn(component, 'filterCourses');
-
-        (component as any).getCourses();
-
-        expect((component as any).courseSrv.getCourses).toHaveBeenCalled();
-        expect(component.coursesData).toEqual(res);
-        expect((component as any).filter).toBeUndefined();
-        expect(component.filterCourses).not.toHaveBeenCalled();
-        expect(component.coursesList).toEqual(res);
+    it('isDisplayLoadMore testing', () => {
+        expect(component.isDisplayLoadMore).toBeDefined();
+        expect(typeof component.isDisplayLoadMore).toEqual('boolean');
+        expect(component.isDisplayLoadMore).toBeTrue();
     });
-    it('getCourses() testing exists filter', () => {
-        const res: ICourse[] = coursesDataStub;
-        spyOn((component as any).courseSrv, 'getCourses')
-            .and.returnValue(of(res));
+    it('ngOnInit() testing', () => {
+        spyOn(component, 'loadCourses');
 
-        (component as any).filter = 'test';
+        component.ngOnInit();
 
-        spyOn(component, 'filterCourses');
+        expect((component as any).loadCourses).toHaveBeenCalled();
+    });
+    it('loadCourses() testing', () => {
 
-        (component as any).getCourses();
+        spyOn(component.coursesSrv, 'load');
 
-        expect((component as any).courseSrv.getCourses).toHaveBeenCalled();
-        expect(component.coursesData).toEqual(res);
-        expect((component as any).filter).toBeTruthy();
-        expect(component.filterCourses).toHaveBeenCalled();
-        expect(component.filterCourses)
-            .toHaveBeenCalledWith((component as any).filter);
+        component.loadCourses();
+
+        expect(component.coursesSrv.load).toHaveBeenCalled();
+    });
+    it('loadSortCourses() testing not exists value', () => {
+
+        spyOn((component as any), 'clearSortValue');
+        spyOn(component.coursesSrv, 'loadSort');
+
+        component.loadSortCourses();
+
+        expect((component as any).clearSortValue).not.toHaveBeenCalled();
+        expect(component.coursesSrv.loadSort).not.toHaveBeenCalled();
+    });
+    it('loadSortCourses() testing exists value', () => {
+
+        spyOn((component as any), 'clearSortValue');
+        spyOn(component.coursesSrv, 'loadSort');
+
+        const value = 'test';
+
+        component.loadSortCourses(value);
+
+        expect((component as any).clearSortValue).toHaveBeenCalled();
+        expect(component.coursesSrv.loadSort).toHaveBeenCalled();
+    });
+    it('handleLoadMore() testing', () => {
+
+        spyOn((component as any), 'updateCourses');
+
+        component.handleLoadMore();
+
+        expect((component as any).updateCourses).toHaveBeenCalled();
+    });
+    it('updateCourses() testing not exists sortValue', () => {
+
+        (component as any).sortValue = '';
+
+        spyOn(component, 'loadSortCourses');
+        spyOn(component, 'loadCourses');
+
+        (component as any).updateCourses();
+
+        expect(component.loadSortCourses).not.toHaveBeenCalled();
+        expect(component.loadCourses).toHaveBeenCalled();
+    });
+    it('updateCourses() testing exists sortValue', () => {
+
+        (component as any).sortValue = 'test';
+
+        spyOn(component, 'loadSortCourses');
+        spyOn(component, 'loadCourses');
+
+        (component as any).updateCourses();
+
+        expect(component.loadSortCourses).toHaveBeenCalled();
+        expect(component.loadCourses).not.toHaveBeenCalled();
     });
 });

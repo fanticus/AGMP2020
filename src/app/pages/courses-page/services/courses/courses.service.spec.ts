@@ -1,123 +1,50 @@
 import { TestBed } from '@angular/core/testing';
-import { Observable, of } from 'rxjs';
+import { Subject } from 'rxjs';
+
+import { APP_IMPORTS } from '../../../../app.imports';
+import { APP_DECLARATIONS } from '../../../../app.declarations';
 
 import { courseStub } from '../../../../../test-stubs/course.stub';
-import { coursesDataStub } from '../../../../../test-stubs/coursesData.stub';
 
 import { CoursesService } from './courses.service';
 
 describe('CoursesService', () => {
     let service: CoursesService;
 
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [ APP_IMPORTS ],
+            declarations: [ APP_DECLARATIONS ]
+        }).compileComponents();
+    });
+
     beforeEach(() => {
-      TestBed.configureTestingModule({});
-      service = TestBed.inject(CoursesService);
+        service = TestBed.inject(CoursesService);
     });
     afterEach(() => {
         service = null;
     });
 
-    it('should be created', () => {
-      expect(service).toBeTruthy();
+    it('should create', () => {
+        expect(service).toBeTruthy();
     });
 
-    it('getCourses() testing not exists courseList', () => {
-
-        expect((service as any).courseList).toEqual([]);
-
-        const value = coursesDataStub;
-        const result = service.getCourses();
-
-        expect(typeof (service as any).courseList).toEqual('object');
-        expect((service as any).courseList).toEqual(value);
-        expect(result).toBeDefined();
-        expect(result).toBeInstanceOf(Observable);
-        let res;
-        result.subscribe( data => res = data );
-        expect(res).toEqual(value);
+    it('courseList$ testing', () => {
+        expect(service.courseList$).toBeDefined();
+        expect(typeof service.courseList$).toEqual('object');
+        expect(service.courseList$).toBeInstanceOf(Subject);
     });
-    it('getCourses() testing exists courseList', () => {
 
-        const value = [ courseStub ];
+    it('create() testing', () => {
 
-        (service as any).courseList = value;
+        const course = courseStub;
 
-        const result = service.getCourses();
+        spyOn((service as any).utilitiesSrv, 'convertCourse');
+        spyOn((service as any).coursesApiSrv, 'updateItem');
 
-        expect(typeof (service as any).courseList).toEqual('object');
-        expect((service as any).courseList).toEqual(value);
-        expect(result).toBeDefined();
-        expect(result).toBeInstanceOf(Observable);
-        let res;
-        result.subscribe( data => res = data );
-        expect(res).toEqual(value);
+        service.create(course);
+
+        expect((service as any).utilitiesSrv.convertCourse).toHaveBeenCalled();
+        expect((service as any).utilitiesSrv.convertCourse).toHaveBeenCalledWith(course);
     });
-    it('getCourseById() testing exists id', () => {
-
-        (service as any).courseList = coursesDataStub;
-
-        const value = coursesDataStub[0];
-
-        const res = service.getCourseById(value.id);
-
-        expect(res).toBeDefined();
-        expect(typeof res).toEqual('object');
-        expect(res).toEqual(value);
-    });
-    it('getCourseById() testing not exists id', () => {
-
-        (service as any).courseList = coursesDataStub;
-
-        const value = '';
-        const res = service.getCourseById(value);
-
-        expect(res).toBeNull();
-    });
-    it('createCourse() testing', () => {
-
-        spyOn((service as any), 'getIdCourse');
-
-        (service as any).courseList = coursesDataStub;
-
-        const value = courseStub;
-
-        service.createCourse(value);
-
-        expect((service as any).getIdCourse).toHaveBeenCalled();
-        expect((service as any).courseList).not.toEqual(coursesDataStub);
-    });
-    it('removeCourse() testing exists id', () => {
-
-        (service as any).courseList = [ ...coursesDataStub ];
-
-        const value = coursesDataStub[0].id;
-        const res = coursesDataStub.splice(1);
-
-        service.removeCourse(value);
-
-        expect((service as any).courseList).toBeDefined();
-        expect(typeof (service as any).courseList).toEqual('object');
-        expect((service as any).courseList).toEqual(res);
-    });
-    // it('removeCourse() testing not exists id', () => {
-
-    //     (service as any).courseList = coursesDataStub;
-
-    //     const value = '';
-    //     service.removeCourse(value);
-
-    //     expect((service as any).courseList).toEqual(coursesDataStub);
-    //     expect((service as any).courseList.length).not.toEqual(coursesDataStub.length);
-    // });
-    // it('updateCourse() calls console.log', () => {
-
-    //     (service as any).courseList = coursesDataStub;
-
-    //     const value = courseStub;
-
-    //     service.updateCourse(value);
-
-    //     expect((service as any).courseList).toEqual(coursesDataStub);
-    //     expect((service as any).courseList.length).toEqual(coursesDataStub.length);
-    // });
 });
