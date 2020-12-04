@@ -92,6 +92,7 @@
     @include element (title) {
         @include content-title;
         font-size: 24px;
+        word-break: break-word;
     }
     @include element (star) {
         width: 17px;
@@ -126,6 +127,7 @@
     @include element (description) {
         @include content-text;
         font-size: 14px;
+        word-break: break-word;
     }
     @include element (button) {
         height: 24px;

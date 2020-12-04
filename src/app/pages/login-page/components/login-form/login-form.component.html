@@ -22,6 +22,7 @@
         <div footer class="form__footer login-form__footer">
             <a class="link">Forgot password?</a>
             <button class="button button--primary"
+                type="button"
                 (click)="handleLogin()"
                 [disabled]="!login || !password"
             >Login</button>
