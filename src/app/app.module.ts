@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
+import { APP_INTERCEPTORS } from './app.interceptors';
+
 import { AppRoutingModule } from './app-routing.module';
 import { CommonsModule } from './commons/commons.module';
 import { ModalsModule } from './modals/modals.module';
@@ -29,7 +31,9 @@ import {
         CoursesPageModule,
         NotFoundPageModule,
     ],
-    providers: [],
+    providers: [
+        APP_INTERCEPTORS,
+    ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }
