@@ -47,17 +47,21 @@ describe('AbstractModalComponent', () => {
         expect(component.results).toEqual([]);
     });
     it('handleOk() testing', () => {
-        spyOn(component, 'hideOverlay');
+        spyOn(component.data.resultEvent, 'next');
+        spyOn((component as any).eventsSrv.displayModalEvent$, 'next');
 
         component.handleOk();
 
-        expect(component.hideOverlay).toHaveBeenCalled();
+        expect(component.data.resultEvent.next).toHaveBeenCalled();
+        expect((component as any).eventsSrv.displayModalEvent$.next).toHaveBeenCalled();
     });
     it('handleCancel() testing', () => {
-        spyOn(component, 'hideOverlay');
+        spyOn(component.data.resultEvent, 'next');
+        spyOn((component as any).eventsSrv.displayModalEvent$, 'next');
 
         component.handleCancel();
 
-        expect(component.hideOverlay).toHaveBeenCalled();
+        expect(component.data.resultEvent.next).toHaveBeenCalled();
+        expect((component as any).eventsSrv.displayModalEvent$.next).toHaveBeenCalled();
     });
 });

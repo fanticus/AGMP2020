@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Subject } from 'rxjs';
 
 import { APP_DECLARATIONS } from '../../../app.declarations';
 
@@ -33,6 +34,12 @@ describe('ModalsOverlayComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('displayOverlay$ testing', () => {
+        expect(component.displayOverlay$).toBeDefined();
+        expect(typeof component.displayOverlay$).toEqual('object');
+        expect(component.displayOverlay$).toBeInstanceOf(Subject);
     });
 
     // it('hideOverlay testing', () => {

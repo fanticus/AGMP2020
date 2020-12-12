@@ -20,6 +20,7 @@ import {
 } from '../modal-types/abstract-modal/abstract-modal.component';
 
 import { ModalsService } from '../../services/modals/modals.service';
+import { AppEventsService } from '../../../commons/services/app-events/app-events.service';
 
 import { ModalHostDirective } from '../../directives/modal-host.directive';
 
@@ -50,15 +51,21 @@ export class ModalsOverlayComponent implements OnInit, OnDestroy {
     constructor(
         private ref: ChangeDetectorRef,
         private componentFactoryResolver: ComponentFactoryResolver,
+        private eventsSrv: AppEventsService,
         private modalsService: ModalsService
     ) { }
 
     ngOnInit() {
+        this.eventsSrv.displayModalEvent$
+            .pipe( takeUntil( this.unsubscribe$ ) )
+            .subscribe( ( isDisplay: boolean ) => {
+                isDisplay ? this.showOverlay() : this.hideOverlay();
+            });
         this.modalsService.newModal$
-          .pipe( takeUntil( this.unsubscribe$ ) )
-          .subscribe( modal => {
-              this.showOverlay( modal );
-          });
+            .pipe( takeUntil( this.unsubscribe$ ) )
+            .subscribe( modal => {
+                this.modalData = modal;
+            });
     }
 
     ngOnDestroy() {
@@ -66,8 +73,7 @@ export class ModalsOverlayComponent implements OnInit, OnDestroy {
         this.unsubscribe$.complete();
     }
 
-    private showOverlay( res: IModal ): void {
-        this.modalData = res;
+    private showOverlay(): void {
         this.displayOverlay$.next( true );
     }
 
@@ -86,7 +92,5 @@ export class ModalsOverlayComponent implements OnInit, OnDestroy {
         viewContainerRef.clear();
         const componentRef = viewContainerRef.createComponent( componentFactory );
         ( componentRef.instance as AbstractModalComponent ).data = modal;
-        ( componentRef.instance as AbstractModalComponent )
-            .hideOverlay = this.hideOverlay.bind( this );
     }
 }

@@ -12,6 +12,8 @@ import {
     ConfirmModalComponent
 } from '../../components/modal-types/confirm-modal/confirm-modal.component';
 
+import { AppEventsService } from '../../../commons/services/app-events/app-events.service';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -24,7 +26,9 @@ export class ModalsService {
         [ ModalTypes.Default ]: ''
     };
 
-    constructor() { }
+    constructor(
+        private eventsSrv: AppEventsService
+    ) { }
 
     public showModal(
         modalType: ModalTypes,
@@ -34,6 +38,7 @@ export class ModalsService {
             ? data.displayComponent = this.MODAL_TYPES[ modalType ]
             : data.displayComponent = this.MODAL_TYPES[ ModalTypes.Default ];
         data.resultEvent = new Subject<void>();
+        this.eventsSrv.displayModalEvent$.next( true );
         this.newModal$.next( data );
         return data.resultEvent;
     }

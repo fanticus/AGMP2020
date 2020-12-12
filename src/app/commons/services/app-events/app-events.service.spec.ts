@@ -32,4 +32,9 @@ describe('AppEventsService', () => {
         expect(typeof service.httpRequestEvent$).toEqual('object');
         expect(service.httpRequestEvent$).toBeInstanceOf(Subject);
     });
+    it('displayModalEvent$ testing', () => {
+        expect(service.displayModalEvent$).toBeDefined();
+        expect(typeof service.displayModalEvent$).toEqual('object');
+        expect(service.displayModalEvent$).toBeInstanceOf(Subject);
+    });
 });

@@ -7,4 +7,5 @@ import { Subject } from 'rxjs';
 export class AppEventsService {
 
     public httpRequestEvent$ = new Subject<boolean>();
+    public displayModalEvent$ = new Subject<boolean>();
 }

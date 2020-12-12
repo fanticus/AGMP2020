@@ -2,6 +2,8 @@ import { Directive, Input } from '@angular/core';
 
 import { IModal } from '../../../interfaces/ModalInterface';
 
+import { AppEventsService } from '../../../../commons/services/app-events/app-events.service';
+
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
 export abstract class AbstractModalComponent {
@@ -11,20 +13,20 @@ export abstract class AbstractModalComponent {
     @Input()
     public data: IModal;
 
-    constructor() { }
-
-    public hideOverlay(): void { }
+    constructor(
+        private eventsSrv: AppEventsService
+    ) { }
 
     public handleOk(): void {
         this.data.resultEvent.next({
             status: true,
             data: this.results
         });
-        this.hideOverlay();
+        this.eventsSrv.displayModalEvent$.next( false );
     }
 
     public handleCancel(): void {
         this.data.resultEvent.next( { status: false } );
-        this.hideOverlay();
+        this.eventsSrv.displayModalEvent$.next( false );
     }
 }

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// MODULES
 import { AppRoutingModule } from '../../app-routing.module';
+
 import { AuthGuard } from './guards/auth/auth.guard';
 
 @NgModule({
