@@ -2,8 +2,6 @@
     <input class="input search-bar__input"
         placeholder="Type to search"
         [(ngModel)]="searchValue"
+        (input)="searchEvent$.next(searchValue)"
     />
-    <button class="button button--primary search-bar__button"
-        (click)="handleSearch()"
-    >search</button>
 </div>

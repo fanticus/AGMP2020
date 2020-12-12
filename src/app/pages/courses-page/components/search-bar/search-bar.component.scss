@@ -1,4 +1,3 @@
-@import "../../../../../scss/colors.scss";
 @import "../../../../../scss/mixins.scss";
 
 .search-bar {
@@ -8,9 +7,5 @@
 
     @include element (input) {
         width: 240px;
-    }
-    @include element (button) {
-        text-transform: capitalize;
-        padding: 0 17px;
     }
 }
