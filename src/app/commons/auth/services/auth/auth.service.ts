@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { IApiLogin, IApiUser } from './../../interfaces/ApiDataInterface';
+import { IApiLogin, IApiUser } from '../../interfaces/ApiAuthInterface';
 
-import { AuthApiService } from './../auth-api/auth-api.service';
+import { AuthApiService } from '../auth-api/auth-api.service';
 
 @Injectable({
     providedIn: 'root'

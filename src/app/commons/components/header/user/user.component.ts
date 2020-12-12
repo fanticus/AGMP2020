@@ -2,10 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { map, pluck, takeUntil } from 'rxjs/operators';
 
-import { ModalTypes } from './../../../../modals/interfaces/ModalInterface';
+import { ModalTypes } from '../../../../modals/interfaces/ModalInterface';
 
-import { ModalsService } from './../../../../modals/services/modals/modals.service';
-import { AuthService } from '../../../../commons/services/auth/auth.service';
+import { ModalsService } from '../../../../modals/services/modals/modals.service';
+import { AuthService } from '../../../auth/services/auth/auth.service';
 
 @Component({
     selector: 'app-user',

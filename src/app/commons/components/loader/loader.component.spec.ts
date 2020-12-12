@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 
-import { APP_IMPORTS } from './../../../app.imports';
+import { APP_IMPORTS } from '../../../app.imports';
 
 import { LoaderComponent } from './loader.component';
 

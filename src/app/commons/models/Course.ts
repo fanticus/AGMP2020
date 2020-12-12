@@ -1,4 +1,4 @@
-import { IAuthor, ICourse } from './../interfaces/CourseInterface';
+import { IAuthor, ICourse } from '../interfaces/CourseInterface';
 
 export class Course implements ICourse {
 

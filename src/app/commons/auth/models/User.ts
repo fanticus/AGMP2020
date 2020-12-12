@@ -1,4 +1,4 @@
-import { IUser } from '../interfaces/CourseInterface';
+import { IUser } from '../../interfaces/CourseInterface';
 
 export class User implements IUser {
 

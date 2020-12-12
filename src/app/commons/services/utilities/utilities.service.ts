@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { IApiCourse } from '../../interfaces/ApiDataInterface';
-import { ICourse } from './../../interfaces/CourseInterface';
+import { IApiCourse } from '../../interfaces/ApiCourseInterface';
+import { ICourse } from '../../interfaces/CourseInterface';
 
 @Injectable({
     providedIn: 'root'

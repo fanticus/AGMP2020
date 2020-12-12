@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
-import { SettingsService } from './../settings/settings.service';
+import { SettingsService } from '../settings/settings.service';
 
 @Injectable({
     providedIn: 'root'

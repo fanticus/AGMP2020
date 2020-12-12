@@ -11,7 +11,7 @@ import {
 } from './pages/not-found-page/components/not-found-page.component';
 
 // GUARDS
-import { AuthGuard } from './commons/guards/auth/auth.guard';
+import { AuthGuard } from './commons/auth/guards/auth/auth.guard';
 
 const COURSES_ROUTES: Routes = [
     { path: '', component: CoursesPageComponent },

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { IApiCourse } from '../../../../commons/interfaces/ApiDataInterface';
+import { IApiCourse } from '../../../../commons/interfaces/ApiCourseInterface';
 
-import { ApiService } from './../../../../commons/services/api/api.service';
+import { ApiService } from '../../../../commons/services/api/api.service';
 
 @Injectable({
     providedIn: 'root'

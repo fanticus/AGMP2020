@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { APP_IMPORTS } from '../../../app.imports';
-import { APP_DECLARATIONS } from '../../../app.declarations';
+import { APP_IMPORTS } from '../../../../app.imports';
+import { APP_DECLARATIONS } from '../../../../app.declarations';
 
-import { AuthService } from './auth.service';
+import { AuthApiService } from './auth-api.service';
 
-describe('AuthService', () => {
-    let service: AuthService;
+describe('AuthApiService', () => {
+    let service: AuthApiService;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -16,7 +16,7 @@ describe('AuthService', () => {
     });
 
     beforeEach(() => {
-        service = TestBed.inject(AuthService);
+        service = TestBed.inject(AuthApiService);
     });
     afterEach(() => {
         service = null;

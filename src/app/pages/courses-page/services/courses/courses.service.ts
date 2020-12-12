@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ICourse } from './../../../../commons/interfaces/CourseInterface';
-import { IApiCourse } from '../../../../commons/interfaces/ApiDataInterface';
+import { ICourse } from '../../../../commons/interfaces/CourseInterface';
+import { IApiCourse } from '../../../../commons/interfaces/ApiCourseInterface';
 
-import { UtilitiesService } from './../../../../commons/services/utilities/utilities.service';
+import { UtilitiesService } from '../../../../commons/services/utilities/utilities.service';
 import { CoursesApiService } from '../courses-api/courses-api.service';
 
 @Injectable({

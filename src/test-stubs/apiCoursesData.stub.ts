@@ -1,5 +1,4 @@
-import { IApiCourse } from '../app/commons/interfaces/ApiDataInterface';
-
+import { IApiCourse } from '../app/commons/interfaces/ApiCourseInterface';
 export const apiCoursesStub: IApiCourse[] = [
     {
         id: 1,

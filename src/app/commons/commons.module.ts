@@ -21,6 +21,7 @@ import { DurationPipe } from './pipes/duration/duration.pipe';
 
 // MODULES
 import { AppRoutingModule } from '../app-routing.module';
+import { AuthModule } from './auth/auth.module';
 
 const COMPONENTS = [
     FooterComponent,
@@ -42,6 +43,7 @@ const COMPONENTS = [
     imports: [
         CommonModule,
         AppRoutingModule,
+        AuthModule,
     ],
     exports: [ ...COMPONENTS ]
 })

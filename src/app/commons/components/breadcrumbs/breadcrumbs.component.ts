@@ -8,7 +8,7 @@ import {
     pluck
 } from 'rxjs/operators';
 
-import { CoursesService } from './../../../pages/courses-page/services/courses/courses.service';
+import { CoursesService } from '../../../pages/courses-page/services/courses/courses.service';
 
 @Component({
     selector: 'app-breadcrumbs',

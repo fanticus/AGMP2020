@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { IApiUser, IApiLogin, IApiToken } from './../../interfaces/ApiDataInterface';
+import { IApiUser, IApiLogin, IApiToken } from '../../interfaces/ApiAuthInterface';
 
-import { ApiService } from './../api/api.service';
+import { ApiService } from '../../../services/api/api.service';
 
 @Injectable({
     providedIn: 'root'

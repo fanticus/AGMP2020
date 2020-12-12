@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { HttpTestingController } from '@angular/common/http/testing';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { APP_IMPORTS } from './../../../app.imports';
+import { APP_IMPORTS } from '../../../../app.imports';
 
-import { ApiService } from '../../services/api/api.service';
+import { ApiService } from '../../../services/api/api.service';
 
 import { HeaderInterceptor } from './header.interceptor';
 
