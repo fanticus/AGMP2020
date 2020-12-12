@@ -36,6 +36,8 @@ import {
     ConfirmModalComponent
 } from './modals/components/modal-types/confirm-modal/confirm-modal.component';
 
+import { LoaderComponent } from './commons/components/loader/loader.component';
+
 // PIPES
 import { DurationPipe } from './commons/pipes/duration/duration.pipe';
 import { OrderByPipe } from './pages/courses-page/pipes/order-by/order-by.pipe';
@@ -67,6 +69,7 @@ export const APP_DECLARATIONS = [
     CopyRightsComponent,
     ModalsOverlayComponent,
     ConfirmModalComponent,
+    LoaderComponent,
     CourseHighlightDirective,
     ModalHostDirective,
     DurationPipe,

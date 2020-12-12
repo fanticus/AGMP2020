@@ -1,0 +1,15 @@
+<div class="loader__block-overlay"
+    [ngStyle]="{
+      'z-index': +(displayLoader$ | async)
+    }">
+    <div class="loader__wrapper">
+        <div class="loader"
+            [ngStyle]="{
+                'opacity': +(displayLoader$ | async)
+            }">
+            <div class="loader__item"></div>
+            <div class="loader__item"></div>
+            <div class="loader__item"></div>
+        </div>
+    </div>
+</div>

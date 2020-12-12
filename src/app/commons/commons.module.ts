@@ -14,6 +14,8 @@ import { CopyRightsComponent } from './components/footer/copy-rights/copy-rights
 import { FormFieldComponent } from './components/form/form-field/form-field.component';
 import { FormComponent } from './components/form/form.component';
 
+import { LoaderComponent } from './components/loader/loader.component';
+
 // PIPES
 import { DurationPipe } from './pipes/duration/duration.pipe';
 
@@ -26,6 +28,7 @@ const COMPONENTS = [
     HeaderComponent,
     FormComponent,
     FormFieldComponent,
+    LoaderComponent,
     DurationPipe,
 ];
 
