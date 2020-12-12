@@ -6,7 +6,7 @@
         </div>
     </header>
     <main class="root-wrapper__main">
-        <div *ngIf="authSrv.isAuthenticated && router.url !== '/404'"
+        <div *ngIf="(authSrv.isAuthenticated$ | async) && router.url !== '/404'"
             class="root-wrapper__breadcrumbs-wrapper">
             <div class="root-wrapper__breadcrumbs">
                 <app-breadcrumbs></app-breadcrumbs>

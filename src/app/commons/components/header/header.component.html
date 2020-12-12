@@ -1,6 +1,6 @@
 <div class="header">
     <app-logo class="header__logo"></app-logo>
-    <app-user *ngIf="authSrv.isAuthenticated"
+    <app-user *ngIf="authSrv.isAuthenticated$ | async"
         class="header__user"
     ></app-user>
 </div>

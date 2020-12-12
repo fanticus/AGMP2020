@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { IApiLogin, IApiUser } from './../../interfaces/ApiDataInterface';
 
@@ -11,6 +11,8 @@ import { AuthApiService } from './../auth-api/auth-api.service';
 })
 export class AuthService {
 
+    public isAuthenticated$ = new BehaviorSubject<boolean>( false );
+
     private tokenValue: string;
 
     constructor(
@@ -18,10 +20,7 @@ export class AuthService {
         private authApiSrv: AuthApiService,
     ) {
         this.tokenValue = localStorage.getItem('token');
-    }
-
-    get isAuthenticated(): boolean {
-        return !!this.token;
+        this.isAuthenticated$.next( !!this.tokenValue );
     }
 
     get token(): string {
@@ -31,6 +30,7 @@ export class AuthService {
     public login( login: string, password: string ): void {
         const authData: IApiLogin = { login, password };
         this.authApiSrv.login( authData ).subscribe( user => {
+            this.isAuthenticated$.next( true );
             this.tokenValue = user.fakeToken;
             localStorage.setItem( 'token', user.fakeToken );
             this.router.navigate( [ 'courses' ] );
@@ -44,6 +44,7 @@ export class AuthService {
     public logout(): void {
         this.tokenValue = null;
         localStorage.removeItem( 'token' );
+        this.isAuthenticated$.next( false );
         this.router.navigate( [ 'login' ] );
     }
 }
