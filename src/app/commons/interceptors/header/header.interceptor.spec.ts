@@ -2,14 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { HttpTestingController } from '@angular/common/http/testing';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { APP_IMPORTS } from '../../../../app.imports';
-
-import { ApiService } from '../../../services/api/api.service';
+import { APP_IMPORTS } from '../../../app.imports';
 
 import { HeaderInterceptor } from './header.interceptor';
 
 describe(`HeaderInterceptor`, () => {
-    let service: ApiService;
     let interceptor: HeaderInterceptor;
     let httpMock: HttpTestingController;
 
@@ -17,7 +14,6 @@ describe(`HeaderInterceptor`, () => {
         await TestBed.configureTestingModule({
             imports: [ APP_IMPORTS ],
             providers: [
-                ApiService,
                 HeaderInterceptor,
                 {
                     provide: HTTP_INTERCEPTORS,
@@ -28,18 +24,16 @@ describe(`HeaderInterceptor`, () => {
         }).compileComponents();
     });
 
-      beforeEach(() => {
-          service = TestBed.inject(ApiService);
-          interceptor = TestBed.inject(HeaderInterceptor);
-          httpMock = TestBed.inject(HttpTestingController);
-      });
-      afterEach(() => {
-          service = null;
-          interceptor = null;
-          httpMock.verify();
-      });
+    beforeEach(() => {
+        interceptor = TestBed.inject(HeaderInterceptor);
+        httpMock = TestBed.inject(HttpTestingController);
+    });
+    afterEach(() => {
+        interceptor = null;
+        httpMock.verify();
+    });
 
-      it('should create', () => {
-          expect(httpMock).toBeTruthy();
-      });
+    it('should create', () => {
+        expect(httpMock).toBeTruthy();
+    });
 });

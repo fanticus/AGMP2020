@@ -1,12 +1,12 @@
 // SERVICES
-import { AuthService } from './commons/services/auth/auth.service';
 import { ModalsService } from './modals/services/modals/modals.service';
 import { CoursesService } from './pages/courses-page/services/courses/courses.service';
 import { CoursesApiService } from './pages/courses-page/services/courses-api/courses-api.service';
 import { ApiService } from './commons/services/api/api.service';
 import { SettingsService } from './commons/services/settings/settings.service';
 import { UtilitiesService } from './commons/services/utilities/utilities.service';
-import { AuthApiService } from './commons/services/auth-api/auth-api.service';
+import { AuthService } from './commons/auth/services/auth/auth.service';
+import { AuthApiService } from './commons/auth/services/auth-api/auth-api.service';
 import { AppEventsService } from './commons/services/app-events/app-events.service';
 
 // PIPES

@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class SettingsService {
 
-    private _settings$: BehaviorSubject<any>;
+    private settings$: BehaviorSubject<any>;
     private settings = {};
 
     constructor() {
@@ -17,11 +17,11 @@ export class SettingsService {
     }
 
     public getSettings$(): Observable<any> {
-        if ( !this._settings$ ) {
-          this._settings$ = new BehaviorSubject( null );
+        if ( !this.settings$ ) {
+          this.settings$ = new BehaviorSubject( null );
           this.loadSettings();
         }
-        return this._settings$.asObservable().pipe( filter( data => data !== null ) );
+        return this.settings$.asObservable().pipe( filter( data => data !== null ) );
     }
 
     public get( prop: string ): string {
@@ -39,6 +39,6 @@ export class SettingsService {
 
     private loadSettings(): void {
         this.settings = environment.settings;
-        this._settings$.next( environment.settings );
+        this.settings$.next( environment.settings );
     }
 }
