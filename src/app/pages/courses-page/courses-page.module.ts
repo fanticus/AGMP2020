@@ -19,6 +19,7 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
 // MODULES
 import { CommonsModule } from '../../commons/commons.module';
 import { AppRoutingModule } from '../../app-routing.module';
+import { CoursesStoreModule } from './courses-store/courses-store.module';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { AppRoutingModule } from '../../app-routing.module';
         FormsModule,
         CommonsModule,
         AppRoutingModule,
+        CoursesStoreModule,
     ],
     exports: [ CoursesPageComponent ]
 })

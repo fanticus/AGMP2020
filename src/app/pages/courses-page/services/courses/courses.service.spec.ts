@@ -34,17 +34,78 @@ describe('CoursesService', () => {
         expect(typeof service.courseList$).toEqual('object');
         expect(service.courseList$).toBeInstanceOf(Subject);
     });
+    it('load() testing', () => {
 
-    it('create() testing', () => {
+        const count = 1;
+
+        spyOn((service as any).store, 'dispatch');
+
+        service.load(count);
+
+        expect((service as any).store.dispatch).toHaveBeenCalled();
+    });
+    it('loadSort() testing', () => {
+
+        const search = 'test';
+        const count = 1;
+
+        spyOn((service as any).store, 'dispatch');
+
+        service.loadSort(search, count);
+
+        expect((service as any).store.dispatch).toHaveBeenCalled();
+    });
+    it('createItem() testing', () => {
 
         const course = courseStub;
 
-        spyOn((service as any).utilitiesSrv, 'convertCourse');
-        spyOn((service as any).coursesApiSrv, 'updateItem');
+        spyOn((service as any).store, 'dispatch');
 
-        service.create(course);
+        service.createItem(course);
 
-        expect((service as any).utilitiesSrv.convertCourse).toHaveBeenCalled();
-        expect((service as any).utilitiesSrv.convertCourse).toHaveBeenCalledWith(course);
+        expect((service as any).store.dispatch).toHaveBeenCalled();
+    });
+    it('removeItem() testing', () => {
+
+        const id = 1;
+
+        spyOn((service as any).store, 'dispatch');
+
+        service.removeItem(id);
+
+        expect((service as any).store.dispatch).toHaveBeenCalled();
+    });
+    it('updateItem() testing', () => {
+
+        const course = courseStub;
+
+        spyOn((service as any).store, 'dispatch');
+
+        service.updateItem(course);
+
+        expect((service as any).store.dispatch).toHaveBeenCalled();
+    });
+    it('getItemById() testing', () => {
+
+        const id = 1;
+
+        spyOn((service as any).store, 'dispatch');
+
+        service.getItemById(id);
+
+        expect((service as any).store.dispatch).toHaveBeenCalled();
+    });
+    it('changeLoadMore() testing', () => {
+
+        const value = {
+            newCoursesLength: 1,
+            oldCoursesLength: 1
+        };
+
+        spyOn((service as any).store, 'dispatch');
+
+        service.changeLoadMore(value);
+
+        expect((service as any).store.dispatch).toHaveBeenCalled();
     });
 });

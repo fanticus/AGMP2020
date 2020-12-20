@@ -1,12 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subject, Observable } from 'rxjs';
 import {
     filter,
     distinctUntilChanged,
     takeUntil,
-    pluck
+    pluck,
+    map,
 } from 'rxjs/operators';
+import { getCourses } from '../../../pages/courses-page/courses-store/courses.selectors';
+import { IAppState } from '../../../root-store/app.state';
 
 import { CoursesService } from '../../../pages/courses-page/services/courses/courses.service';
 
@@ -31,8 +35,8 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     constructor(
         public coursesSrv: CoursesService,
         private router: Router,
-    ) {
-    }
+        private store: Store<IAppState>
+    ) { }
 
     ngOnInit() {
         this.breadcrumbs = this.getBreadCrumb( this.router.url );
@@ -63,8 +67,11 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     private getTitleCourse( idCourse: string ): void {
         if ( idCourse && !this.textBreadcrumbs
             .hasOwnProperty( idCourse ) ) {
-            this.courseTitle$ = this.coursesSrv.getItemById( +idCourse )
-                .pipe( pluck( 'title' ) );
+            this.courseTitle$ = this.store.select( getCourses ).pipe(
+                map( courses => courses.find( course => course.id === +idCourse) ),
+                pluck( 'title' ),
+                takeUntil( this.unsubscribe$ )
+            );
         }
     }
 

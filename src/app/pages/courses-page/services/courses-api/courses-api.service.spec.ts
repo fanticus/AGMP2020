@@ -57,14 +57,14 @@ describe('CoursesApiService', () => {
         expect(res).toBeInstanceOf(Observable);
         expect(res).toEqual(response);
     });
-    it('create() testing', () => {
+    it('createItem() testing', () => {
 
         const course = apiCourseStub;
         const response = of({});
 
         spyOn((service as any).apiSrv, 'request').and.returnValue(response);
 
-        const res = service.create(course);
+        const res = service.createItem(course);
 
         expect((service as any).apiSrv.request).toHaveBeenCalled();
         expect((service as any).apiSrv.request).toHaveBeenCalledWith('post', 'courses', course);

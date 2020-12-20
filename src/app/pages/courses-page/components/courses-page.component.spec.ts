@@ -112,16 +112,16 @@ describe('CoursesPageComponent', () => {
     //         .toContain('Feel free to add new course');
     // });
 
-    it('coursesList testing', () => {
-        expect(component.coursesList).toBeDefined();
-        expect(typeof component.coursesList).toEqual('object');
-        expect(component.coursesList).toEqual([]);
-    });
-    it('isDisplayLoadMore testing', () => {
-        expect(component.isDisplayLoadMore).toBeDefined();
-        expect(typeof component.isDisplayLoadMore).toEqual('boolean');
-        expect(component.isDisplayLoadMore).toBeTrue();
-    });
+    // it('coursesList testing', () => {
+    //     expect(component.coursesList).toBeDefined();
+    //     expect(typeof component.coursesList).toEqual('object');
+    //     expect(component.coursesList).toEqual([]);
+    // });
+    // it('isDisplayLoadMore testing', () => {
+    //     expect(component.isDisplayLoadMore).toBeDefined();
+    //     expect(typeof component.isDisplayLoadMore).toEqual('boolean');
+    //     expect(component.isDisplayLoadMore).toBeTrue();
+    // });
     it('ngOnInit() testing', () => {
         spyOn(component, 'loadCourses');
 

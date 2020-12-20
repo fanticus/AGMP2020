@@ -36,7 +36,7 @@ export class CoursesApiService {
         return this.apiSrv.request( 'get', 'courses', { params } );
     }
 
-    public create( course: IApiCourse ): Observable<{}> {
+    public createItem( course: IApiCourse ): Observable<{}> {
         return this.apiSrv.request( 'post', 'courses', course );
     }
 
@@ -44,7 +44,7 @@ export class CoursesApiService {
         return this.apiSrv.request( 'delete', `courses/${ id }` );
     }
 
-    public updateItem( course: IApiCourse ) {
+    public updateItem( course: IApiCourse ): Observable<{}> {
         return this.apiSrv.request( 'patch', `courses/${ course.id }`, course );
     }
 

@@ -1,8 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { Subject, Observable, of, BehaviorSubject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 
+import { getCourses } from '../../../courses-page/courses-store/courses.selectors';
+
+import { IAppState } from '../../../../root-store/app.state';
 import { ICourse } from '../../../../commons/interfaces/CourseInterface';
 
 import { CoursesService } from '../../../courses-page/services/courses/courses.service';
@@ -14,8 +18,8 @@ import { CoursesService } from '../../../courses-page/services/courses/courses.s
 })
 export class CourseFormComponent implements OnInit, OnDestroy {
 
-    public course: ICourse;
-    public titleForm: string;
+    public course$: Observable<ICourse>;
+    public titleForm$ = new BehaviorSubject<string>('');
 
     private courseId: string;
 
@@ -24,20 +28,12 @@ export class CourseFormComponent implements OnInit, OnDestroy {
     constructor(
         private coursesSrv: CoursesService,
         private route: ActivatedRoute,
+        private store: Store<IAppState>
     ) { }
 
     ngOnInit(): void {
-        this.courseId = this.route.snapshot.paramMap.get( 'id' );
-        this.getTitle( this.courseId );
-        if ( this.courseId ) {
-            this.coursesSrv.getItemById( +this.courseId )
-                .pipe( takeUntil( this.unsubscribe$ ) )
-                .subscribe( course => {
-                    this.course = course;
-                });
-        } else {
-            this.course = this.createCourse();
-        }
+        this.getIdCourse();
+        this.getCourse();
     }
 
     ngOnDestroy() {
@@ -45,16 +41,31 @@ export class CourseFormComponent implements OnInit, OnDestroy {
         this.unsubscribe$.complete();
     }
 
-    public handleSave(): void {
+    public handleSave( course: ICourse ): void {
         this.courseId
-            ? this.coursesSrv.updateItem( this.course )
-            : this.coursesSrv.create( this.course );
+            ? this.coursesSrv.updateItem( course )
+            : this.coursesSrv.createItem( course );
     }
 
-    private getTitle( courseId: string ): void {
-        this.titleForm = courseId
-            ? 'Edit course'
-            : 'New course';
+    private getIdCourse(): void {
+        this.courseId = this.route.snapshot.paramMap.get( 'id' );
+    }
+
+    private getCourse(): void {
+        this.course$ = of( this.createCourse() );
+        const idCourse: number = +this.courseId;
+        this.getTitle( idCourse );
+        if ( idCourse ) {
+            this.course$ = this.store.select( getCourses ).pipe(
+                map( courses => courses.find( course => course.id === idCourse ) ),
+                takeUntil( this.unsubscribe$ )
+            );
+            this.loadCourse( idCourse );
+        }
+    }
+
+    private loadCourse( id: number ): void {
+        this.coursesSrv.getItemById( id );
     }
 
     private createCourse(): ICourse {
@@ -67,5 +78,12 @@ export class CourseFormComponent implements OnInit, OnDestroy {
             topRated: false,
             authors: []
         };
+    }
+
+    private getTitle( courseId: number ): void {
+        const title = courseId
+            ? 'Edit course'
+            : 'New course';
+        this.titleForm$.next( title );
     }
 }

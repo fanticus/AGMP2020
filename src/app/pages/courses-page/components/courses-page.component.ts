@@ -3,9 +3,12 @@ import {
     OnDestroy,
     OnInit
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
 
+import { IAppState } from '../../../root-store/app.state';
+import { getCourses, getIsFinalCourses } from '../courses-store/courses.selectors';
 import { ICourse } from '../../../commons/interfaces/CourseInterface';
 import { ModalTypes } from '../../../modals/interfaces/ModalInterface';
 
@@ -19,9 +22,9 @@ import { ModalsService } from '../../../modals/services/modals/modals.service';
 })
 export class CoursesPageComponent implements OnInit, OnDestroy {
 
-    public coursesList: ICourse[] = [];
+    public coursesList$: Observable<ICourse[]>;
+    public isDisplayLoadMore$: Observable<boolean>;
 
-    public isDisplayLoadMore: boolean = true;
     private isHandleLoadMore: boolean = false;
 
     private numberList: number = 3;
@@ -33,17 +36,30 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
 
     constructor(
         public coursesSrv: CoursesService,
-        private modalsSrv: ModalsService
+        private modalsSrv: ModalsService,
+        private store: Store<IAppState>
     ) { }
 
     ngOnInit(): void {
         this.loadCourses();
-        this.coursesSrv.courseList$
-            .pipe( takeUntil( this.unsubscribe$ ) )
-            .subscribe( courses => {
-                this.checkLoadMore( courses );
-                this.coursesList = courses;
-            });
+        this.coursesList$ = this.store.pipe(
+            select( getCourses ),
+            /**
+             * Fixed moment the invocation
+             * You need to use this this.coursesList$
+             */
+            // withLatestFrom( this.coursesList$ ),
+            // tap( ([ newCourses, oldCourses ]) => this.changeDisplayLoadMore(
+            //     newCourses.length,
+            //     oldCourses.length
+            // )),
+            // map( ([ newCourses ]) => newCourses ),
+            takeUntil( this.unsubscribe$ )
+        );
+        this.isDisplayLoadMore$ = this.store.pipe(
+            select( getIsFinalCourses ),
+            takeUntil( this.unsubscribe$ )
+        );
     }
 
     ngOnDestroy() {
@@ -81,10 +97,10 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
         });
     }
 
-    public handleLoadMore(): void {
+    public handleLoadMore( coursesLength: number = 0 ): void {
         const addNumberCourses = 5;
-        const nextNumberCourses = this.coursesList.length + addNumberCourses;
-        this.isHandleLoadMore = true;
+        const nextNumberCourses = coursesLength + addNumberCourses;
+        // this.isHandleLoadMore = true;
         if ( this.sortValue ) {
             this.numberSortList = nextNumberCourses;
         } else {
@@ -108,12 +124,12 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
         }
     }
 
-    private checkLoadMore( courses: ICourse[] ): void {
+    private changeDisplayLoadMore( newCoursesLength: number, oldCoursesLength: number ): void {
         if ( this.isHandleLoadMore ) {
-            this.isDisplayLoadMore = this.coursesList.length !== courses.length;
+            this.coursesSrv.changeLoadMore({ newCoursesLength, oldCoursesLength });
             this.isHandleLoadMore = false;
-        } else if ( !this.isDisplayLoadMore ) {
-            this.isDisplayLoadMore = true;
+        } else if ( !this.store.select( getIsFinalCourses ) ) {
+            this.coursesSrv.changeLoadMore();
         }
     }
 }

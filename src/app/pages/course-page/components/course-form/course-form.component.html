@@ -1,14 +1,14 @@
-<div *ngIf="course" class="course-form">
+<div *ngIf="this.course$ | async as course" class="course-form">
     <app-form>
         <div header class="form__header">
-            <h2 class="form__title">{{ titleForm }}</h2>
+            <h2 class="form__title">{{ titleForm$ | async }}</h2>
         </div>
         <div body class="form__body">
             <app-form-field titleField="title">
                 <input class="input" type="text"
                     placeholder="Text input"
                     id="title"
-                    [(ngModel)]="course.title"
+                    [ngModel]="course.title"
                     #title="ngModel"
                     required
                 />
@@ -18,7 +18,7 @@
                     placeholder="Add description"
                     rows="5"
                     id="description"
-                    [(ngModel)]="course.description"
+                    [ngModel]="course.description"
                     #description="ngModel"
                     required
                 ></textarea>
@@ -29,7 +29,7 @@
                         <input class="input" type="number"
                             placeholder="minutes"
                             id="duration"
-                            [(ngModel)]="course.duration"
+                            [ngModel]="course.duration"
                             #duration="ngModel"
                             required
                         />
@@ -44,7 +44,7 @@
                     <input class="input" type="text"
                         placeholder="MM.DD.YYYY"
                         id="date"
-                        [(ngModel)]="course.creationDate"
+                        [ngModel]="course.creationDate"
                         #creationDate="ngModel"
                         autocomplete="off"
                         required
@@ -56,7 +56,7 @@
                     <input class="input" type="text"
                         placeholder="Start typing"
                         id="authors"
-                        (ngModel)="''"
+                        [ngModel]="''"
                         #authors="ngModel"
                         autocomplete="off"
                         required
@@ -72,7 +72,7 @@
                     creationDate.invalid ||
                     duration.invalid ||
                     authors.invalid"
-                (click)="handleSave()"
+                (click)="handleSave(course)"
             >Save</button>
             <a class="button button--secondary"
                 routerLink="/courses"

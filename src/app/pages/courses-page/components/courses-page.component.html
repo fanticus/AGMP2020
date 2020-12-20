@@ -13,31 +13,34 @@
             </div>
         </div>
     </div>
-    <div *ngIf="coursesList.length" class="courses-page__list-wrapper">
-        <div class="courses-page__list">
-            <app-course-item
-                *ngFor="let course of coursesList"
-                class="courses-page__list-item"
-                [courseItem]="course"
-                (deleteCourse)="deleteCourse($event)"
-            ></app-course-item>
-        </div>
-        <div *ngIf="isDisplayLoadMore"
-            class="courses-page__load-more-wrapper"
-            (click)="handleLoadMore()">
-            <div class="courses-page__load-more">
-                <a class="link">Load more</a>
+
+    <ng-container *ngIf="coursesList$ | async as courses">
+        <div *ngIf="courses.length" class="courses-page__list-wrapper">
+            <div class="courses-page__list">
+                <app-course-item
+                    *ngFor="let course of courses"
+                    class="courses-page__list-item"
+                    [courseItem]="course"
+                    (deleteCourse)="deleteCourse($event)"
+                ></app-course-item>
+            </div>
+            <div *ngIf="isDisplayLoadMore$ | async"
+                class="courses-page__load-more-wrapper"
+                (click)="handleLoadMore(courses.length)">
+                <div class="courses-page__load-more">
+                    <a class="link">Load more</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div *ngIf="!coursesList.length" class="courses-page__not-data-wrapper">
-        <div class="courses-page__not-data">
-            <h3 class="courses-page__not-data--title">
-                No data
-            </h3>
-            <span class="courses-page__not-data--description">
-                Feel free to add new course
-            </span>
+        <div *ngIf="!courses.length" class="courses-page__not-data-wrapper">
+            <div class="courses-page__not-data">
+                <h3 class="courses-page__not-data--title">
+                    No data
+                </h3>
+                <span class="courses-page__not-data--description">
+                    Feel free to add new course
+                </span>
+            </div>
         </div>
-    </div>
+    </ng-container>
 </div>
