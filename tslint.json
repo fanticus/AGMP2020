@@ -56,21 +56,14 @@
             {
                 "order": [
                     "public-static-field",
-                    "public-static-method",
-                    "public-instance-field",
-                    "public-constructor",
-                    "public-instance-method",
-        
                     "protected-static-field",
-                    "protected-static-method",
                     "protected-instance-field",
-                    "protected-constructor",
-                    "protected-instance-method",
-        
+                    "private-instance-field",
                     "private-static-field",
+                    "public-static-method",
+                    "protected-static-method",
                     "private-static-method",
-                    "private-constructor",
-                    "private-instance-method"
+                    "constructor"
                 ]
             }
         ],
@@ -155,12 +148,10 @@
         "trailing-comma": [
             true,
             {
-                "multiline": false,
                 "singleline": "never"
             }
         ],
         "template-banana-in-box": true,
-        "template-no-negated-async": true,
         "triple-equals": [
             true,
             "allow-null-check"
@@ -172,13 +163,14 @@
             "always"
         ],
         "switch-default": true,
-        "variable-name": [
-            true,
-            "check-format",
-            "allow-leading-underscore",
-            "ban-keywords",
-            "require-const-for-all-caps"
-        ],
+        "variable-name": {
+            "options": [
+                "ban-keywords",
+                "check-format",
+                "allow-pascal-case",
+                "allow-leading-underscore"
+            ]
+        },
         "whitespace": [
             true,
             "check-branch",

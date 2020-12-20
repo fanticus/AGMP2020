@@ -8,6 +8,7 @@ import { APP_INTERCEPTORS } from './app.interceptors';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CommonsModule } from './commons/commons.module';
+import { RootStoreModule } from './root-store/root-store.module';
 import { ModalsModule } from './modals/modals.module';
 import { LoginPageModule } from './pages/login-page/login-page.module';
 import { CoursePageModule } from './pages/course-page/course-page.module';
@@ -25,6 +26,7 @@ import {
         AppRoutingModule,
         HttpClientModule,
         CommonsModule,
+        RootStoreModule,
         ModalsModule,
         LoginPageModule,
         CoursePageModule,

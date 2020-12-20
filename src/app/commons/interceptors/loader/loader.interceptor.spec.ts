@@ -3,7 +3,7 @@ import { HttpTestingController } from '@angular/common/http/testing';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { APP_IMPORTS } from '../../../app.imports';
-import { APP_PROVIDERS } from './../../../app.providers';
+import { APP_PROVIDERS } from '../../../app.providers';
 
 import { LoaderInterceptor } from './loader.interceptor';
 

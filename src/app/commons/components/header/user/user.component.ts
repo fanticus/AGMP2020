@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { map, pluck, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, filter } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+
+import { getUser } from '../../../../commons/auth/user-store/user.selectors';
+import { IAppState } from '../../../../root-store/app.state';
 
 import { ModalTypes } from '../../../../modals/interfaces/ModalInterface';
 
@@ -20,14 +24,18 @@ export class UserComponent implements OnInit, OnDestroy {
 
     constructor(
         private authSrv: AuthService,
-        private modalsSrv: ModalsService
+        private modalsSrv: ModalsService,
+        private store: Store<IAppState>
     ) { }
 
     ngOnInit() {
-        this.username$ = this.authSrv.userInfo().pipe(
-            pluck( 'name' ),
-            map( name => `${ name.first } ${ name.last }` )
+        this.username$ = this.store.pipe(
+            select( getUser ),
+            filter( user => !!user ),
+            map( user => `${ user.firstName } ${ user.lastName }` ),
+            takeUntil( this.unsubscribe$ )
         );
+        this.authSrv.userInfo();
     }
 
     ngOnDestroy() {

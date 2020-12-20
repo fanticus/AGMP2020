@@ -8,12 +8,6 @@ export interface ICourse {
     authors: IAuthor[];
 }
 
-export interface IUser {
-    id: number;
-    firstName: string;
-    lastName: string;
-}
-
 export interface IAuthor {
     id: number;
     name: string;
