@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 import {
     ModalsOverlayComponent
@@ -25,7 +24,6 @@ const MODALS_TYPES = [
     ],
     imports: [
         CommonModule,
-        FormsModule,
     ],
     providers: [ ModalsService ],
     exports: [ ModalsOverlayComponent ],

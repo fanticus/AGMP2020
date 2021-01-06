@@ -53,9 +53,19 @@
     caret-color: $primary-font-color;
 }
 
+@mixin input-description {
+    @include content-text;
+    font-size: 14px;
+}
+
 @mixin input-placeholder {
     color: $input-placeholder-text-color;
     font-size: 14px;
+    font-weight: 400;
+}
+
+@mixin input-error {
+    color: $error-text-color;
     font-weight: 400;
 }
 
@@ -98,7 +108,7 @@
 @mixin default-input {
     @include input-text;
     width: 100%;
-    height: 36px;
+    height: $input-height;
     background: $secondary-color;
     border: 1px solid $input-border-color;
     border-radius: $input-border-radius;
@@ -114,4 +124,51 @@
     &::placeholder {
         @include input-placeholder;
     }
+    @include modif (invalid) {
+        border-color: $input-invalid-border-color;
+
+        &:hover {
+            border-color: $input-invalid-hover-border-color;
+        }
+        &:focus {
+            border-color: $input-invalid-focus-border-color;
+            box-shadow: $input-invalid-focus-box-shadow;
+        }
+    }
+}
+
+@mixin default-select-content {
+    width: 100%;
+    height: $input-height;
+    background: $secondary-color;
+    border: 1px solid $input-border-color;
+    border-radius: $input-border-radius;
+    padding: 0 12px;
+
+    &:hover {
+        border-color: $input-hover-border-color;
+    }
+    &:focus {
+        border-color: $input-focus-border-color;
+        box-shadow: $btn-focus-box-shadow;
+    }
+    @include modif (invalid) {
+        border-color: $input-invalid-border-color;
+
+        &:hover {
+            border-color: $input-invalid-hover-border-color;
+        }
+        &:focus {
+            border-color: $input-invalid-focus-border-color;
+            box-shadow: $input-invalid-focus-box-shadow;
+        }
+    }
+}
+
+@mixin default-select-dropdown {
+    width: 100%;
+    height: min-content;
+    min-height: $input-height;
+    background: $secondary-color;
+    border-radius: $input-border-radius;
 }

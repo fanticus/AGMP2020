@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
+import { IApiAuthor } from '../interfaces/ApiAuthorInterface';
 import { ICourse } from '../interfaces/CourseInterface';
 
 enum CoursesActionsTypes {
@@ -29,6 +30,14 @@ enum CoursesActionsTypes {
     RemoveCourse = '[Course] Remove Course',
     RemoveCourseSuccess = '[Course] Remove Course Success',
     RemoveCourseFail = '[Course] Remove Course Fail',
+
+    GetAuthors = '[Authors] Get Authors',
+    GetAuthorsSuccess = '[Authors] Get Courses Success',
+    GetAuthorsFail = '[Authors] Get Courses Fail',
+
+    GetSortAuthors = '[Authors] Get Sort Authors',
+    GetSortAuthorsSuccess = '[Authors] Get Sort Authors Success',
+    GetSortAuthorsFail = '[Authors] Get Sort Authors Fail',
 }
 
 export const GetCourses = createAction(
@@ -120,4 +129,31 @@ export const RemoveCourseSuccess = createAction(
 
 export const RemoveCourseFail = createAction(
     CoursesActionsTypes.RemoveCourseFail
+);
+
+export const GetAuthors = createAction(
+  CoursesActionsTypes.GetAuthors
+);
+
+export const GetAuthorsSuccess = createAction(
+  CoursesActionsTypes.GetAuthorsSuccess,
+  props<{ authors: IApiAuthor[] }>()
+);
+
+export const GetAuthorsFail = createAction(
+  CoursesActionsTypes.GetAuthorsFail
+);
+
+export const GetSortAuthors = createAction(
+  CoursesActionsTypes.GetSortAuthors,
+  props<{ value: string }>()
+);
+
+export const GetSortAuthorsSuccess = createAction(
+  CoursesActionsTypes.GetSortAuthorsSuccess,
+  props<{ authors: IApiAuthor[] }>()
+);
+
+export const GetSortAuthorsFail = createAction(
+  CoursesActionsTypes.GetSortAuthorsFail
 );

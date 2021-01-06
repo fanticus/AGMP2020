@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 // COMPONENTS
 import { CoursePageComponent } from './components/course-page.component';
@@ -18,7 +17,6 @@ import { FormModule } from '../../../../form/form.module';
     ],
     imports: [
         CommonModule,
-        FormsModule,
         CoursePageRoutingModule,
         CoursesModule,
         FormModule,

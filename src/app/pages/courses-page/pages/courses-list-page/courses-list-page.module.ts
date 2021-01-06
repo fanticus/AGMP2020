@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 // COMPONENTS
 import { CoursesListPageComponent } from './components/courses-list-page.component';
@@ -18,6 +17,8 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
 
 // MODULES
 import { CoursesListPageRoutingModule } from './courses-list-page-routing.module';
+import { CommonsModule } from '../../../../commons/commons.module';
+import { FormModule } from '../../../../form/form.module';
 import { CoursesModule } from '../../courses/courses.module';
 
 @NgModule({
@@ -31,8 +32,9 @@ import { CoursesModule } from '../../courses/courses.module';
     ],
     imports: [
         CommonModule,
-        FormsModule,
         CoursesListPageRoutingModule,
+        CommonsModule,
+        FormModule,
         CoursesModule,
     ]
 })

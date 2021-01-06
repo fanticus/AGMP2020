@@ -5,10 +5,10 @@ export interface IApiCourse {
     length: number;
     description: string;
     isTopRated: boolean;
-    authors: IApiAuthor[];
+    authors: IApiAuthorCourse[];
 }
 
-export interface IApiAuthor {
+export interface IApiAuthorCourse {
     id: number;
     name: string;
     lastName: string;

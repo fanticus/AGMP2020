@@ -1,0 +1,12 @@
+<div class="select">
+    <div class="select__content"
+        (focusout)="onBlur($event.target)"
+        (click)="changeDisplayDropdown()">
+        <ng-content select="[content]"></ng-content>
+    </div>
+    <div *ngIf="displayDropdown && list && list.length"
+        class="select__dropdown"
+        (mousedown)="changeDisplayDropdown()">
+        <ng-content select="[dropdown]"></ng-content>
+    </div>
+</div>

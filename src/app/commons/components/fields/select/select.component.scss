@@ -1,0 +1,76 @@
+@import "../../../../../scss/variables.scss";
+@import "../../../../../scss/colors.scss";
+@import "../../../../../scss/mixins.scss";
+
+.select {
+    position: relative;
+    // width: 100%;
+    // height: 100%;
+
+    @include element (content) {
+        width: 100%;
+        height: 100%;
+        // min-width: 75px;
+        // max-width: 310px;
+        // min-height: 16px;
+        // max-height: 19px;
+        // border: 1px solid var(--field-light-border-color);
+        // border-radius: 30px;
+        // padding: 11px 54px 11px 0px;
+        cursor: pointer;
+    }
+    @include element (dropdown) {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        box-shadow: $container-hover-box-shadow;
+        border-radius: 3px;
+        margin-top: 6px;
+        margin-bottom: 4px;
+        // min-height: 24px;
+        // box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
+        // background-color: var(--select-dropdown-light-bg-color);
+        // border-radius: 8px;
+        // cursor: pointer;
+        // padding: 5px;
+        // margin-top: 6px;
+        // margin-bottom: 4px;
+    }
+    // @include element (title) {
+    //     @include field-title;
+    //     color: var(--select-title-light-font-color);
+    //     text-overflow: ellipsis;
+    //     overflow: hidden;
+    //     white-space: nowrap;
+    //     cursor: pointer;
+    // }
+    // @include element (item) {
+    //     display: flex;
+    //     flex-direction: row;
+    //     align-items: center;
+    //     justify-content: flex-start;
+    //     height: 100%;
+    //     padding: 10px 20px;
+    //     cursor: pointer;
+
+    //     &:hover {
+    //         background-color: var(--select-hover-item-light-bg-color);
+    //         border-radius: 8px;
+    //     }
+    // }
+    // @include element (selected-item) {
+    //     display: flex;
+    //     flex-direction: row;
+    //     align-items: center;
+    //     justify-content: flex-start;
+    //     height: 100%;
+    //     padding-left: 25px;
+    //     cursor: pointer;
+
+    //     .select__title {
+    //         color: var(--select-selected-item-title-light-font-color);
+    //     }
+    // }
+}

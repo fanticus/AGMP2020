@@ -92,22 +92,22 @@ describe('CourseFormComponent', () => {
     //     expect(typeof component.titleForm).toEqual('string');
     //     expect(component.titleForm).toEqual(result);
     // });
-    it('createCourse testing', () => {
+    // it('createCourse testing', () => {
 
-        const value: ICourse = {
-            id: null,
-            title: '',
-            creationDate: null,
-            duration: null,
-            description: '',
-            topRated: false,
-            authors: []
-        };
+    //     const value: ICourse = {
+    //         id: null,
+    //         title: '',
+    //         creationDate: null,
+    //         duration: null,
+    //         description: '',
+    //         topRated: false,
+    //         authors: []
+    //     };
 
-        const res = (component as any).createCourse();
+    //     const res = (component as any).createCourse();
 
-        expect(res).toBeDefined();
-        expect(typeof res).toEqual('object');
-        expect(res).toEqual(value);
-    });
+    //     expect(res).toBeDefined();
+    //     expect(typeof res).toEqual('object');
+    //     expect(res).toEqual(value);
+    // });
 });

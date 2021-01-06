@@ -40,6 +40,7 @@
         @include main-wrapper;
         height: $footer-height;
         position: sticky;
+        z-index: 1;
         bottom: 0;
         background-color: $secondary-bg-color;
     }

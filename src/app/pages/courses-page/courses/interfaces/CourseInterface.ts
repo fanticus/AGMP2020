@@ -5,10 +5,10 @@ export interface ICourse {
     duration: number;
     description: string;
     topRated: boolean;
-    authors: IAuthor[];
+    authors: IAuthorCourse[];
 }
 
-export interface IAuthor {
+export interface IAuthorCourse {
     id: number;
     name: string;
     lastName: string;

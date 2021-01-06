@@ -1,30 +1,29 @@
-<div class="login-form">
-    <app-form>
+<div *ngIf="form" class="login-form">
+    <app-form [form]="form">
         <div header class="form__header">
             <h2 class="form__title">Login</h2>
+            <app-form-error [form]="form"></app-form-error>
         </div>
         <div body class="form__body">
-            <app-form-field titleField="email">
-                <input class="input" type="email"
-                    placeholder="Enter e-mail"
-                    id="email"
-                    [(ngModel)]="login"
-                />
-            </app-form-field>
-            <app-form-field titleField="password">
-                <input class="input" type="password"
-                    placeholder="Enter password"
-                    id="password"
-                    [(ngModel)]="password"
-                />
-            </app-form-field>
+            <app-input-field
+                [control]="form.get('login')"
+                type="email"
+                title="email"
+                placeholder="Enter e-mail"
+            ></app-input-field>
+            <app-input-field
+                [control]="form.get('password')"
+                type="password"
+                title="password"
+                placeholder="Enter password"
+            ></app-input-field>
         </div>
         <div footer class="form__footer login-form__footer">
             <a class="link">Forgot password?</a>
             <button class="button button--primary"
                 type="button"
                 (click)="handleLogin()"
-                [disabled]="!login || !password"
+                [disabled]="form.invalid"
             >Login</button>
         </div>
     </app-form>

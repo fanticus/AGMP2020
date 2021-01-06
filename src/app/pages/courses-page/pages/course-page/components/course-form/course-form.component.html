@@ -1,78 +1,40 @@
-<div *ngIf="this.course$ | async as course" class="course-form">
-    <app-form>
+<div *ngIf="form" class="course-form">
+    <app-form [form]="form">
         <div header class="form__header">
             <h2 class="form__title">{{ titleForm$ | async }}</h2>
+            <app-form-error [form]="form"></app-form-error>
         </div>
         <div body class="form__body">
-            <app-form-field titleField="title">
-                <input class="input" type="text"
-                    placeholder="Text input"
-                    id="title"
-                    [ngModel]="course.title"
-                    #title="ngModel"
-                    required
-                />
-            </app-form-field>
-            <app-form-field titleField="description">
-                <textarea class="textarea"
-                    placeholder="Add description"
-                    rows="5"
-                    id="description"
-                    [ngModel]="course.description"
-                    #description="ngModel"
-                    required
-                ></textarea>
-            </app-form-field>
-            <div class="input__wrapper">
-                <div class="input__block input__block--short">
-                    <app-form-field titleField="duration">
-                        <input class="input" type="number"
-                            placeholder="minutes"
-                            id="duration"
-                            [ngModel]="course.duration"
-                            #duration="ngModel"
-                            required
-                        />
-                    </app-form-field>
-                </div>
-                <span *ngIf="course.duration"
-                    class="input__description"
-                >{{ course.duration | duration }}</span>
-            </div>
-            <div class="input__block input__block--short">
-                <app-form-field titleField="date">
-                    <input class="input" type="text"
-                        placeholder="MM.DD.YYYY"
-                        id="date"
-                        [ngModel]="course.creationDate"
-                        #creationDate="ngModel"
-                        autocomplete="off"
-                        required
-                    />
-                </app-form-field>
-            </div>
-            <div class="input__block input__block--middle">
-                <app-form-field titleField="authors">
-                    <input class="input" type="text"
-                        placeholder="Start typing"
-                        id="authors"
-                        [ngModel]="''"
-                        #authors="ngModel"
-                        autocomplete="off"
-                        required
-                    />
-                </app-form-field>
-            </div>
+            <app-input-field
+                [control]="form.get('title')"
+                title="title"
+                placeholder="Text input"
+            ></app-input-field>
+            <app-textarea-field
+                [control]="form.get('description')"
+                title="description"
+                placeholder="Add description"
+            ></app-textarea-field>
+            <app-time-field
+                [control]="form.get('duration')"
+                title="duration"
+                placeholder="minutes"
+            ></app-time-field>
+            <app-date-field
+                [control]="form.get('creationDate')"
+                title="date"
+            ></app-date-field>
+            <app-authors-field
+                [control]="form.get('authors')"
+                title="authors"
+                placeholder="Start typing"
+            ></app-authors-field>
         </div>
         <div footer class="form__footer">
             <button class="button button--primary"
                 type="button"
-                [disabled]="title.invalid ||
-                    description.invalid ||
-                    creationDate.invalid ||
-                    duration.invalid ||
-                    authors.invalid"
-                (click)="handleSave(course)"
+                [disabled]="form.invalid"
+                (click)="handleSave()"
             >Save</button>
             <a class="button button--secondary"
                 routerLink="/courses"

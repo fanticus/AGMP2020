@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
+import { AuthForm } from '../../../../form/models/AuthForm';
 
 import { AuthService } from '../../../../auth/services/auth/auth.service';
 
@@ -9,17 +12,21 @@ import { AuthService } from '../../../../auth/services/auth/auth.service';
 })
 export class LoginFormComponent implements OnInit {
 
-    public login: string = '';
-    public password: string = '';
+    public form: FormGroup;
 
     constructor(
         private authSrv: AuthService
     ) { }
 
     ngOnInit(): void {
+        this.createForm();
     }
 
     public handleLogin(): void {
-        this.authSrv.login( this.login, this.password );
+        this.authSrv.login( this.form.value );
+    }
+
+    private createForm(): void {
+        this.form = AuthForm.createFormObject();
     }
 }

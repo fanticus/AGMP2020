@@ -1,0 +1,39 @@
+<div *ngIf="authorsList$ | async as authorsList" class="authors-select">
+    <app-select
+        [list]="authorsList"
+        [selectedItem]="selectedValues">
+        <ng-container content>
+            <input *ngIf="!selectedValues" class="input"
+                [ngClass]="{ 'input--invalid': isError }"
+                type="text"
+                (blur)="handleTouch()"
+                [(ngModel)]="searchValue"
+                (input)="searchEvent$.next(searchValue)"
+                [placeholder]="placeholder"
+                [id]="title"
+                [appAutoFocus]="isError"
+                autocomplete="off"
+            />
+            <div *ngIf="selectedValues" class="authors-select__selected-items"
+                tabindex="0" (blur)="handleTouch()">
+                <div *ngFor="let author of selectedValues"
+                    class="authors-select__selected-item">
+                    <p class="authors-select__selected-item--name">{{ author.name }}</p>
+                    <div class="authors-select__selected-item--delete"
+                        (click)="deleteItem($event, author)"
+                    ></div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container dropdown>
+            <div class="authors-select__items">
+                <div *ngFor="let author of authorsList"
+                    class="authors-select__item"
+                    (mousedown)="selectValue(author)">
+                    <p class="authors-select__item--name">{{ author.name }}</p>
+                    <div *ngIf="checkSelected(author)" class="authors-select__item--mark"></div>
+                </div>
+            </div>
+        </ng-container>
+    </app-select>
+</div>

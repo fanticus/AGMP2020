@@ -1,0 +1,5 @@
+<ng-container *ngIf="form && form.controls">
+    <div *ngIf="formValidationSrv.getError(form.controls) as error"
+        class="form-error__title"
+    >{{ formValidationSrv.getTextError(error) }}</div>
+</ng-container>

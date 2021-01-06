@@ -1,0 +1,15 @@
+<div *ngIf="control"
+    class="input__block input__block--middle">
+    <app-form-field [control]="control"
+        [title]="title">
+        <app-authors-select
+            [selectedValues]="control.value"
+            [title]="title"
+            [placeholder]="placeholder"
+            [isError]="control.invalid && control.touched"
+            (deleteAuthor)="deleteAuthor($event)"
+            (addAuthor)="addAuthor($event)"
+            (touchEvent)="changeTouch()"
+        ></app-authors-select>
+    </app-form-field>
+</div>

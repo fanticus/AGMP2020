@@ -30,6 +30,12 @@ import {
     RemoveCourse,
     RemoveCourseSuccess,
     RemoveCourseFail,
+    GetAuthors,
+    GetAuthorsSuccess,
+    GetAuthorsFail,
+    GetSortAuthors,
+    GetSortAuthorsSuccess,
+    GetSortAuthorsFail,
 } from './courses.actions';
 
 import { CoursesApiService } from '../services/courses-api/courses-api.service';
@@ -139,6 +145,26 @@ export class CoursesEffects {
             this.coursesApiSrv.removeItem( id ).pipe(
                 map( () => RemoveCourseSuccess() ),
                 catchError(() => of( RemoveCourseFail() ))
+            )
+        )
+    ));
+
+    getAuthors$ = createEffect(() => this.actions$.pipe(
+        ofType( GetAuthors ),
+        mergeMap( () =>
+            this.coursesApiSrv.loadAuthors().pipe(
+                map( authors => GetAuthorsSuccess({ authors }) ),
+                catchError(() => of( GetAuthorsFail() ))
+            )
+        )
+    ));
+
+    getSortAuthors$ = createEffect(() => this.actions$.pipe(
+        ofType( GetSortAuthors ),
+        mergeMap( ({ value }) =>
+            this.coursesApiSrv.loadSortAuthors( value ).pipe(
+                map( authors => GetSortAuthorsSuccess({ authors }) ),
+                catchError(() => of( GetSortAuthorsFail() ))
             )
         )
     ));

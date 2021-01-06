@@ -40,7 +40,7 @@ export class UserEffects {
 
     loginUser$ = createEffect(() => this.actions$.pipe(
         ofType( LoginUser ),
-        map( action => action.loginData ),
+        map( action => action.authData ),
         mergeMap( loginForm =>
             this.authApiSrv.login( loginForm ).pipe(
                 tap( user => {

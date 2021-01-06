@@ -1,0 +1,10 @@
+<app-form-field *ngIf="control" [control]="control"
+    [title]="title">
+    <textarea class="textarea textarea-field"
+        [ngClass]="{ 'textarea--invalid': control.invalid && control.touched }"
+        [formControl]="control"
+        [placeholder]="placeholder"
+        [id]="title"
+        rows="5"
+    ></textarea>
+</app-form-field>

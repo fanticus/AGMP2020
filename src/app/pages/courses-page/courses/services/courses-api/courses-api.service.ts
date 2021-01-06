@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { IApiCourse } from '../../interfaces/ApiCourseInterface';
+import { IApiAuthor } from '../../interfaces/ApiAuthorInterface';
 
 import { ApiService } from '../../../../../commons/services/api/api.service';
 import { UrlsSettingsTypes } from '../../../../../commons/interfaces/SettingsInterface';
@@ -57,5 +58,17 @@ export class CoursesApiService {
     public getItemById( id: number ): Observable<IApiCourse> {
         const url = `${ UrlsSettingsTypes.Api }/${ UrlsSettingsTypes.Courses }/${ id }`;
         return this.apiSrv.request( 'get', url );
+    }
+
+    public loadAuthors(): Observable<IApiAuthor[]> {
+        const url = `${ UrlsSettingsTypes.Api }/${ UrlsSettingsTypes.Authors }`;
+        return this.apiSrv.request( 'get', url );
+    }
+
+    public loadSortAuthors( value: string ): Observable<IApiAuthor[]> {
+        const url = `${ UrlsSettingsTypes.Api }/${ UrlsSettingsTypes.Authors }`;
+        const params: any = {};
+        if (value) params.textFragment = value;
+        return this.apiSrv.request( 'get', url, { params } );
     }
 }

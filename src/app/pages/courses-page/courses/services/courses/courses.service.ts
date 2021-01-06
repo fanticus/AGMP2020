@@ -13,6 +13,8 @@ import {
     CreateCourse,
     UpdateCourse,
     RemoveCourse,
+    GetAuthors,
+    GetSortAuthors,
 } from '../../courses-store/courses.actions';
 
 @Injectable()
@@ -50,5 +52,13 @@ export class CoursesService {
 
     public changeLoadMore( value: any = {} ): void {
         this.store.dispatch( ChangeIsFinalCourses( value ) );
+    }
+
+    public loadAuthors(): void {
+        this.store.dispatch( GetAuthors() );
+    }
+
+    public loadSortAuthors( value: string ): void {
+        this.store.dispatch( GetSortAuthors({ value }) );
     }
 }

@@ -66,24 +66,14 @@ describe('LoginFormComponent', () => {
         expect(component.handleLogin).toHaveBeenCalled();
     });
 
-    it('login testing', () => {
-        expect(component.login).toBeDefined();
-        expect(typeof component.login).toEqual('string');
-        expect(component.login).toEqual('');
-    });
-    it('password testing', () => {
-        expect(component.password).toBeDefined();
-        expect(typeof component.password).toEqual('string');
-        expect(component.password).toEqual('');
-    });
-    it('handleLogin testing', () => {
-        spyOn((component as any).authSrv, 'login');
+    // it('handleLogin testing', () => {
+    //     spyOn((component as any).authSrv, 'login');
 
-        component.handleLogin();
+    //     component.handleLogin();
 
-        expect((component as any).authSrv.login)
-            .toHaveBeenCalledWith('', '');
-        expect((component as any).authSrv.login)
-            .toHaveBeenCalled();
-    });
+    //     expect((component as any).authSrv.login)
+    //         .toHaveBeenCalledWith('', '');
+    //     expect((component as any).authSrv.login)
+    //         .toHaveBeenCalled();
+    // });
 });

@@ -1,0 +1,14 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/mixins.scss";
+
+:host {
+    display: flex;
+    align-items: center;
+}
+
+.form-error {
+
+  @include element (title) {
+      @include input-error;
+  }
+}

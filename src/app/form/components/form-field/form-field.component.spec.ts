@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { APP_DECLARATIONS } from '../../../../app.declarations';
+import { APP_DECLARATIONS } from '../../../app.declarations';
 
 import { FormFieldComponent } from './form-field.component';
 

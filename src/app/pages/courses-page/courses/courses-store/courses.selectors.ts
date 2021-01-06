@@ -10,7 +10,11 @@ export const getCourses = createSelector(
     getCoursesState,
     state => state.courses
 );
+export const getAuthors = createSelector(
+    getCoursesState,
+    state => state.authors
+);
 export const getIsFinalCourses = createSelector(
-  getCoursesState,
-  state => state.isFinalCourses
+    getCoursesState,
+    state => state.isFinalCourses
 );

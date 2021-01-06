@@ -2,10 +2,12 @@ import { createReducer, on, Action } from '@ngrx/store';
 
 import { ICoursesState, initialCoursesState } from './courses.state';
 import {
-    GetCoursesSuccess,
     GetCourseSuccess,
+    GetSortAuthorsSuccess,
     GetSortCoursesSuccess,
     SetIsFinalCourses,
+    GetAuthorsSuccess,
+    GetCoursesSuccess,
 } from './courses.actions';
 
 const reducer = createReducer(
@@ -36,6 +38,18 @@ const reducer = createReducer(
                     return courseItem.id !== course.id ? courseItem : course;
                 })
               : [ course ]
+        };
+    }),
+    on( GetAuthorsSuccess, ( state, { authors } ) => {
+        return {
+            ...state,
+            authors: [ ...authors ]
+        };
+    }),
+    on( GetSortAuthorsSuccess, ( state, { authors } ) => {
+        return {
+            ...state,
+            authors: [ ...authors ]
         };
     }),
 );

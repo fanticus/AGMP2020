@@ -25,7 +25,7 @@
             "check-space"
         ],
         "curly": false,
-        "directive-class-suffix": true,
+        "directive-class-suffix": false,
         "directive-selector": [
             true,
             "attribute",

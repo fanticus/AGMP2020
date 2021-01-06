@@ -1,0 +1,15 @@
+<div *ngIf="control"
+    class="input__block input__block--short">
+    <app-form-field [control]="control"
+        [title]="title">
+        <input class="input"
+            [ngClass]="{ 'input--invalid': control.invalid && control.touched }"
+            type="text"
+            [formControl]="control"
+            placeholder="mm/dd/yyyy"
+            [id]="title"
+            pattern="^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$"
+            autocomplete="off"
+        />
+    </app-form-field>
+</div>

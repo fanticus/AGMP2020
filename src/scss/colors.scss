@@ -8,10 +8,16 @@ $primary-font-color: #474A59;
 $secondary-bg-color: #303240;
 $secondary-font-color:#FFFFFF;
 
+$error-text-color: #FF4E33;
+
 $input-border-color: #CED0DB;
 $input-hover-border-color: #6C6F80;
 $input-focus-border-color: #007799;
 $input-placeholder-text-color: #ACAFBF;
+$input-invalid-border-color: #F15C43;
+$input-invalid-hover-border-color: #D84831;
+$input-invalid-focus-border-color: #c93c26;
+$input-invalid-focus-box-shadow: 0 0 0 2px rgba(220, 91, 71, 0.4);
 
 $btn-primary-color: #67A300;
 $btn-primary-text-color: #FFFFFF;

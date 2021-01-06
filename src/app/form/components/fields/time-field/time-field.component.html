@@ -1,0 +1,17 @@
+<div *ngIf="control" class="input__wrapper">
+  <div class="input__block input__block--short">
+      <app-form-field [control]="control"
+          [title]="title">
+          <input class="input time-field"
+              [ngClass]="{ 'input--invalid': control.invalid && control.touched }"
+              type="number"
+              [formControl]="control"
+              [placeholder]="placeholder"
+              [id]="title"
+          />
+      </app-form-field>
+  </div>
+  <span *ngIf="control.value"
+      class="input__description"
+  >{{ control.value | duration }}</span>
+</div>

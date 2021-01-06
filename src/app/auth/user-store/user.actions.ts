@@ -17,7 +17,7 @@ enum UserActionsTypes {
 
 export const LoginUser = createAction(
     UserActionsTypes.LoginUser,
-    props<{ loginData: IApiLogin }>()
+    props<{ authData: IApiLogin }>()
 );
 
 export const LoginUserSuccess = createAction(

@@ -1,0 +1,10 @@
+<app-form-field *ngIf="control" [control]="control"
+    [title]="title">
+    <input class="input input-field"
+        [ngClass]="{ 'input--invalid': control.invalid && control.touched }"
+        [type]="type || 'text'"
+        [formControl]="control"
+        [placeholder]="placeholder"
+        [id]="title"
+    />
+</app-form-field>

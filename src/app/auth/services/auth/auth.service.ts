@@ -25,9 +25,8 @@ export class AuthService {
         return this.tokenValue;
     }
 
-    public login( login: string, password: string ): void {
-        const loginData: IApiLogin = { login, password };
-        this.store.dispatch( LoginUser({ loginData }) );
+    public login( authData: IApiLogin ): void {
+        this.store.dispatch( LoginUser({ authData }) );
     }
 
     public userInfo(): void {

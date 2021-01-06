@@ -1,4 +1,4 @@
-import { IAuthor, ICourse } from '../interfaces/CourseInterface';
+import { IAuthorCourse, ICourse } from '../interfaces/CourseInterface';
 
 export class Course implements ICourse {
 
@@ -8,5 +8,5 @@ export class Course implements ICourse {
     public duration: number;
     public description: string;
     public topRated: boolean;
-    public authors: IAuthor[];
+    public authors: IAuthorCourse[];
 }
