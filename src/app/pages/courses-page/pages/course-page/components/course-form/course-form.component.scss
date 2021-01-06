@@ -1,0 +1,10 @@
+@import "../../../../../../../scss/mixins.scss";
+
+.course-form {
+    width: 730px;
+    height: 100%;
+
+    @include element (footer) {
+        justify-content: space-between;
+    }
+}

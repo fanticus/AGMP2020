@@ -1,0 +1,156 @@
+@import "../../../../../../../scss/colors.scss";
+@import "../../../../../../../scss/variables.scss";
+@import "../../../../../../../scss/mixins.scss";
+
+.course-item {
+    @include content-block;
+    border: 1px solid $secondary-color;
+
+    &:hover {
+        box-shadow: $container-hover-box-shadow;
+        transition: all .1s ease;
+    }
+    @include modif (fresh) {
+        border-color: $course-fresh-border-color;
+    }
+    @include modif (upcoming) {
+        border-color: $course-upcoming-border-color;
+    }
+    @include modif (rate) {
+        background-color: darken($secondary-color, 1%);
+        border-color: darken($secondary-color, 1%);
+    }
+    @include element (block) {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+    @include element (header-wrapper) {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    @include element (header) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+    @include element (content) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+    @include element (info-block-wrapper) {
+        width: min-content;
+        height: 100%;
+        padding-left: $container-padding;
+    }
+    @include element (info-block) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        width: 100%;
+        height: 100%;
+    }
+    @include element (description-wrapper) {
+        width: 100%;
+        height: 100%;
+    }
+    @include element (description-block) {
+        width: 100%;
+        height: 100%;
+    }
+    @include element (actions-wrapper) {
+        width: min-content;
+        height: 100%;
+        padding-left: 24px;
+    }
+    @include element (actions) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        width: 100%;
+        height: 100%;
+    }
+    @include element (title-wrapper) {
+        width: max-content;
+        height: 100%;
+    }
+    @include element (title-block) {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: 100%;
+    }
+    @include element (title) {
+        @include content-title;
+        font-size: 24px;
+        word-break: break-word;
+    }
+    @include element (star) {
+        width: 17px;
+        height: 17px;
+        min-width: 17px;
+        background: url('../../../../../../../assets/icons/star.svg');
+        background-repeat: no-repeat;
+        background-size: 17px;
+        background-position: center;
+        margin-left: 15px;
+    }
+    @include element (info) {
+        @include description-text;
+        min-width: max-content;
+        color: $course-info-font-color;
+        background-repeat: no-repeat;
+        background-position: center left;
+        background-size: 16px;
+        background-position: left center;
+        padding-left: 23px;
+
+        &:not(:first-child) {
+            margin-left: $container-margin;
+        }
+        @include modif (clock) {
+            background-image: url('../../../../../../../assets/icons/clock.svg');
+        }
+        @include modif (date) {
+            background-image: url('../../../../../../../assets/icons/calendar.svg');
+        }
+    }
+    @include element (description) {
+        @include content-text;
+        font-size: 14px;
+        word-break: break-word;
+    }
+    @include element (button) {
+        height: 24px;
+        font-size: 12px;
+        color: $btn-tertiary-text-color;
+        text-transform: capitalize;
+        background-color: $btn-tertiary-color;
+        border-color: $btn-tertiary-color;
+        background-repeat: no-repeat;
+        background-position: center left;
+        background-size: 10px;
+        background-position: 10px center;
+        padding: 0 12px 0 27px;
+
+        &:hover {
+            background-color: $btn-tertiary-hover-color;
+            border-color: $btn-tertiary-hover-color;
+        }
+        @include modif (edit) {
+            background-image: url('../../../../../../../assets/icons/edit.svg');
+        }
+        @include modif (delete) {
+            background-image: url('../../../../../../../assets/icons/delete.svg');
+        }
+    }
+}

@@ -14,9 +14,7 @@ import {
 
 import { AppEventsService } from '../../../commons/services/app-events/app-events.service';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class ModalsService {
 
     public newModal$ = new Subject<IModal>();

@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +10,8 @@ import {
 } from './components/modal-types/confirm-modal/confirm-modal.component';
 
 import { ModalHostDirective } from './directives/modal-host.directive';
+
+import { ModalsService } from './services/modals/modals.service';
 
 const MODALS_TYPES = [
     ConfirmModalComponent,
@@ -26,6 +27,7 @@ const MODALS_TYPES = [
         CommonModule,
         FormsModule,
     ],
+    providers: [ ModalsService ],
     exports: [ ModalsOverlayComponent ],
     entryComponents: [ ...MODALS_TYPES ],
 })

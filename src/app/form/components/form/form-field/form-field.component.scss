@@ -1,0 +1,36 @@
+@import "../../../../../scss/colors.scss";
+@import "../../../../../scss/variables.scss";
+@import "../../../../../scss/mixins.scss";
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+
+    @include element (header-wrapper) {
+        width: 100%;
+        padding-bottom: 8px;
+    }
+    @include element (header) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    @include element (body) {
+        width: 100%;
+    }
+    @include element (label) {
+        @include content-text;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+    @include element (required) {
+        @include description-text;
+        color: $primary-font-color;
+        font-size: 12px;
+        padding-left: 12px;
+    }
+}

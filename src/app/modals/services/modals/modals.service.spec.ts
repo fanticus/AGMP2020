@@ -1,18 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 
+import { APP_IMPORTS } from '../../../app.imports';
+import { APP_DECLARATIONS } from '../../../app.declarations';
+
 import { ModalTypes } from '../../interfaces/ModalInterface';
 
-import { modalDataStub } from '../../../../test-stubs/modal.stub';
+import { modalDataStub } from '../../../../stubs/test-stubs/modal.stub';
 
 import { ModalsService } from './modals.service';
 
 describe('ModalsService', () => {
     let service: ModalsService;
 
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [ APP_IMPORTS ],
+            declarations: [ APP_DECLARATIONS ]
+        }).compileComponents();
+    });
+
     beforeEach(() => {
-        TestBed.configureTestingModule({});
         service = TestBed.inject(ModalsService);
+    });
+    afterEach(() => {
+        service = null;
     });
 
     it('should be created', () => {

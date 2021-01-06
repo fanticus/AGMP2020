@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 
+import { APP_IMPORTS } from '../../../app.imports';
 import { APP_DECLARATIONS } from '../../../app.declarations';
 
-import { modalDataStub } from '../../../../test-stubs/modal.stub';
+import { modalDataStub } from '../../../../stubs/test-stubs/modal.stub';
 
 import { ConfirmModalComponent } from '../modal-types/confirm-modal/confirm-modal.component';
 
@@ -16,6 +17,7 @@ describe('ModalsOverlayComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [ APP_IMPORTS ],
             declarations: [ APP_DECLARATIONS ]
         }).compileComponents();
     });

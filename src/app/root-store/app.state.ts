@@ -1,5 +1,5 @@
-import { IUserState } from '../commons/auth/user-store/user.state';
-import { ICoursesState } from '../pages/courses-page/courses-store/courses.state';
+import { IUserState } from '../auth/user-store/user.state';
+import { ICoursesState } from '../pages/courses-page/courses/courses-store/courses.state';
 
 export interface IAppState {
     readonly user: IUserState | null;

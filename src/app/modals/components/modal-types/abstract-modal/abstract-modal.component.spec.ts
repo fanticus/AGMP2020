@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { APP_IMPORTS } from '../../../../app.imports';
 import { APP_DECLARATIONS } from '../../../../app.declarations';
 
-import { modalDataStub } from '../../../../../test-stubs/modal.stub';
+import { modalDataStub } from '../../../../../stubs/test-stubs/modal.stub';
 
 import { AbstractModalComponent } from './abstract-modal.component';
 
@@ -19,6 +20,7 @@ describe('AbstractModalComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [ APP_IMPORTS ],
             declarations: [
                 APP_DECLARATIONS,
                 TestComponent,

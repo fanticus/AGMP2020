@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 // COMPONENTS
 import { FooterComponent } from './components/footer/footer.component';
@@ -11,26 +12,21 @@ import { UserComponent } from './components/header/user/user.component';
 
 import { CopyRightsComponent } from './components/footer/copy-rights/copy-rights.component';
 
-import { FormFieldComponent } from './components/form/form-field/form-field.component';
-import { FormComponent } from './components/form/form.component';
-
 import { LoaderComponent } from './components/loader/loader.component';
 
-// PIPES
-import { DurationPipe } from './pipes/duration/duration.pipe';
+// SERVICES
+import { ApiService } from './services/api/api.service';
+import { AppEventsService } from './services/app-events/app-events.service';
+import { SettingsService } from './services/settings/settings.service';
 
 // MODULES
-import { AppRoutingModule } from '../app-routing.module';
-import { AuthModule } from './auth/auth.module';
+import { CoursesModule } from '../pages/courses-page/courses/courses.module';
 
 const COMPONENTS = [
     FooterComponent,
     BreadcrumbsComponent,
     HeaderComponent,
-    FormComponent,
-    FormFieldComponent,
     LoaderComponent,
-    DurationPipe,
 ];
 
 @NgModule({
@@ -42,8 +38,13 @@ const COMPONENTS = [
     ],
     imports: [
         CommonModule,
-        AppRoutingModule,
-        AuthModule,
+        RouterModule,
+        CoursesModule,
+    ],
+    providers: [
+        ApiService,
+        AppEventsService,
+        SettingsService,
     ],
     exports: [ ...COMPONENTS ]
 })

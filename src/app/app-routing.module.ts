@@ -1,42 +1,43 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-import {
-    LoginPageComponent
-} from './pages/login-page/components/login-page.component';
-import { CoursePageComponent } from './pages/course-page/components/course-page.component';
-import { CoursesPageComponent } from './pages/courses-page/components/courses-page.component';
-import {
-    NotFoundPageComponent
-} from './pages/not-found-page/components/not-found-page.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 // GUARDS
-import { AuthGuard } from './commons/auth/guards/auth/auth.guard';
-
-const COURSES_ROUTES: Routes = [
-    { path: '', component: CoursesPageComponent },
-    { path: 'new', component: CoursePageComponent },
-    { path: ':id', component: CoursePageComponent },
-];
+import { AuthGuard } from './auth/guards/auth/auth.guard';
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'courses', pathMatch: 'full' },
     {
         path: 'login',
-        component: LoginPageComponent,
+        loadChildren: () =>
+            import('./pages/login-page/login-page.module')
+                .then(m => m.LoginPageModule),
+        canLoad: [ AuthGuard ],
         canActivate: [ AuthGuard ],
     },
     {
         path: 'courses',
+        loadChildren: () =>
+            import('./pages/courses-page/courses-page.module')
+                .then(m => m.CoursesPageModule),
+        canLoad: [ AuthGuard ],
         canActivate: [ AuthGuard ],
-        children: COURSES_ROUTES,
+        canActivateChild: [ AuthGuard ],
     },
-    { path: '404', component: NotFoundPageComponent },
+    {
+        path: '404',
+        loadChildren: () =>
+            import('./pages/not-found-page/not-found-page.module')
+                .then(m => m.NotFoundPageModule),
+    },
     { path: '**',  redirectTo: '404' },
 ];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(ROUTES) ],
+    imports: [
+      RouterModule.forRoot( ROUTES, {
+          preloadingStrategy: PreloadAllModules
+      })
+    ],
     exports: [ RouterModule ]
 })
 export class AppRoutingModule {}

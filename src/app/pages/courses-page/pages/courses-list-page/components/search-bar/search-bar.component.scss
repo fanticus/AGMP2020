@@ -1,0 +1,11 @@
+@import "../../../../../../../scss/mixins.scss";
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    @include element (input) {
+        width: 240px;
+    }
+}

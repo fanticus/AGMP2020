@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NotFoundPageComponent } from './components/not-found-page.component';
 
 // MODULES
-import { AppRoutingModule } from '../../app-routing.module';
+import { NotFoundPageRoutingModule } from './not-found-page-routing.module';
 
 @NgModule({
     declarations: [
@@ -13,8 +13,7 @@ import { AppRoutingModule } from '../../app-routing.module';
     ],
     imports: [
         CommonModule,
-        AppRoutingModule,
-    ],
-    exports: [ NotFoundPageComponent ]
+        NotFoundPageRoutingModule,
+    ]
 })
 export class NotFoundPageModule { }

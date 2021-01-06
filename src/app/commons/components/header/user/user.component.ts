@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { map, takeUntil, filter } from 'rxjs/operators';
+import { map, takeUntil, filter, tap } from 'rxjs/operators';
 import { select, Store } from '@ngrx/store';
 
-import { getUser } from '../../../../commons/auth/user-store/user.selectors';
+import { getUser } from '../../../../auth/user-store/user.selectors';
 import { IAppState } from '../../../../root-store/app.state';
 
 import { ModalTypes } from '../../../../modals/interfaces/ModalInterface';
 
 import { ModalsService } from '../../../../modals/services/modals/modals.service';
-import { AuthService } from '../../../auth/services/auth/auth.service';
+import { AuthService } from '../../../../auth/services/auth/auth.service';
 
 @Component({
     selector: 'app-user',
@@ -30,6 +30,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.username$ = this.store.pipe(
+            filter( res => !!Object.keys( res ).length ),
             select( getUser ),
             filter( user => !!user ),
             map( user => `${ user.firstName } ${ user.lastName }` ),

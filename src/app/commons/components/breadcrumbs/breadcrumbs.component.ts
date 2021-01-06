@@ -9,15 +9,17 @@ import {
     pluck,
     map,
 } from 'rxjs/operators';
-import { getCourses } from '../../../pages/courses-page/courses-store/courses.selectors';
+import { getCourses } from '../../../pages/courses-page/courses/courses-store/courses.selectors';
 import { IAppState } from '../../../root-store/app.state';
 
-import { CoursesService } from '../../../pages/courses-page/services/courses/courses.service';
+import {
+    CoursesService
+} from '../../../pages/courses-page/courses/services/courses/courses.service';
 
 @Component({
     selector: 'app-breadcrumbs',
     templateUrl: './breadcrumbs.component.html',
-    styleUrls: ['./breadcrumbs.component.scss']
+    styleUrls: ['./breadcrumbs.component.scss'],
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
 
@@ -68,7 +70,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
         if ( idCourse && !this.textBreadcrumbs
             .hasOwnProperty( idCourse ) ) {
             this.courseTitle$ = this.store.select( getCourses ).pipe(
-                map( courses => courses.find( course => course.id === +idCourse) ),
+                map( courses => courses.find( course => course.id === +idCourse ) ),
                 pluck( 'title' ),
                 takeUntil( this.unsubscribe$ )
             );

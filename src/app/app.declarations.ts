@@ -8,26 +8,28 @@ import {
     BreadcrumbsComponent
 } from './commons/components/breadcrumbs/breadcrumbs.component';
 
-import { CoursesPageComponent } from './pages/courses-page/components/courses-page.component';
 import {
-    CourseItemComponent
-} from './pages/courses-page/components/course-item/course-item.component';
+    CoursesListPageComponent
+} from './pages/courses-page/pages/courses-list-page/components/courses-list-page.component';
+import {
+  CourseItemComponent
+} from './pages/courses-page/pages/courses-list-page/components/course-item/course-item.component';
 import {
     SearchBarComponent
-} from './pages/courses-page/components/search-bar/search-bar.component';
+} from './pages/courses-page/pages/courses-list-page/components/search-bar/search-bar.component';
 
 import { FooterComponent } from './commons/components/footer/footer.component';
 import { CopyRightsComponent } from './commons/components/footer/copy-rights/copy-rights.component';
 
-import { LoginPageComponent } from './pages/login-page/components/login-page.component';
-import { LoginFormComponent } from './pages/login-page/components/login-form/login-form.component';
-import { FormComponent } from './commons/components/form/form.component';
-import { FormFieldComponent } from './commons/components/form/form-field/form-field.component';
-
-import { CoursePageComponent } from './pages/course-page/components/course-page.component';
+import { CoursePageComponent } from './pages/courses-page/pages/course-page/components/course-page.component';
 import {
     CourseFormComponent
-} from './pages/course-page/components/course-form/course-form.component';
+} from './pages/courses-page/pages/course-page/components/course-form/course-form.component';
+
+import { LoginPageComponent } from './pages/login-page/components/login-page.component';
+import { LoginFormComponent } from './pages/login-page/components/login-form/login-form.component';
+import { FormComponent } from './form/components/form/form.component';
+import { FormFieldComponent } from './form/components/form/form-field/form-field.component';
 
 import { NotFoundPageComponent } from './pages/not-found-page/components/not-found-page.component';
 
@@ -39,14 +41,15 @@ import {
 import { LoaderComponent } from './commons/components/loader/loader.component';
 
 // PIPES
-import { DurationPipe } from './commons/pipes/duration/duration.pipe';
-import { OrderByPipe } from './pages/courses-page/pipes/order-by/order-by.pipe';
-import { FilterPipe } from './pages/courses-page/pipes/filter/filter.pipe';
+import { FilterPipe } from './pages/courses-page/pages/courses-list-page/pipes/filter/filter.pipe';
+import { OrderByPipe } from './pages/courses-page/pages/courses-list-page/pipes/order-by/order-by.pipe';
+import { DurationPipe } from './pages/courses-page/courses/pipes/duration/duration.pipe';
 
 // DIRECTIVES
 import {
     CourseHighlightDirective
-} from './pages/courses-page/directives/course-highlight/course-highlight.directive';
+} from
+'./pages/courses-page/pages/courses-list-page/directives/course-highlight/course-highlight.directive';
 import { ModalHostDirective } from './modals/directives/modal-host.directive';
 
 export const APP_DECLARATIONS = [
@@ -55,7 +58,7 @@ export const APP_DECLARATIONS = [
     LogoComponent,
     UserComponent,
     BreadcrumbsComponent,
-    CoursesPageComponent,
+    CoursesListPageComponent,
     LoginPageComponent,
     CoursePageComponent,
     NotFoundPageComponent,

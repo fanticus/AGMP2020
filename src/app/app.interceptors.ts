@@ -8,7 +8,7 @@ import {
 } from './commons/interceptors/header/header.interceptor';
 import {
     TokenInterceptor
-} from './commons/auth/interceptors/token/token.interceptor';
+} from './auth/interceptors/token/token.interceptor';
 
 export const APP_INTERCEPTORS = [
     {

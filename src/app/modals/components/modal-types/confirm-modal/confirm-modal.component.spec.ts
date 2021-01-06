@@ -2,9 +2,10 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
+import { APP_IMPORTS } from '../../../../app.imports';
 import { APP_DECLARATIONS } from '../../../../app.declarations';
 
-import { modalDataStub } from '../../../../../test-stubs/modal.stub';
+import { modalDataStub } from '../../../../../stubs/test-stubs/modal.stub';
 
 import { ConfirmModalComponent } from './confirm-modal.component';
 
@@ -15,6 +16,7 @@ describe('ConfirmModalComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [ APP_IMPORTS ],
             declarations: [ APP_DECLARATIONS ]
         })
         .compileComponents();

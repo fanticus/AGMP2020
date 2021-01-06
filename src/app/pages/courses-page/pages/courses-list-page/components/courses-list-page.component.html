@@ -1,0 +1,46 @@
+<div class="courses-list-page">
+    <div class="courses-list-page__action-bar-wrapper">
+        <div class="courses-list-page__action-bar">
+            <app-search-bar class="courses-list-page__action-bar--search"
+                (eventSearch)="loadSortCourses($event)"
+            ></app-search-bar>
+            <div class="courses-list-page__actions-wrapper">
+                <div class="courses-list-page__actions">
+                    <a class="button courses-list-page__button"
+                        routerLink="new"
+                    >Add course</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-container *ngIf="coursesList$ | async as courses">
+        <div *ngIf="courses.length" class="courses-list-page__list-wrapper">
+            <div class="courses-list-page__list">
+                <app-course-item
+                    *ngFor="let course of courses"
+                    class="courses-list-page__list-item"
+                    [courseItem]="course"
+                    (deleteCourse)="deleteCourse($event)"
+                ></app-course-item>
+            </div>
+            <div *ngIf="isDisplayLoadMore$ | async"
+                class="courses-list-page__load-more-wrapper"
+                (click)="handleLoadMore(courses.length)">
+                <div class="courses-list-page__load-more">
+                    <a class="link">Load more</a>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!courses.length" class="courses-list-page__not-data-wrapper">
+            <div class="courses-list-page__not-data">
+                <h3 class="courses-list-page__not-data--title">
+                    No data
+                </h3>
+                <span class="courses-list-page__not-data--description">
+                    Feel free to add new course
+                </span>
+            </div>
+        </div>
+    </ng-container>
+</div>

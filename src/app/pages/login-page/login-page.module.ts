@@ -6,7 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { LoginPageComponent } from './components/login-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 
-import { CommonsModule } from '../../commons/commons.module';
+// MODULES
+import { LoginPageRoutingModule } from './login-page-routing.module';
+import { FormModule } from '../../form/form.module';
 
 @NgModule({
     declarations: [
@@ -16,8 +18,8 @@ import { CommonsModule } from '../../commons/commons.module';
     imports: [
         CommonModule,
         FormsModule,
-        CommonsModule,
-    ],
-    exports: [ LoginPageComponent ]
+        LoginPageRoutingModule,
+        FormModule,
+    ]
 })
 export class LoginPageModule { }
